@@ -1,0 +1,138 @@
+@media (max-width: 1440px) {
+ 
+}
+
+@media (max-width: 1199px) {
+  .location-area-map-marker {
+    right: 26%;
+  }
+
+  #top_slider .owl-carousel .owl-nav button.owl-prev {
+    left: -30px;
+  }
+
+  #top_slider .owl-carousel .owl-nav button.owl-next {
+    right: -30px;
+  }
+
+  #adv-search {
+    width: 70%;
+  }
+}
+
+@media (max-width: 992px) {
+  .MuiFormControl-root {
+    margin-top:20px;
+}
+.MuiSelect-selectMenu {
+  min-height: 30px !important;
+}
+  .plamb-responsive-nav {
+    display: block;
+  }
+
+  #adv-search {
+    width: 100%;
+  }
+
+  .location-area-map-marker {
+    right: 29%;
+  }
+
+  .app-downloads-button a {
+    padding: 9px 5px;
+    margin-right: 10px;
+  }
+
+  .footer-items {
+    padding-bottom: 20px;
+  }
+
+  .copy-right-area {
+    text-align: center;
+  }
+
+  .copy-right-right-side ul {
+    justify-content: center;
+    padding-top: 14px;
+  }
+
+  #locationSelectModal {
+    z-index: 999999;
+  }
+
+  .mean-bar {
+    z-index: 99999;
+  }
+
+  .menu-form-arae input {
+    padding: 10px 50px;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  #restaurant-info-modal .tags-details-area ul,    #restaurant-info-modal .catagorys-details-area ul{
+    display: inherit;
+  }
+  #restaurant-info-modal .tags-details-area ul li,   #restaurant-info-modal .catagorys-details-area ul li{
+    display: inline-flex;
+  }
+  #top-select-area li {
+    flex: none;
+    width: 40%;
+    height: 90px;
+}
+#top-select-area li a {
+  font-size: 18px;}
+  /* .modal {
+    width: 90%;
+  } */
+
+  .navbar-area {
+    position: inherit;
+  }
+
+  .app-downloads-img img {
+    display: none;
+  }
+
+  .home_banner-text h1 {
+    font-size: 40px;
+  }
+
+  .location-area-map-marker {
+    right: 30px;
+  }
+
+  #banner_form input {
+    width: 100%;
+  }
+
+  #banner_form .input-group-append {
+    width: 100%;
+  }
+
+  #banner_form button {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  #top_slider .owl-carousel .owl-nav button.owl-prev {
+    left: 20px;
+  }
+
+  #top_slider .owl-carousel .owl-nav button.owl-next {
+    right: 20px;
+  }
+
+#restaurant-info-modal .area-modal-resta-name {
+  margin: -60px 25px 0 25px;
+}
+}
+
+@media (max-width: 576px) {
+  .login-form-area {
+    width: 100%;
+}
+}

@@ -1,0 +1,19 @@
+:root {
+    --theme-color-one: #C8102E;
+    --heading-color: #333;
+    --color-white: #fff;
+
+}
+
+/*text color*/
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: var(--heading-color);
+}
