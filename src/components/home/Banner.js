@@ -1,185 +1,155 @@
 import React, {useState} from 'react'
-import { BiMap } from "react-icons/bi";
-import Modal from "react-bootstrap/Modal";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api'
 import Link from 'next/link'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
 
 
 function Banner() {
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    const libraries = ['places'];
 
-  const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({
-    lat: null,
-    lng: null
-  });
+    const defaultCenter = {
+        lat: 22.8136822, lng:89.5635596
+    }
+    const BannerData ={
+        heading:"Find your favorite food and restaurant near You",
+        button:"Search",
+        para:"Find your preferred food and restaurant near your area"
+    }
 
+    const mapStyles = {
+        height: "35vh",
+        width: "100%",
+        margin: "30px 0 0 0"
+    };
 
-  // const onLoad = React.useCallback(function callback(map) {
-  //   const bounds = new window.google.maps.LatLngBounds();
-  //   map.fitBounds(bounds);
-  //   setMap(map)
-  // }, [])
- 
-  // const onUnmount = React.useCallback(function callback(map) {
-  //   setMap(null)
-  // }, [])
+    const [autoComplete, setAutoComplete] =useState();
+    function onLoad(value) {
+        setAutoComplete(value)
+        console.log(autoComplete)
+    }
 
-  const handleSelect = async value => {
-    const results = await geocodeByAddress(value);
-    const latLng = await getLatLng(results[0]);
-    setAddress(value);
-    setCoordinates(latLng);
-  };
+    const [address, setAddress] = useState();
+    const [coordinates, setCoordinates] = useState({
+        lat: 22.8136822, lng:89.5635596
+    });
 
-  const BannerData ={
-    heading:"Find your favorite food and restaurant near You",
-    button:"Search",
-    para:"Find your preferred food and restaurant near your area"
-  }
+    const [ marker, setMarker ] = useState();
 
-  const mapStyles = {        
-    height: "50vh",
-    width: "100%",
-    margin: "30px 0 0 0"
-  };
-  const defaultCenter = {
-    lat: 22.8136822, lng:89.5635596
-  }
+    function onMarkerLoad(value) {
+        setMarker(value);
+        console.log(value);
+    }
 
- return (
-  <>
+    const [markerCoordinates, setMarkerCoordinates] = useState({
+        lat: 22.8136822, lng:89.5635596
+    });
 
-<Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton className="modal_padding">
-          <Modal.Title>Is this your exact location?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <div className="modal-dialog" id="locationSelectModal">
-      <div className="modal-content">
-       
-        <div className="modal-body">
-          <form>
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Enter your address" />
-              <i className="modal-input-icon">
-              <BiMap size="27px"/>
-                </i>
-            </div>
+    function handleMarkerPositionChange() {
+        if( marker ) {
+            console.log(marker.position.lat(), marker.position.lng());
+        }
 
+    }
 
-            <LoadScript
-              googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
-              libraries={["places"]}
-              >
-              <GoogleMap
-                    mapContainerStyle={mapStyles}
-                    zoom={13}
-                    center={defaultCenter}>
-                  
-              </GoogleMap>
-    
-          </LoadScript>
+    function handleMarkerPositionUpdate() {
+        if( marker ) {
+            console.log("Updated" , marker.position.lat(), marker.position.lng());
+            setMarkerCoordinates({
+                lat: marker.position.lat(),
+                lng: marker.position.lng()
+            })
+        }
+
+    }
+
+    function handleSelect() {
+        let place = autoComplete.getPlace()
+        setAddress(place.formatted_address)
+        let currentCoordinates = {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+        }
+        setCoordinates(currentCoordinates)
+        setMarkerCoordinates(currentCoordinates);
+    }
 
 
-          </form>
-        </div>
-      </div>
-    </div>
-        </Modal.Body>
-      </Modal>
-     <section id="home_banner">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
-          <div className="home_banner-text zindex">
-               <h1>{BannerData.heading}</h1>
-            <div className="banner_search_form">
-              <form action="!#" id="banner_form">
-                <div className="input-group">
+    return (
+        <>
+            <section id="home_banner">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
+                            <div className="home_banner-text zindex mb-5">
+                                <h1>{BannerData.heading}</h1>
+                                <div className="banner_search_form">
+                                    <useLoadScript
+                                        onLoad={()=>alert("hii")}
+                                        googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
+                                        libraries={libraries}>
+                                        <Autocomplete
+                                            onLoad={onLoad}
+                                            onPlaceChanged={handleSelect}>
+                                            <form action="!#" id="banner_form">
+                                                <div className="input-group">
+                                                    <input
+                                                        type="text"
+                                                        value={address}
+                                                        onChange={(e)=> setAddress(e.currentTarget.value)}
+                                                        placeholder="Search location"
+                                                        className="form-control border-radius"
+                                                        style={{
+                                                            boxSizing: 'border-box',
+                                                            width: '100%'
+                                                        }}
+                                                    />
+                                                    <i className="icon_search">
+                                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                                             strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                            <circle cx="11" cy="11" r="8"></circle>
+                                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                        </svg></i>
+                                                    <div className="input-group-append">
+                                                        <Link href="/restaurants_list">
+                                                            <a className="btn-banner-search btn-banner-height border-radius button-site">
+                                                                {BannerData.button}
+                                                            </a>
+                                                        </Link>
 
+                                                    </div>
 
+                                                </div>
+                                            </form>
+                                        </Autocomplete>
+                                    </useLoadScript>
 
-                  {/* <input type="text" className="form-control border-radius" placeholder="Search location" /> */}
+                                    <useLoadScript
+                                        googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
+                                    >
 
+                                        <GoogleMap
+                                            mapContainerStyle={mapStyles}
+                                            zoom={13}
+                                            center={coordinates}>
+                                            <Marker
+                                                onLoad={onMarkerLoad}
+                                                draggable={true}
+                                                position={markerCoordinates}
+                                                onPositionChanged={handleMarkerPositionChange}
+                                                onDragEnd = {handleMarkerPositionUpdate}
+                                            />
 
-
-
-                  <PlacesAutocomplete
-                        value={address}
-                        onChange={setAddress}
-                        onSelect={handleSelect}
-                      >
-                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                          <div>
-
-                            <input {...getInputProps({ placeholder: "Type address" })} type="text" className="form-control border-radius" />
-
-                            <div>
-                              {loading ? <div>...loading</div> : null}
-
-                              {suggestions.map(suggestion => {
-                                const style = {
-                                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
-                                };
-
-                                return (
-                                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                                    {suggestion.description}
-                                  </div>
-                                );
-                              })}
+                                        </GoogleMap>
+                                    </useLoadScript>
+                                    <p className="pt-30">{BannerData.para}</p>
+                                </div>
                             </div>
-                          </div>
-                        )}
-      </PlacesAutocomplete>
-
-
-
-
-
-                  <i className="icon_search">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
-                      strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg></i>
-                    <a>
-                  <i className="location-area-map-marker" onClick={handleShow }>
-                    <BiMap size="27px"/>
-                  </i>
-                  </a>
-                  <div className="input-group-append">
-                   <Link href="/restaurants_list">
-                        <a className="btn-banner-search btn-banner-height border-radius button-site">
-                          {BannerData.button}
-                        </a> 
-                     </Link>
-                     
-                  </div>
+                        </div>
+                    </div>
                 </div>
-              </form>
-              <p className="pt-30">{BannerData.para}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </>
- )
+            </section>
+        </>
+    )
 
 }
 
