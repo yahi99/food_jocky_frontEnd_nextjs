@@ -1,15 +1,14 @@
-import React, {useState} from 'react'
-import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api'
+import React, {useEffect, useState} from 'react'
+import { GoogleMap , Autocomplete, Marker } from '@react-google-maps/api'
 import Link from 'next/link'
+import {BiMap} from "react-icons/bi";
+import axios from "axios";
 
 
 function Banner() {
 
     const libraries = ['places'];
 
-    const defaultCenter = {
-        lat: 22.8136822, lng:89.5635596
-    }
     const BannerData ={
         heading:"Find your favorite food and restaurant near You",
         button:"Search",
@@ -37,7 +36,6 @@ function Banner() {
 
     function onMarkerLoad(value) {
         setMarker(value);
-        console.log(value);
     }
 
     const [markerCoordinates, setMarkerCoordinates] = useState({
@@ -51,6 +49,30 @@ function Banner() {
 
     }
 
+    const [ getCurrentLocation, setGetCurrentLocation] = useState();
+
+    function currentLocation() {
+        setGetCurrentLocation(true);
+    }
+
+
+    useEffect(function (){
+
+        if(getCurrentLocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                let currentCoordinates = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                }
+                setCoordinates(currentCoordinates)
+                setMarkerCoordinates(currentCoordinates);
+            });
+            setGetCurrentLocation(false);
+            updateName();
+        }
+    }, [getCurrentLocation, coordinates, markerCoordinates])
+
+
     function handleMarkerPositionUpdate() {
         if( marker ) {
             console.log("Updated" , marker.position.lat(), marker.position.lng());
@@ -59,6 +81,7 @@ function Banner() {
                 lng: marker.position.lng()
             })
         }
+        updateName();
 
     }
 
@@ -71,6 +94,11 @@ function Banner() {
         }
         setCoordinates(currentCoordinates)
         setMarkerCoordinates(currentCoordinates);
+    }
+
+    async function updateName() {
+        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + markerCoordinates.lat + '%2C' + markerCoordinates.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+        setAddress(response.data.results[0].formatted_address);
     }
 
 
@@ -109,6 +137,9 @@ function Banner() {
                                                             <circle cx="11" cy="11" r="8"></circle>
                                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                                         </svg></i>
+                                                    <i className="location-area-map-marker" onClick={currentLocation} style={{cursor: 'pointer'}}>
+                                                        <BiMap size="27px"/>
+                                                    </i>
                                                     <div className="input-group-append">
                                                         <Link href={"/restaurants_list?lat=" + markerCoordinates.lat + "&lng=" + markerCoordinates.lng}>
                                                             <a className="btn-banner-search btn-banner-height border-radius button-site">

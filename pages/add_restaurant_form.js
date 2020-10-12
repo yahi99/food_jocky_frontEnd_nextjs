@@ -1,10 +1,10 @@
 import React from 'react'
-import PageLayout from '../src/components/AddRestaurant/PageLayout'
+import NewRestaurantForm from "../src/components/NewRestaurant/NewRestaurantForm";
 
 const  AddRestaurant= ()=> {
  return (
   <>
-   <PageLayout/>
+   <NewRestaurantForm/>
   </>
  )
 }

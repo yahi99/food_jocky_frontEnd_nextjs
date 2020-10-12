@@ -9,7 +9,7 @@ import axios from "axios";
 import Router from "next/router";
 
 
-function LoginArea(props) {
+function RestaurantLoginArea(props) {
 
     const Cookies = require('js-cookie');
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -32,7 +32,7 @@ function LoginArea(props) {
                 mobile: phoneNumber,
                 password: password
             }
-            let response = await axios.post(`${props.apiUrl}/api/customer/login`, postData);
+            let response = await axios.post(`${props.apiUrl}/api/restaurant/login`, postData);
             console.log(response.data);
             if(response.data.error) {
                 Swal.fire(
@@ -130,4 +130,4 @@ function LoginArea(props) {
 
 
 
-export default LoginArea;
+export default RestaurantLoginArea;

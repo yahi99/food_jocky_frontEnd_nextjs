@@ -41,7 +41,7 @@ function Register(props) {
                     'error'
                 )
             } else {
-                Cookies.set('token', result.token);
+                Cookies.set('token', response.data.token);
                 Router.push("/");
             }
         }
