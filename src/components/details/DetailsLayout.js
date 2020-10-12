@@ -45,7 +45,7 @@ const [show, setShow] = useState(false);
 
 
   const tagLists = restaurant.tags.map((d) => <li key={d}>{d}</li>)
-  const categoryList = restaurant.food_categories.map((food_category) => <li><Link href="/"><a>{food_category.name}</a></Link></li>)
+  const categoryList = restaurant.food_categories.map((food_category) => <li><a href={"#category-" + food_category.name.replace(/\s/g, '-')}>{food_category.name}</a></li>)
  
 
  
@@ -191,8 +191,8 @@ const [show, setShow] = useState(false);
       {
         restaurant.food_categories.map((food_category) => 
 
-        <div id="set-itm-one">
-        <div className="container">
+        <div id={ "category-" + food_category.name.replace(/\s/g, '-') }>
+        <div className="container" >
          <Heading heading={food_category.name} />
           <div className="row">
          {
