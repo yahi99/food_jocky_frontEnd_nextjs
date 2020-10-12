@@ -5,27 +5,45 @@ import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import Swal from "sweetalert2";
+import axios from "axios";
+import Router from "next/router";
 
-function LoginArea() {
 
-    const [name, setName] = useState("");
+function LoginArea(props) {
+
+    const Cookies = require('js-cookie');
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
-    const handleNameChange = e => setName(e.currentTarget.value);
+    const handlePhoneNumberChange = e => setPhoneNumber(e.currentTarget.value.replace(/ /g,''));
     const handlePasswordChange = e => setPassword(e.currentTarget.value);
     const handleRememberMeChange = e => setRememberMe(!rememberMe);
 
-
-    function handleLogin() {
-        if(name == "" || password == "" ) {
+    async function handleLogin() {
+        if(phoneNumber == "" || password == "" ) {
             Swal.fire(
                 "Warning",
                 "Please fill up all required fields",
                 'warning'
             )
         } else {
-            console.log(name, password)
+            let postData = {
+                mobile: phoneNumber,
+                password: password
+            }
+            let response = await axios.post(`${props.apiUrl}/api/customer/login`, postData);
+            console.log(response.data);
+            if(response.data.error) {
+                Swal.fire(
+                    "Error",
+                    response.data.msg,
+                    'error'
+                )
+            } else {
+                Cookies.set('token', result.token);
+                Router.push("/");
+            }
         }
     }
 
@@ -41,20 +59,20 @@ function LoginArea() {
                                 </div>
                                 <form>
                                     <div className="form-group">
-                                        <label>Name</label>
+                                        <label>Phone Number</label>
                                         <input
                                             type="text"
-                                            placeholder="name"
+                                            placeholder="Phone Number"
                                             className="form-control"
-                                            value={name}
-                                            onChange={handleNameChange}
+                                            value={phoneNumber}
+                                            onChange={handlePhoneNumberChange}
                                         />
                                     </div>
                                     <div className="form-group">
                                         <label>Password</label>
                                         <input
                                             type="password"
-                                            placeholder="password"
+                                            placeholder="Password"
                                             className="form-control"
                                             value={password}
                                             onChange={handlePasswordChange}
@@ -109,5 +127,7 @@ function LoginArea() {
         </>
     );
 };
+
+
 
 export default LoginArea;

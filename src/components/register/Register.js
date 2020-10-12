@@ -1,8 +1,13 @@
 import React, {useState} from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import axios from "axios";
+import Router from "next/router";
 
-function Register() {
+function Register(props) {
+
+    const Cookies = require('js-cookie');
+
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
@@ -13,7 +18,7 @@ function Register() {
     const handleEmailChange = e => setEmail(e.currentTarget.value);
     const handlePasswordChange = e => setPassword(e.currentTarget.value);
 
-    function handleRegister() {
+    async function handleRegister() {
         if(name == "" || phoneNumber == "" || password == "" ) {
             Swal.fire(
                 "Warning",
@@ -21,7 +26,24 @@ function Register() {
                 'warning'
             )
         } else {
-            console.log(name, email, phoneNumber, password)
+            let postData = {
+                full_name: name,
+                mobile: phoneNumber,
+                email: email,
+                password: password
+            }
+            let response = await axios.post(`${props.apiUrl}/api/customer/create`, postData);
+            console.log(response.data);
+            if(response.data.error) {
+                Swal.fire(
+                    "Error",
+                    response.data.msg,
+                    'error'
+                )
+            } else {
+                Cookies.set('token', result.token);
+                Router.push("/");
+            }
         }
     }
 
