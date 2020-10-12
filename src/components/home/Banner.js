@@ -24,7 +24,6 @@ function Banner() {
     const [autoComplete, setAutoComplete] =useState();
     function onLoad(value) {
         setAutoComplete(value)
-        console.log(autoComplete)
     }
 
     const [address, setAddress] = useState();
@@ -112,7 +111,6 @@ function Banner() {
                                 <h1>{BannerData.heading}</h1>
                                 <div className="banner_search_form">
                                     <useLoadScript
-                                        onLoad={()=>alert("hii")}
                                         googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
                                         libraries={libraries}>
                                         <Autocomplete
