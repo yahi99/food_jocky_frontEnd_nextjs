@@ -10,10 +10,12 @@ import "bootstrap-css-only/css/bootstrap.min.css"
 import'mdbreact/dist/css/mdb.css'
 
 import Layout from "../src/components/layouts/main";
+import Loader from "../src/components/Common/Loader";
 
 function MyApp({ Component, pageProps }) {
   return (
       <Layout>
+          <Loader/>
         <Component {...pageProps} />
       </Layout>
   )

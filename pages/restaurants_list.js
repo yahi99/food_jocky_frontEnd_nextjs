@@ -11,12 +11,11 @@ function restaurantList({restaurants}) {
 }
 
 export async function getServerSideProps(context) {
-  
-  
+
     const domainUrl = process.env.API_URL
     let postData = {
-      "longitude": 89.46612009999998,
-      "latitude": 22.9133613
+      "longitude": context.query.lng || 89.46612009999998,
+      "latitude": context.query.lat || 22.9133613
     }
     let restaurants = []
 

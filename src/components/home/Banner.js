@@ -110,7 +110,7 @@ function Banner() {
                                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                                         </svg></i>
                                                     <div className="input-group-append">
-                                                        <Link href="/restaurants_list">
+                                                        <Link href={"/restaurants_list?lat=" + markerCoordinates.lat + "&lng=" + markerCoordinates.lng}>
                                                             <a className="btn-banner-search btn-banner-height border-radius button-site">
                                                                 {BannerData.button}
                                                             </a>
