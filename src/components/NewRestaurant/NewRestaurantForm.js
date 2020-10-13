@@ -79,7 +79,8 @@ function NewRestaurantForm(props) {
     }
 
     async function handleAddRestaurant() {
-        if( restaurantName == "" || restaurantNumber == "" || fullAddress === undefined || password == "" || type == "" ) {
+
+        if( restaurantName == "" || restaurantNumber == "" ) {
             Swal.fire(
                 'Warning',
                 'Please fill required fields',
@@ -183,6 +184,7 @@ function NewRestaurantForm(props) {
         };
         setCoordinates(currentCoordinates);
         setMarkerCoordinates(currentCoordinates);
+        updateName();
     }
 
     async function updateName() {

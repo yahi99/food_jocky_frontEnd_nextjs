@@ -75,17 +75,15 @@ function DetailsLayout({ restaurant }) {
                 </div>
                 <div className="tags-details-area bulate-list">
                   <ul>
-                    <li>$$$</li>
-                    <li>Bangladeshi</li>
-                    <li>Chinese Curry</li>
-                    <li>Meal Deals</li>
-                    <li>Upto 50% off</li>
+                    {restaurant.tags.map(tag => (
+                        <li>{tag}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="opning-time-modal">
                   <ul>
                     <li>
-                      <span>Open 8:00 AM</span> - <span>11:00 PM</span>
+                      <span>Open {restaurant.opening_time} </span> - <span>{restaurant.closing_time} </span>
                     </li>
                   </ul>
                 </div>
@@ -97,16 +95,12 @@ function DetailsLayout({ restaurant }) {
                   <div className="restaurant-list-modals-area-wrapper">
                     <div className="restaurant-modals-names-list">
                       <h4>About</h4>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nihil autem aperiam molestiae officia quod, dolore
-                        numquam deserunt eum explicabo assumenda distincti.
-                      </p>
+                      <p> {restaurant.about } </p>
                     </div>
                     <div className="restaurant-modals-names-list class-margin-0">
                       <h4>Contact</h4>
-                      <p>Phone:01711 174801</p>
-                      <p>Email:email@domain.com</p>
+                      <p>Phone: {restaurant.mobile} </p>
+                      <p>Email: {restaurant.email} </p>
                     </div>
                     <div className="restaurant-modals-names-list">
                       <h4>Address</h4>
@@ -115,13 +109,13 @@ function DetailsLayout({ restaurant }) {
                   </div>
                 </div>
                 <div className="col-lg-6">
-                  <LoadScript>
+                  <useLoadScript>
                     <GoogleMap
                       mapContainerStyle={mapStyles}
                       zoom={13}
                       center={defaultCenter}
                     ></GoogleMap>
-                  </LoadScript>
+                  </useLoadScript>
                 </div>
               </div>
             </div>

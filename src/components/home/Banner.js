@@ -65,10 +65,15 @@ function Banner() {
                 }
                 setCoordinates(currentCoordinates)
                 setMarkerCoordinates(currentCoordinates);
+            }, () => {}, {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
             });
             setGetCurrentLocation(false);
-            updateName();
+
         }
+        updateName();
     }, [getCurrentLocation, coordinates, markerCoordinates])
 
 
