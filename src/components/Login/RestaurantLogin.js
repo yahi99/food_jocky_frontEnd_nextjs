@@ -7,11 +7,15 @@ import { SiGmail } from "react-icons/si";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Router from "next/router";
+import PageLoader from "../Common/PageLoader";
 
 
 function RestaurantLoginArea(props) {
 
     const Cookies = require('js-cookie');
+
+    const [loading, setLoading] = useState(false);
+
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -21,6 +25,7 @@ function RestaurantLoginArea(props) {
     const handleRememberMeChange = e => setRememberMe(!rememberMe);
 
     async function handleLogin() {
+        setLoading(true);
         if(phoneNumber == "" || password == "" ) {
             Swal.fire(
                 "Warning",
@@ -32,8 +37,13 @@ function RestaurantLoginArea(props) {
                 mobile: phoneNumber,
                 password: password
             }
-            let response = await axios.post(`${props.apiUrl}/api/restaurant/login`, postData);
+            let headers = {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true
+            }
+            let response = await axios.post(`${props.apiUrl}/api/restaurant/login`, postData, {headers});
             console.log(response.data);
+            setLoading(false);
             if(response.data.error) {
                 Swal.fire(
                     "Error",
@@ -42,13 +52,14 @@ function RestaurantLoginArea(props) {
                 )
             } else {
                 Cookies.set('token', response.data.token);
-                Router.push("/");
+               // Router.push("/");
             }
         }
     }
 
     return (
         <>
+            <PageLoader loading={loading}/>
             <section className="login_main_area">
                 <div className="container">
                     <div className="row">
@@ -99,8 +110,8 @@ function RestaurantLoginArea(props) {
                                             </button>
                                         </div>
                                         <div className="create-account">
-                                            <Link href="/register" className="pass-for">
-                                                Create Account ?
+                                            <Link href="/add_restaurant_form" className="pass-for">
+                                                Create new restaurant ?
                                             </Link>
                                         </div>
                                     </div>

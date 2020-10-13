@@ -66,7 +66,7 @@ function Header() {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link href='/add_restaurant_form'>
+                <Link href='/restaurant_login'>
                  <a className='nav-links' onClick={closeMobileMenu}><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"></circle>
                       <line x1="2" y1="12" x2="22" y2="12"></line>
