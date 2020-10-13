@@ -80,7 +80,7 @@ function NewRestaurantForm(props) {
 
     async function handleAddRestaurant() {
 
-        if( restaurantName == "" || restaurantNumber == "" ) {
+        if( restaurantName == "" || restaurantNumber == "" || undefined === fullAddress || password == "") {
             Swal.fire(
                 'Warning',
                 'Please fill required fields',
