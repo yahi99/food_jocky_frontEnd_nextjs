@@ -131,13 +131,17 @@ export default function CustomPaginationActionsTable() {
      <Table className={classes.table} aria-label="custom pagination table">
      <TableHead>
           <TableRow>
-            <StyledTableCell>SL</StyledTableCell>
             <StyledTableCell align="right">Size</StyledTableCell>
             <StyledTableCell align="right">Price</StyledTableCell>
             <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
        <TableBody>
+           {props.data.map(data => (
+               {data}
+           ))}
+
+
          {(rowsPerPage > 0
            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
            : rows
