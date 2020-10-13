@@ -34,7 +34,7 @@ function NewRestaurantForm(props) {
     const [restaurantCategory, setRestaurantCategory] = useState('');
     const [type, setType] = useState('');
     const [foodCategory, setFoodCategory] = useState([]);
-    const [tags, setTags] = useState('');
+    const [tags, setTags] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [startTime, setStartTime] = useState(new Date());
@@ -59,7 +59,6 @@ function NewRestaurantForm(props) {
         let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
 
         const res = await axios.post(url, data, {})
-        console.log(res.data);
         if (res.data.success) {
             setCoverImageUrl(res.data.data.image.url);
         }
@@ -74,14 +73,13 @@ function NewRestaurantForm(props) {
         let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
 
         const res = await axios.post(url, data, {})
-        console.log(res.data);
         if (res.data.success) {
             setThumbImageUrl(res.data.data.image.url);
         }
     }
 
     async function handleAddRestaurant() {
-        if( restaurantName == "" || restaurantNumber == "") {
+        if( restaurantName == "" || restaurantNumber == "" || fullAddress === undefined) {
             Swal.fire(
                 'Warning',
                 'Please fill required fields',
@@ -103,13 +101,11 @@ function NewRestaurantForm(props) {
                 "cover_img": coverImageUrl,
                 "logo_img": thumbImageUrl,
                 "address": getAddress(),
-                "food_categories": foodCategory
+                "food_categories": getAllCategoryName()
             }
 
-            console.log(postData)
 
             let response = await axios.post(`${props.apiUrl}/api/restaurant/create`, postData);
-            console.log(response.data);
             if(response.data.error) {
                 setLoading(false);
                 Swal.fire(
@@ -119,9 +115,12 @@ function NewRestaurantForm(props) {
                 )
             } else {
                 setLoading(false);
-                Cookies.set('token', response.data.token);
-                console.log(response.data)
-                // Router.push("/");
+                Swal.fire(
+                    "Success",
+                    'Restaurant Created Successfully',
+                    'success'
+                )
+                Router.push("/restaurant_login");
             }
 
         }
@@ -161,13 +160,12 @@ function NewRestaurantForm(props) {
 
     function handleMarkerPositionChange() {
         if (marker) {
-            console.log(marker.position.lat(), marker.position.lng());
+            //console.log(marker.position.lat(), marker.position.lng());
         }
     }
 
     function handleMarkerPositionUpdate() {
         if (marker) {
-            console.log("Updated", marker.position.lat(), marker.position.lng());
             setMarkerCoordinates({
                 lat: marker.position.lat(),
                 lng: marker.position.lng(),
@@ -194,7 +192,7 @@ function NewRestaurantForm(props) {
     }
 
     function getAddress() {
-       let address = {
+        let address = {
             "name": fullAddress.formatted_address.split(',')[0] || "",
             "address": fullAddress.formatted_address,
             "placeId": fullAddress.place_id,
@@ -236,6 +234,16 @@ function NewRestaurantForm(props) {
             },
         },
     };
+
+
+    function getAllCategoryName() {
+        return foodCategory.map(id => {
+            return {
+                _id: id,
+                name: getCategoryName(id)
+            }
+        })
+    }
 
     function getCategoryName(id) {
         for( let i =0 ; i < props.categories.length; i ++) {
