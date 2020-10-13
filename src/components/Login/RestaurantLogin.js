@@ -26,7 +26,7 @@ function RestaurantLoginArea(props) {
 
     async function handleLogin() {
         setLoading(true);
-        if(phoneNumber == "" || password == "" ) {
+        if(phoneNumber == "" || password == "") {
             Swal.fire(
                 "Warning",
                 "Please fill up all required fields",
@@ -52,7 +52,7 @@ function RestaurantLoginArea(props) {
                 )
             } else {
                 Cookies.set('token', response.data.token);
-               // Router.push("/");
+                Router.push("/add_food");
             }
         }
     }

@@ -22,7 +22,7 @@ const About = () => {
             <p>{AboutData.para2}</p>
             <p>{AboutData.para3}</p>
             <div className="about-food-btn text-right">
-                <Link href="/add_restaurant_form">
+                <Link href="/restaurant_login">
                     <a className="btn button-site">{AboutData.button}</a>
                 </Link>
             </div>

@@ -138,37 +138,20 @@ export default function CustomPaginationActionsTable() {
         </TableHead>
        <TableBody>
            {props.data.map(data => (
-               {data}
+               <TableRow>
+                   <TableCell style={{ width: 160 }} align="right">
+                       {data.name}
+                   </TableCell>
+                   <TableCell style={{ width: 160 }} align="right">
+                       {data.price}
+                   </TableCell>
+                   <TableCell style={{ width: 160 }} align="right">
+                       <a className="button_table"><FiEdit2 /></a>
+                       <a className="button_table"><RiDeleteBin2Fill /></a>
+                   </TableCell>
+
+               </TableRow>
            ))}
-
-
-         {(rowsPerPage > 0
-           ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-           : rows
-         ).map((row) => (
-           <TableRow key={row.name}>
-             <TableCell  style={{ width: 160 }} scope="row">
-               {row.sl}
-             </TableCell>
-             <TableCell style={{ width: 160 }} align="right">
-               {row.price}
-             </TableCell>
-             <TableCell style={{ width: 160 }} align="right">
-               {row.size}
-             </TableCell>
-             <TableCell style={{ width: 160 }} align="right">
-             <a className="button_table"><FiEdit2 /></a>
-            <a className="button_table"><RiDeleteBin2Fill /></a> 
-             </TableCell>
-             
-           </TableRow>
-         ))}
-
-         {emptyRows > 0 && (
-           <TableRow style={{ height: 40 }}>
-             <TableCell colSpan={4} />
-           </TableRow>
-         )}
        </TableBody>
        <TableFooter>
          <TableRow>
