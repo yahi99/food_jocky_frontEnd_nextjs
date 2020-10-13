@@ -1,12 +1,15 @@
 import RestaurantListLayout from '../src/components/restaurant/RestaurantListLayout'
 import axios from 'axios'
+import Loader from "../src/components/Common/Loader";
+import Layout from "../src/components/layouts/main";
 
 function restaurantList({restaurants, coordinates}) {
 
-  return (
-    <div>
-      <RestaurantListLayout restaurants={restaurants} coordinates={coordinates}/>
-    </div>
+    return (
+        <Layout>
+            <Loader/>
+            <RestaurantListLayout restaurants={restaurants} coordinates={coordinates}/>
+        </Layout>
   )
 }
 
