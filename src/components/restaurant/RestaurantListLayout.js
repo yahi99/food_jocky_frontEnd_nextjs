@@ -4,19 +4,25 @@ import RestaurantCard from './RestaurantCard'
 import RestaurantData from './RestaurantData'
 import RestaurantItemFixed from './RestaurantItemFixed'
 import Collapse from 'react-bootstrap/Collapse'
-import Router from "next/router";
+import Router, {useRouter} from "next/router";
  
- function RestaurantListLayout({restaurants, coordinates}) {
+function RestaurantListLayout({restaurants, coordinates}) {
 
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const handleSearchChange = e => setSearch(e.currentTarget.value);
-     function handleSearch(e) {
-         if (e.key === 'Enter') {
-             Router.push("/restaurants_list?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&name=" + search);
-         }
+    const router = useRouter();
+    let restaurant = true;
+    if( "homemade" == router.query.type) {
+        restaurant = false;
+    }
 
-     }
+
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState("");
+    const handleSearchChange = e => setSearch(e.currentTarget.value);
+    function handleSearch(e) {
+        if (e.key === 'Enter') {
+            Router.push("/restaurants_list?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&name=" + search);
+        }
+    }
 
   const ResDatasPas = (val)=>{
       return <RestaurantCard 
@@ -31,7 +37,7 @@ import Router from "next/router";
        <div className="container">
          <div className="row">
            <div className="col-lg-12">
-            <SelectRestaurantAndHomeMade />
+            <SelectRestaurantAndHomeMade coordinates={coordinates}/>
              <div className="search-filter-area">
                <div className="input-group" id="adv-search">
                  <input type="text" className="form-control search-shadow"
@@ -63,7 +69,7 @@ import Router from "next/router";
          <div className="restaurant-list-wrapper">
            <div className="resturent-wrappers-heading">
              <h2>
-               All restaurants
+                 { restaurant ? "All Restaurant" : "All Homemade" }
              </h2>
            </div>
            <div className="row">

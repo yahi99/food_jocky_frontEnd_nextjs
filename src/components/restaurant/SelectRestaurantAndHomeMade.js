@@ -1,17 +1,34 @@
-import React from 'react'
+import React from 'react';
+import Link from "next/link";
+import { useRouter } from 'next/router';
 
 
-function SelectRestaurantAndHomeMade() {
- return (
-  <>
-        <div className="search-top-area-wrapper">
-        <ul id="top-select-area">
-        <li className="resta-img"><a href="search-restaurant.html" className="active-list">Restaurant</a></li>
-        <li className="home-made-img"><a href="search-homemade.html">Home Made</a></li>
-        </ul>
-      </div>
-  </>
- )
+function SelectRestaurantAndHomeMade({coordinates}) {
+    const router = useRouter();
+    let restaurant = true;
+    if( "homemade" == router.query.type) {
+        restaurant = false;
+    }
+
+
+    return (
+        <>
+            <div className="search-top-area-wrapper">
+                <ul id="top-select-area">
+                    <li className="resta-img">
+                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng}>
+                            <a className={restaurant && "active-list"}>Restaurant</a>
+                        </Link>
+                    </li>
+                    <li className="home-made-img">
+                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + "&type=homemade"}>
+                            <a className={ ! restaurant && "active-list"}>Homemade</a>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </>
+    )
 }
 
 export default SelectRestaurantAndHomeMade

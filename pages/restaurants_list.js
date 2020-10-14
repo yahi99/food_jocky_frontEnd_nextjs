@@ -24,7 +24,8 @@ export async function getServerSideProps(context) {
     let postData = {
         "longitude": coordinates.lng,
         "latitude": coordinates.lat || 22.9133613,
-        "name": context.query.name || ""
+        "name": context.query.name || "",
+        "restaurant_or_homemade": context.query.type || "restaurant"
     }
 
 
