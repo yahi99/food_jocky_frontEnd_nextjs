@@ -15,8 +15,6 @@ function SelectRestaurantAndHomeMade({coordinates}) {
         name = "&name=" + router.query.name
     }
 
-    console.log(router.query);
-    console.log(name);
 
 
     return (

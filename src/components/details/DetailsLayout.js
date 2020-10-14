@@ -30,7 +30,6 @@ const DetailsNamesArea = {
 // Data Get Area
 function DetailsLayout({ restaurant , user}) {
 
-    console.log(restaurant);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
@@ -57,20 +56,17 @@ function DetailsLayout({ restaurant , user}) {
     lng: 89.5635596,
   };
 
-  function handeFocus(id) {
-      let a = document.querySelectorAll('.catagory-selector');
-      a.forEach(e=> {
-        e.classList.remove("padding-area");
-      })
-      let b = document.querySelector(id);
-      b.classList.add("padding-area")
-
+  function handleScroll(id) {
+      let com = document.querySelector(id).getBoundingClientRect();
+      let bodyRect = document.body.getBoundingClientRect();
+      let offset   = com.top - bodyRect.top - 140;
+      window.scrollTo({ top:offset, left:0, behavior: 'smooth'});
   }
 
   const tagLists = restaurant.tags.map((d) => <li key={d}>{d}</li>);
   const categoryList = restaurant.food_categories.map((food_category) => (
     <li>
-      <a href={"#category-" + food_category.name.replace(/\s/g, "-")} onClick={ e => handeFocus ("#category-" + food_category.name.replace(/\s/g, "-") ) }>
+      <a onClick={ e => handleScroll("#category-" + food_category.name.replace(/\s/g, "-"))}>
         {food_category.name}
       </a>
     </li>
@@ -128,7 +124,7 @@ function DetailsLayout({ restaurant , user}) {
                     </div>
                     <div className="restaurant-modals-names-list">
                       <h4>Address</h4>
-                      <p>57 Ahsan Ahmed Rd Khulna</p>
+                      <p>{ restaurant.address.address || "57 Ahsan Ahmed Rd Khulna"}</p>
                     </div>
                   </div>
                 </div>
@@ -138,7 +134,11 @@ function DetailsLayout({ restaurant , user}) {
                       mapContainerStyle={mapStyles}
                       zoom={13}
                       center={defaultCenter}
-                    ></GoogleMap>
+                    >
+                      <Marker
+                          position={restaurant.address.location || {lat: 22.813761316181107, lng: 89.56029803383788}}
+                      />
+                    </GoogleMap>
                   </useLoadScript>
                 </div>
               </div>
@@ -211,7 +211,7 @@ function DetailsLayout({ restaurant , user}) {
         </div>
         <div className="setmenu-items-inner-wrapper">
           {restaurant.food_categories.map((food_category) => (
-            <div className="catagory-selector" id={"category-" + food_category.name.replace(/\s/g, "-")}>
+            <div id={"category-" + food_category.name.replace(/\s/g, "-")}>
               <div className="container">
                 <Heading heading={food_category.name} />
                 <div className="row">

@@ -53,7 +53,7 @@ function Header(props) {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link href='/addres'>
+                <Link href='#'>
                  <a className='nav-links' onClick={closeMobileMenu}>About</a>
                 </Link>
               </li>
@@ -63,7 +63,7 @@ function Header(props) {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link href='/'>
+                <Link href='#'>
                   <a className='nav-links' onClick={closeMobileMenu}>FAQ</a>
                 </Link>
               </li>

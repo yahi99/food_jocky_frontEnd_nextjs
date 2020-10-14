@@ -42,7 +42,6 @@ function RestaurantLoginArea(props) {
                 "Access-Control-Allow-Credentials": true
             }
             let response = await axios.post(`${props.apiUrl}/api/restaurant/login`, postData, {headers});
-            console.log(response.data);
             setLoading(false);
             if(response.data.error) {
                 Swal.fire(

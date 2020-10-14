@@ -43,7 +43,7 @@ function Banner() {
 
     function handleMarkerPositionChange() {
         if( marker ) {
-            console.log(marker.position.lat(), marker.position.lng());
+           // console.log(marker.position.lat(), marker.position.lng());
         }
 
     }
@@ -79,7 +79,7 @@ function Banner() {
 
     function handleMarkerPositionUpdate() {
         if( marker ) {
-            console.log("Updated" , marker.position.lat(), marker.position.lng());
+           // console.log("Updated" , marker.position.lat(), marker.position.lng());
             setMarkerCoordinates({
                 lat: marker.position.lat(),
                 lng: marker.position.lng()

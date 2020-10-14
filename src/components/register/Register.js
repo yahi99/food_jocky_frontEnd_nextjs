@@ -33,7 +33,7 @@ function Register(props) {
                 password: password
             }
             let response = await axios.post(`${props.apiUrl}/api/customer/create`, postData);
-            console.log(response.data);
+           // console.log(response.data);
             if(response.data.error) {
                 Swal.fire(
                     "Error",

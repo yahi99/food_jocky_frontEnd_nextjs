@@ -34,19 +34,16 @@ const ResAddForm =(props)=> {
             size: foodSizePrice_Size,
             price: foodSizePrice_Price
         })
-        console.log(foodSizePrice)
         setFoodSizePrice_Size("");
         setFoodSizePrice_Price('');
     }
 
     function handleFoodSizeRemove(size) {
-        console.log(size);
         let index = foodSizePrice.indexOf(size);
         let array = foodSizePrice || []
         array.splice(index,1)
         setFoodSizePrice(array);
 
-        console.log("Index", index)
         setFoodSizePrice( foodSizePrice.map( sizeData => {
             if(sizeData.size != size)
                 return sizeData;
@@ -77,7 +74,6 @@ const ResAddForm =(props)=> {
                 "pirce_and_size": foodSizePrice
             }
 
-            console.log(config);
             let response = await axios.post(`${props.apiUrl}/api/restaurant/insert-food-by-restaurant`, postData, config);
             if(response.data.error) {
                 setLoading(false);

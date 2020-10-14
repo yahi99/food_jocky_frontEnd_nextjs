@@ -33,7 +33,6 @@ function LoginArea(props) {
                 password: password
             }
             let response = await axios.post(`${props.apiUrl}/api/customer/login`, postData);
-            console.log(response.data);
             if(response.data.error) {
                 Swal.fire(
                     "Error",
