@@ -21,7 +21,6 @@ export async function getServerSideProps(context) {
     }
     const cookies = cookie.parse(context.req.headers.cookie);
     const token = cookies.token;
-    console.log(token)
 
     const apiUrl = process.env.API_URL
     let postData = {

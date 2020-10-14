@@ -9,6 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import Heading from "./Heading";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 const DetailsNamesArea = {
   RestaurantName: "Shorma House",
@@ -27,12 +28,25 @@ const DetailsNamesArea = {
 };
 
 // Data Get Area
-function DetailsLayout({ restaurant }) {
+function DetailsLayout({ restaurant , user}) {
 
     console.log(restaurant);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+    function handleShow() {
+        if(user && user.authenticated && user.authenticated === true) {
+            setShow(true);
+        } else {
+          Swal.fire(
+              'Warning',
+              "Please Log In",
+              'warning'
+          )
+        }
+    }
+
+
   const mapStyles = {
     height: "30vh",
     width: "100%",

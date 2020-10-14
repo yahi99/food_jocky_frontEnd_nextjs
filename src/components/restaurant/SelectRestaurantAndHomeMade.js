@@ -10,18 +10,26 @@ function SelectRestaurantAndHomeMade({coordinates}) {
         restaurant = false;
     }
 
+    let name = '';
+    if( typeof router.query.name === "string" ) {
+        name = "&name=" + router.query.name
+    }
+
+    console.log(router.query);
+    console.log(name);
+
 
     return (
         <>
             <div className="search-top-area-wrapper">
                 <ul id="top-select-area">
                     <li className="resta-img">
-                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng}>
+                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + name}>
                             <a className={restaurant && "active-list"}>Restaurant</a>
                         </Link>
                     </li>
                     <li className="home-made-img">
-                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + "&type=homemade"}>
+                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + "&type=homemade" + name}>
                             <a className={ ! restaurant && "active-list"}>Homemade</a>
                         </Link>
                     </li>

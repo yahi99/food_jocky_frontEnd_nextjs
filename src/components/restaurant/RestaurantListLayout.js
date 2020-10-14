@@ -20,7 +20,7 @@ function RestaurantListLayout({restaurants, coordinates}) {
     const handleSearchChange = e => setSearch(e.currentTarget.value);
     function handleSearch(e) {
         if (e.key === 'Enter') {
-            Router.push("/restaurants_list?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&name=" + search);
+            Router.push("/restaurants_list?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&name=" + search + (!restaurant ? "&type=homemade" : ""));
         }
     }
 

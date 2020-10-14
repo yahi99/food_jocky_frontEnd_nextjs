@@ -13,6 +13,8 @@ function login(props) {
 }
 
 export async function getStaticProps(context) {
+
+
     const apiUrl = process.env.API_URL;
     return {
         props: {
