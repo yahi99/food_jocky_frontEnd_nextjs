@@ -25,10 +25,10 @@ function Loader() {
     }
 
     return (
-        <Modal show={show} centered={true}>
+        <Modal show={show} centered={true} id="modal-lodar">
             <div className="modal-body text-center">
                 <div className="loader"></div>
-                <div clas="loader-txt">
+                <div className="loader-txt">
                     <p>Loading</p>
                 </div>
             </div>

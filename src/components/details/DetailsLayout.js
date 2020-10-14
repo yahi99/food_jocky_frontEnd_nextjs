@@ -57,10 +57,20 @@ function DetailsLayout({ restaurant , user}) {
     lng: 89.5635596,
   };
 
+  function handeFocus(id) {
+      let a = document.querySelectorAll('.catagory-selector');
+      a.forEach(e=> {
+        e.classList.remove("padding-area");
+      })
+      let b = document.querySelector(id);
+      b.classList.add("padding-area")
+
+  }
+
   const tagLists = restaurant.tags.map((d) => <li key={d}>{d}</li>);
   const categoryList = restaurant.food_categories.map((food_category) => (
     <li>
-      <a href={"#category-" + food_category.name.replace(/\s/g, "-")}>
+      <a href={"#category-" + food_category.name.replace(/\s/g, "-")} onClick={ e => handeFocus ("#category-" + food_category.name.replace(/\s/g, "-") ) }>
         {food_category.name}
       </a>
     </li>
@@ -201,7 +211,7 @@ function DetailsLayout({ restaurant , user}) {
         </div>
         <div className="setmenu-items-inner-wrapper">
           {restaurant.food_categories.map((food_category) => (
-            <div id={"category-" + food_category.name.replace(/\s/g, "-")}>
+            <div className="catagory-selector" id={"category-" + food_category.name.replace(/\s/g, "-")}>
               <div className="container">
                 <Heading heading={food_category.name} />
                 <div className="row">
