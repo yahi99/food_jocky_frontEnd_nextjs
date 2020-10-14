@@ -40,8 +40,8 @@ function NewRestaurantForm(props) {
     const [startTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
 
-    const [coverImageUrl , setCoverImageUrl ] = useState("https://mdbootstrap.com/img/Photos/Others/images/89.jpg");
-    const [thumbImageUrl , setThumbImageUrl ] = useState("https://mdbootstrap.com/img/Photos/Others/images/89.jpg")
+    const [coverImageUrl , setCoverImageUrl ] = useState('');
+    const [thumbImageUrl , setThumbImageUrl ] = useState('')
 
     const handleRestaurantNameChange = e => setRestaurantName(e.currentTarget.value);
     const handleRestaurantNumberChange = e => setRestaurantNumber(e.currentTarget.value);
@@ -389,13 +389,16 @@ function NewRestaurantForm(props) {
                                             className="chose_file"
                                             onChange={handleCoverImageChange}
                                         />
-                                        <div className="area_img_Add">
-                                            <h6>Cover Image</h6>
-                                            <img
-                                                src={coverImageUrl}
-                                                alt="img"
-                                            />
-                                        </div>
+                                        { coverImageUrl == '' || (
+                                            <div className="area_img_Add"> 
+                                                <h6>Cover Image</h6>
+                                                <img
+                                                    src={coverImageUrl}
+                                                    alt="img"
+                                                />
+                                            </div>
+                                        )}
+                                        
                                     </div>
                                     <div className="col-lg-6">
                                         <MDBInput
@@ -404,13 +407,16 @@ function NewRestaurantForm(props) {
                                             className="chose_file"
                                             onChange={handleThumbImageChange}
                                         />
-                                        <div className="area_img_Add">
-                                            <h6>Thumb Image</h6>
-                                            <img
-                                                src={thumbImageUrl}
-                                                alt="img"
-                                            />
+                                        { thumbImageUrl == "" || (
+                                            <div className="area_img_Add">
+                                                <h6>Thumb Image</h6>
+                                                <img
+                                                    src={thumbImageUrl}
+                                                    alt="img"
+                                                />
                                         </div>
+                                        ) }
+                                        
                                     </div>
                                     <div className="col-lg-6" id="time_pickers">
                                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
