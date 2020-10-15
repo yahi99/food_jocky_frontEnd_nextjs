@@ -8,7 +8,12 @@ function AddRestaurant({categories, apiUrl}) {
     return (
         <Layout>
             <Loader/>
-            <NewRestaurantForm categories={categories} apiUrl={apiUrl}/>
+            <section className="customer_food_add">
+            <div className="container">
+               <NewRestaurantForm categories={categories} apiUrl={apiUrl}/>
+            </div>
+            </section>
+           
         </Layout>
     )
 }

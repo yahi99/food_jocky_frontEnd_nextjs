@@ -157,7 +157,7 @@ function Banner() {
                                         </Autocomplete>
                                     </useLoadScript>
 
-                                    <useLoadScript
+                                    {/* <useLoadScript
                                         googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
                                     >
 
@@ -174,7 +174,7 @@ function Banner() {
                                             />
 
                                         </GoogleMap>
-                                    </useLoadScript>
+                                    </useLoadScript> */}
                                     <p className="pt-30">{BannerData.para}</p>
                                 </div>
                             </div>
