@@ -29,7 +29,9 @@ function RestaurantHeader() {
             <nav className='navbar'>
                 <div className='navbar-container container'>
                     <Link href='/' className='navbar-logo' onClick={closeMobileMenu}>
-                        <img src='/assets/img/logo.png' alt="logo" />
+                        <a>
+                            <img src='/assets/img/logo.png' alt="logo" />
+                        </a>
                     </Link>
 
                     <div className='menu-icon' onClick={handleClick}>

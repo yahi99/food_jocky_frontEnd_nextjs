@@ -104,20 +104,6 @@ function LoginArea(props) {
                                         </div>
                                     </div>
                                 </form>
-                                <div className="social-login">
-                                    <Link href="/">
-                                        <FaFacebookF></FaFacebookF>
-                                    </Link>
-                                    <Link href="/">
-                                        <FaTwitter></FaTwitter>
-                                    </Link>
-                                    <Link href="/">
-                                        <FaLinkedinIn></FaLinkedinIn>
-                                    </Link>
-                                    <Link href="/">
-                                        <SiGmail></SiGmail>
-                                    </Link>
-                                </div>
                             </div>
                         </div>
                     </div>

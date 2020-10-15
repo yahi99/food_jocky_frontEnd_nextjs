@@ -44,39 +44,26 @@ export async function getServerSideProps(context) {
 
 
     let postData = {
-        "longitude": coordinates.lng,
-        "latitude": coordinates.lat || 22.9133613,
+        "longitude": coordinates.lng ,
+        "latitude": coordinates.lat ,
         "name": context.query.name || "",
         "restaurant_or_homemade": context.query.type || "restaurant"
     }
 
 
-    let restaurants = []
+
 
     let response = await axios.post(`${domainUrl}/api/customer/search-restaurants`, postData);
 
-    if(response.data.data.length === 0){
-        return {
-            props: {
-                restaurants,
-                coordinates,
-                user
-        }
-    }
+    let restaurants = response.data.data || []
 
-    }else{
-
-      restaurants = response.data.data
-      return {
+    return {
         props: {
             restaurants,
             coordinates,
             user
         }
     }
-    
-    }
-      
   
 }
 
