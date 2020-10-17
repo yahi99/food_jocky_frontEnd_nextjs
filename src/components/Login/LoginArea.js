@@ -1,9 +1,5 @@
 import React, {useState} from "react";
 import Link from "next/link";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Router from "next/router";
@@ -16,12 +12,25 @@ function LoginArea(props) {
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
-    const handlePhoneNumberChange = e => setPhoneNumber(e.currentTarget.value.replace(/ /g,''));
+    const [validPhoneNumber, setValidPhoneNumber] = useState(true);
+    function handlePhoneNumberChange(e) {
+        let number = e.currentTarget.value.replace(/\D/g,'');
+        setPhoneNumber(number);
+        phoneNumberValidityCheck(number);
+    }
     const handlePasswordChange = e => setPassword(e.currentTarget.value);
     const handleRememberMeChange = e => setRememberMe(!rememberMe);
 
+    function phoneNumberValidityCheck(number) {
+        if( number.length > 0 && number.length !== 10) {
+            setValidPhoneNumber(false);
+        } else {
+            setValidPhoneNumber(true);
+        }
+    }
+
     async function handleLogin() {
-        if(phoneNumber == "" || password == "" ) {
+        if(phoneNumber == "" || password == "" || (!validPhoneNumber) ) {
             Swal.fire(
                 "Warning",
                 "Please fill up all required fields",
@@ -29,7 +38,7 @@ function LoginArea(props) {
             )
         } else {
             let postData = {
-                mobile: phoneNumber,
+                mobile: "+880" + phoneNumber,
                 password: password
             }
             let response = await axios.post(`${props.apiUrl}/api/customer/login`, postData);
@@ -59,13 +68,21 @@ function LoginArea(props) {
                                 <form>
                                     <div className="form-group">
                                         <label>Phone Number</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Phone Number"
-                                            className="form-control"
-                                            value={phoneNumber}
-                                            onChange={handlePhoneNumberChange}
-                                        />
+                                        <div className="input-group">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text" id="basic-addon1">+880</span>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                placeholder="Phone Number"
+                                                className={ phoneNumber.length > 0 ? ( validPhoneNumber ? "form-control is-valid" : "form-control is-invalid" ) : "form-control"}
+                                                value={phoneNumber}
+                                                onChange={handlePhoneNumberChange}
+                                            />
+                                        </div>
+                                        { validPhoneNumber || (
+                                            <p className="invalid-feedback d-block ml-2" >Not valid phone number</p>
+                                        )}
                                     </div>
                                     <div className="form-group">
                                         <label>Password</label>

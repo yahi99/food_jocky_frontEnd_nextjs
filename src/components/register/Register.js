@@ -13,13 +13,52 @@ function Register(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleNameChange = e => setName(e.currentTarget.value);
-    const handlePhoneNumberChange = e => setPhoneNumber(e.currentTarget.value.replace(/ /g,''));
-    const handleEmailChange = e => setEmail(e.currentTarget.value);
-    const handlePasswordChange = e => setPassword(e.currentTarget.value);
+    const handleNameChange = e => setName(e.currentTarget.value.replace(/ /g,''));
+    const [validPassword, setValidPassword] = useState(true);
+    const handlePasswordChange = e => {
+        let password = e.currentTarget.value;
+        setPassword(password);
+        if(password.length < 8) {
+            setValidPassword(false);
+        } else {
+            setValidPassword(true);
+        }
+    }
+
+    const [validEmail, setValidEmail] = useState(true);
+    const handleEmailChange = e => {
+        let email = e.currentTarget.value;
+        setEmail(email);
+        emailValidityCheck(email);
+    }
+    function emailValidityCheck(email) {
+        if(email.length == 0 ) {
+            setValidEmail(true);
+        } else {
+            let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            setValidEmail(reg.test(email));
+        }
+    }
+
+
+    const [validPhoneNumber, setValidPhoneNumber] = useState(true);
+    function handlePhoneNumberChange(e) {
+        let number = e.currentTarget.value.replace(/\D/g,'');
+        setPhoneNumber(number);
+        phoneNumberValidityCheck(number);
+    }
+
+
+    function phoneNumberValidityCheck(number) {
+        if( number.length > 0 && number.length !== 10) {
+            setValidPhoneNumber(false);
+        } else {
+            setValidPhoneNumber(true);
+        }
+    }
 
     async function handleRegister() {
-        if(name == "" || phoneNumber == "" || password == "" ) {
+        if(name == "" || phoneNumber == "" || password == "" || (!validPhoneNumber) || (!validPassword) || (!validEmail)) {
             Swal.fire(
                 "Warning",
                 "Please fill up all required fields",
@@ -28,7 +67,7 @@ function Register(props) {
         } else {
             let postData = {
                 full_name: name,
-                mobile: phoneNumber,
+                mobile: "+880" +  phoneNumber,
                 email: email,
                 password: password
             }
@@ -71,33 +110,47 @@ function Register(props) {
                                     </div>
                                     <div className="form-group">
                                         <label>Number</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Mobile Number"
-                                            className="form-control"
-                                            value={phoneNumber}
-                                            onChange={handlePhoneNumberChange}
-                                        />
+                                        <div class="input-group">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text" id="basic-addon1">+880</span>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                placeholder="Mobile Number"
+                                                className={ phoneNumber.length > 0 ? ( validPhoneNumber ? "form-control is-valid" : "form-control is-invalid" ) : "form-control"}
+                                                value={phoneNumber}
+                                                onChange={handlePhoneNumberChange}
+                                            />
+                                        </div>
+                                        { validPhoneNumber || (
+                                            <p className="invalid-feedback d-block ml-2" >Provide a valid Phone Number!</p>
+                                        )}
                                     </div>
                                     <div className="form-group">
                                         <label>Email (Optional)</label>
                                         <input
                                             type="text"
                                             placeholder="Email Address"
-                                            className="form-control"
+                                            className={ email.length > 0 ? ( validEmail ? "form-control is-valid" : "form-control is-invalid" ) : "form-control"}
                                             value={email}
                                             onChange={handleEmailChange}
                                         />
+                                        { validEmail || (
+                                            <p className="invalid-feedback d-block ml-2" >Provide a valid Phone Number!</p>
+                                        )}
                                     </div>
                                     <div className="form-group">
                                         <label>Password</label>
                                         <input
                                             type="password"
                                             placeholder="password"
-                                            className="form-control"
+                                            className={ password.length > 0 ? ( validPassword ? "form-control is-valid" : "form-control is-invalid" ) : "form-control"}
                                             value={password}
                                             onChange={handlePasswordChange}
                                         />
+                                        { validPassword || (
+                                            <p className="invalid-feedback d-block ml-2" >Password must have 8 characters!</p>
+                                        )}
                                     </div>
                                     <div className="button-singup-area">
                                         <div className="form-submit-button">

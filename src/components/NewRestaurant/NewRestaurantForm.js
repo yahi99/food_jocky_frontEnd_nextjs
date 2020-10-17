@@ -3,7 +3,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-import { MDBInput } from "mdbreact";
+import {MDBInput, MDBInputGroup} from "mdbreact";
 import DateFnsUtils from "@date-io/date-fns";
 import { TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import {
@@ -44,12 +44,50 @@ function NewRestaurantForm(props) {
     const [thumbImageUrl , setThumbImageUrl ] = useState('')
 
     const handleRestaurantNameChange = e => setRestaurantName(e.currentTarget.value);
-    const handleRestaurantNumberChange = e => setRestaurantNumber(e.currentTarget.value);
+    const [validPhoneNumber, setValidPhoneNumber] = useState(true);
+    const handleRestaurantNumberChange = e => {
+        let number = e.currentTarget.value.replace(/\D/g,'');
+        setRestaurantNumber(number);
+        phoneNumberValidityCheck(number);
+    }
+    const [validPassword, setValidPassword] = useState(true);
+    const handlePasswordChange = e => {
+        let password = e.currentTarget.value;
+        setPassword(password);
+        if(password.length < 8) {
+            setValidPassword(false);
+        } else {
+            setValidPassword(true);
+        }
+    }
+
     const handleRestaurantCategoryChange = e => setRestaurantCategory(e.currentTarget.value);
     const handleTypeChange = e => setType(e.target.value);
     const handleFoodCategoryChange = e => setFoodCategory(e.target.value);
-    const handleEmailChange = e => setEmail(e.currentTarget.value);
-    const handlePasswordChange = e => setPassword(e.currentTarget.value);
+
+    const [validEmail, setValidEmail] = useState(true);
+    const handleEmailChange = e => {
+        let email = e.currentTarget.value;
+        setEmail(email);
+        emailValidityCheck(email);
+    }
+
+    function phoneNumberValidityCheck(number) {
+        if( number.length > 0 && number.length !== 10) {
+            setValidPhoneNumber(false);
+        } else {
+            setValidPhoneNumber(true);
+        }
+    }
+
+    function emailValidityCheck(email) {
+        if(email.length == 0 ) {
+            setValidEmail(true);
+        } else {
+            let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            setValidEmail(reg.test(email));
+        }
+    }
 
 
     async function handleCoverImageChange(e) {
@@ -80,7 +118,7 @@ function NewRestaurantForm(props) {
 
     async function handleAddRestaurant() {
 
-        if( restaurantName == "" || restaurantNumber == "" || undefined === fullAddress || password == "") {
+        if( restaurantName == "" || restaurantNumber == "" || undefined === fullAddress || password == "" || (! validPhoneNumber ) || (!validPassword) || (! validEmail )) {
             Swal.fire(
                 'Warning',
                 'Please fill required fields',
@@ -90,7 +128,7 @@ function NewRestaurantForm(props) {
             setLoading(true);
             let postData = {
                 "name": restaurantName,
-                "mobile": restaurantNumber,
+                "mobile": "+880" +  restaurantNumber,
                 "email": email,
                 "password": password,
                 "type": type,
@@ -257,197 +295,245 @@ function NewRestaurantForm(props) {
     }
 
     return (
-        <>
-            <PageLoader loading={loading}/>
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="heading_top_area">
-                        <h2>New Restaurant</h2>
-                    </div>
-                    <div className="customer_entry_form">
-                        <div className="form_heading">
-                            <h4>New Restaurant</h4>
-                        </div>
-                        <div className="add_form_area">
-                            <form id="New_Res_Add">
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <MDBInput label="Restaurant Name" value={restaurantName} onChange={handleRestaurantNameChange} />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <MDBInput label="Mobile" value={restaurantNumber} onChange={handleRestaurantNumberChange}/>
-                                    </div>
-                                    <div className="col-lg-12">
-                                        <MDBInput label="Restaurant Category" value={restaurantCategory} onChange={handleRestaurantCategoryChange} />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <FormControl>
-                                            <InputLabel id="demo-simple-select-label" color="red">
-                                                Select Type
-                                            </InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={type}
-                                                onChange={handleTypeChange}
-                                                >
-                                                <MenuItem value="restaurant">Restaurant</MenuItem>
-                                                <MenuItem value="homemade">Home Made</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <FormControl>
-                                            <InputLabel id="demo-simple-select-label" color="red">
-                                                Food Category
-                                            </InputLabel>
-
-
-                                            <Select
-                                                labelId="demo-mutiple-chip-label"
-                                                id="demo-mutiple-chip"
-                                                multiple
-                                                value={foodCategory}
-                                                onChange={handleFoodCategoryChange}
-                                                input={<Input id="select-multiple-chip" />}
-                                                renderValue={(selected) => (
-                                                    <div className={classes.chips}>
-                                                        {selected.map((value) => (
-                                                            <Chip key={value} label={getCategoryName(value)} className={classes.chip} />
-                                                        ))}
-                                                    </div>
-                                                )}
-                                                MenuProps={MenuProps}
-                                            >
-                                                {props.categories.map((category) => (
-                                                    <MenuItem key={category._id} value={category._id}>
-                                                        <Checkbox checked={foodCategory.indexOf(category._id) > -1} />
-                                                        <ListItemText primary={category.name} />
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-
-                                        </FormControl>
-                                    </div>
-                                    <div className="col-lg-12" style={{ marginTop: 25 }}>
-                                        <useLoadScript
-                                            googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
-                                            libraries={libraries}
-                                        >
-                                            <Autocomplete
-                                                onLoad={onLoad}
-                                                onPlaceChanged={handleSelect}
-                                            >
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    value={address}
-                                                    onChange={(e) => setAddress(e.currentTarget.value)}
-                                                    placeholder="Enter Restaurant Location"
-                                                />
-                                            </Autocomplete>
-                                        </useLoadScript>
-                                    </div>
-
-                                    <div className="col-lg-12">
-                                        <useLoadScript>
-                                            <GoogleMap
-                                                mapContainerStyle={mapStyles}
-                                                zoom={14}
-                                                center={coordinates}
-                                            >
-                                                <Marker
-                                                    onLoad={onMarkerLoad}
-                                                    draggable={true}
-                                                    position={markerCoordinates}
-                                                    onPositionChanged={handleMarkerPositionChange}
-                                                    onDragEnd={handleMarkerPositionUpdate}
-                                                />
-                                            </GoogleMap>
-                                        </useLoadScript>
-                                    </div>
-
-                                    <div className="col-lg-12" style={{ marginTop: 25 }}>
-                                        <ChipInput
-                                            label="Tags"
-                                            id="tags_area"
-                                            value={tags}
-                                            onChange={setTags}
-                                        />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <MDBInput label="Email" value={email} onChange={handleEmailChange}/>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <MDBInput label="Password" type="password" value={password} onChange={handlePasswordChange}/>
-                                    </div>
-
-                                    <div className="col-lg-6">
-                                        <MDBInput
-                                            type="file"
-                                            label="Select main image..."
-                                            className="chose_file"
-                                            onChange={handleCoverImageChange}
-                                        />
-                                        { coverImageUrl == '' || (
-                                            <div className="area_img_Add"> 
-                                                <h6>Cover Image</h6>
-                                                <img
-                                                    src={coverImageUrl}
-                                                    alt="img"
-                                                />
-                                            </div>
-                                        )}
-                                        
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <MDBInput
-                                            type="file"
-                                            label="Select thumb image..."
-                                            className="chose_file"
-                                            onChange={handleThumbImageChange}
-                                        />
-                                        { thumbImageUrl == "" || (
-                                            <div className="area_img_Add">
-                                                <h6>Thumb Image</h6>
-                                                <img
-                                                    src={thumbImageUrl}
-                                                    alt="img"
-                                                />
-                                        </div>
-                                        ) }
-                                        
-                                    </div>
-                                    <div className="col-lg-6" id="time_pickers">
-                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                            <TimePicker
-                                                value={startTime}
-                                                onChange={setStartTime}
-                                                label="Start"
-                                            />
-                                        </MuiPickersUtilsProvider>
-                                    </div>
-                                    <div className="col-lg-6" id="time_pickers">
-                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                            <TimePicker
-                                                value={endTime}
-                                                onChange={setEndTime}
-                                                label="End"
-                                            />
-                                        </MuiPickersUtilsProvider>
-                                    </div>
-                                </div>
-                                <div style={{marginTop: 25}}>
-                                    <button type="button" className="btn button-site" onClick={handleAddRestaurant}>
-                                        Add Restaurant
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+      <>
+        <PageLoader loading={loading} />
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="heading_top_area">
+              <h2>New Restaurant</h2>
             </div>
-        </>
+            <div className="customer_entry_form">
+              <div className="form_heading">
+                <h4>New Restaurant</h4>
+              </div>
+              <div className="add_form_area">
+                <form id="New_Res_Add">
+                  <div className="row">
+                    <div className="col-lg-6">
+                      <MDBInput
+                        label="Restaurant Name"
+                        value={restaurantName}
+                        onChange={handleRestaurantNameChange}
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <MDBInputGroup
+                        material
+                        className={ validPhoneNumber ? "form-control is-valid" : "form-control is-invalid"}
+                        prepend="+880"
+                        hint="Phone Number"
+                        value={restaurantNumber}
+                        onChange={handleRestaurantNumberChange}
+                      >
+                        <div
+                          style={{ marginLeft: 70 }}
+                          className="invalid-feedback"
+                        >
+                          Provide a valid Phone Number!
+                        </div>
+                      </MDBInputGroup>
+                    </div>
+                    <div className="col-lg-6">
+                      <MDBInput
+                        label="Restaurant Category"
+                        value={restaurantCategory}
+                        onChange={handleRestaurantCategoryChange}
+                      />
+                    </div>
+                    <div className="col-lg-6">
+                      <MDBInput
+                        label="Password"
+                        type="password"
+                        className={ password.length > 0 ? validPassword ? "form-control is-valid" : "form-control is-invalid" : "form-control"}
+                        value={password}
+                        onChange={handlePasswordChange}
+                      >
+                          <div
+                              style={{ marginLeft: 70 }}
+                              className="invalid-feedback"
+                          >
+                              Password must have 8 characters!
+                          </div>
+                      </MDBInput>
+                    </div>
+                    <div className="col-lg-6">
+                      <FormControl>
+                        <InputLabel id="demo-simple-select-label" color="red">
+                          Select Type
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={type}
+                          onChange={handleTypeChange}
+                        >
+                          <MenuItem value="restaurant">Restaurant</MenuItem>
+                          <MenuItem value="homemade">Home Made</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="col-lg-6">
+                      <FormControl>
+                        <InputLabel id="demo-simple-select-label" color="red">
+                          Food Category
+                        </InputLabel>
+
+                        <Select
+                          labelId="demo-mutiple-chip-label"
+                          id="demo-mutiple-chip"
+                          multiple
+                          value={foodCategory}
+                          onChange={handleFoodCategoryChange}
+                          input={<Input id="select-multiple-chip" />}
+                          renderValue={(selected) => (
+                            <div className={classes.chips}>
+                              {selected.map((value) => (
+                                <Chip
+                                  key={value}
+                                  label={getCategoryName(value)}
+                                  className={classes.chip}
+                                />
+                              ))}
+                            </div>
+                          )}
+                          MenuProps={MenuProps}
+                        >
+                          {props.categories.map((category) => (
+                            <MenuItem key={category._id} value={category._id}>
+                              <Checkbox
+                                checked={
+                                  foodCategory.indexOf(category._id) > -1
+                                }
+                              />
+                              <ListItemText primary={category.name} />
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div className="col-lg-12" style={{ marginTop: 25 }}>
+                      <useLoadScript
+                        googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
+                        libraries={libraries}
+                      >
+                        <Autocomplete
+                          onLoad={onLoad}
+                          onPlaceChanged={handleSelect}
+                        >
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={address}
+                            onChange={(e) => setAddress(e.currentTarget.value)}
+                            placeholder="Enter Restaurant Location"
+                          />
+                        </Autocomplete>
+                      </useLoadScript>
+                    </div>
+
+                    <div className="col-lg-12">
+                      <useLoadScript>
+                        <GoogleMap
+                          mapContainerStyle={mapStyles}
+                          zoom={14}
+                          center={coordinates}
+                        >
+                          <Marker
+                            onLoad={onMarkerLoad}
+                            draggable={true}
+                            position={markerCoordinates}
+                            onPositionChanged={handleMarkerPositionChange}
+                            onDragEnd={handleMarkerPositionUpdate}
+                          />
+                        </GoogleMap>
+                      </useLoadScript>
+                    </div>
+
+                    <div className="col-lg-12" style={{ marginTop: 25 }}>
+                      <ChipInput
+                        label="Tags"
+                        id="tags_area"
+                        value={tags}
+                        onChange={setTags}
+                      />
+                    </div>
+                    <div className="col-lg-12">
+                      <MDBInput
+                        label="Email"
+                        className={ email.length > 0 ? validEmail ? "form-control is-valid" : "form-control is-invalid" : "form-control"}
+                        value={email}
+                        onChange={handleEmailChange}
+                      >
+                          <div
+                              className="invalid-feedback"
+                          >
+                              Provide a valid Email!
+                          </div>
+                      </MDBInput>
+                    </div>
+
+                    <div className="col-lg-6">
+                      <MDBInput
+                        type="file"
+                        label="Select main image..."
+                        className="chose_file"
+                        onChange={handleCoverImageChange}
+                      />
+                      {coverImageUrl == "" || (
+                        <div className="area_img_Add">
+                          <h6>Cover Image</h6>
+                          <img src={coverImageUrl} alt="img" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="col-lg-6">
+                      <MDBInput
+                        type="file"
+                        label="Select thumb image..."
+                        className="chose_file"
+                        onChange={handleThumbImageChange}
+                      />
+                      {thumbImageUrl == "" || (
+                        <div className="area_img_Add">
+                          <h6>Thumb Image</h6>
+                          <img src={thumbImageUrl} alt="img" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="col-lg-6" id="time_pickers">
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <TimePicker
+                          value={startTime}
+                          onChange={setStartTime}
+                          label="Start"
+                        />
+                      </MuiPickersUtilsProvider>
+                    </div>
+                    <div className="col-lg-6" id="time_pickers">
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <TimePicker
+                          value={endTime}
+                          onChange={setEndTime}
+                          label="End"
+                        />
+                      </MuiPickersUtilsProvider>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 25 }}>
+                    <button
+                      type="button"
+                      className="btn button-site"
+                      onClick={handleAddRestaurant}
+                    >
+                      Add Restaurant
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
 }
 

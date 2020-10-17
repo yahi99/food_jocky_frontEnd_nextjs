@@ -4,12 +4,17 @@ import Loader from "../src/components/Common/Loader";
 import RestaurantLayout from "../src/components/layouts/ResturantLayout";
 import ResAddForm from "../src/components/AddRestaurant/ResAddForm";
 import axios from "axios";
+import {error} from "next/dist/build/output/log";
 
 function AddFood(props) {
     return (
-        <RestaurantLayout>
+        <RestaurantLayout restaurantName={props.restaurantName}>
             <Loader/>
-            <ResAddForm foodCategories={props.foodCategories} apiUrl={props.apiUrl}/>
+            <section className="customer_food_add">
+                <div className="container">
+                    <ResAddForm foodCategories={props.foodCategories} apiUrl={props.apiUrl} />
+                </div>
+            </section>
         </RestaurantLayout>
     );
 }
@@ -27,13 +32,23 @@ export async function getServerSideProps(context) {
         token: token
     }
 
+    console.log(token);
+
     let response = await axios.post(`${apiUrl}/api/restaurant/verify-restaurant`, postData);
-    let foodCategories = response.data.data
+    let restaurant = response.data
+
+    if(restaurant.error == true ) {
+        context.res.writeHeader(307, { Location: "/restaurant_login" })
+        context.res.end()
+    }
+
+    let foodCategories = restaurant.data;
 
     return {
         props: {
             foodCategories,
-            apiUrl
+            apiUrl,
+            restaurantName: "aaaa"
         }
     }
 }

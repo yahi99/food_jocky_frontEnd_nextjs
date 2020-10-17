@@ -116,7 +116,7 @@ const ResAddForm =(props)=> {
  return (
    <>
        <PageLoader loading={loading}/>
-     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+     <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" keyboard={false} scrollable centered>
        <Modal.Header closeButton className="modal_padding">
          <Modal.Title>Add Your Item</Modal.Title>
        </Modal.Header>
@@ -188,7 +188,7 @@ const ResAddForm =(props)=> {
                  <button
                    type="button"
                    className="btn button-site"
-                   onClick={handleShow}
+                   onClick={ e =>{ e.preventDefault(), handleShow() } }
                  >
                    New Item
                  </button>

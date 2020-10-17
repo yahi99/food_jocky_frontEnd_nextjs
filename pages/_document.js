@@ -12,6 +12,7 @@ class MyDocument extends Document {
                 <Head>
                     <meta charSet="utf-8"/>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
+                    <link rel="shortcut icon" href="/favicon.ico" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                     <meta name="description" content="Food Jocky"/>
                     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet"></link>
