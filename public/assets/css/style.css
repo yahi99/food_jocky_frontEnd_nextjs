@@ -1412,7 +1412,7 @@ strong {
 }
 
 .set-menu-lists ul li a {
-  padding: 20px 20px 20px 10px;
+  padding: 20px 20px 20px 0px;
   font-size: 16px;
   font-weight: 400;
   transition: .4s all ease-in;

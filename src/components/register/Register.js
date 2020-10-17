@@ -13,7 +13,7 @@ function Register(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleNameChange = e => setName(e.currentTarget.value.replace(/ /g,''));
+    const handleNameChange = e => setName(e.currentTarget.value);
     const [validPassword, setValidPassword] = useState(true);
     const handlePasswordChange = e => {
         let password = e.currentTarget.value;

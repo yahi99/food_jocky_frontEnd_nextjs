@@ -149,13 +149,13 @@ function DetailsLayout({ restaurant , user}) {
 
       <section id="restaurant-details-banner">
         <div className="restarant-banner-img">
-          <img src={restaurant.cover_img} alt="img" />
+          <img src={restaurant.cover_img} alt="img" style={{width: '100%'}}/>
         </div>
       </section>
 
       <section id="restaurant-name-info-arae">
         <div className="container">
-          <div className="row" onClick={handleShow}>
+          <div className="row" >
             <div className="col-lg-8 col-md-10 col-sm-11 col-11">
               <div className="name-catagory-details-area">
                 <href
@@ -177,7 +177,7 @@ function DetailsLayout({ restaurant , user}) {
             </div>
             <div className="col-lg-4 col-md-2 col-sm-1 col-1">
               <href data-target="#restaurant-info-modal" />
-              <div className="info-area-modal">
+              <a className="info-area-modal" onClick={handleShow}>
                 <i>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +194,7 @@ function DetailsLayout({ restaurant , user}) {
                     <path d="m304 405.332031h-96c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h96c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
                   </svg>
                 </i>
-              </div>
+              </a>
             </div>
           </div>
         </div>
