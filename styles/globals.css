@@ -76,3 +76,61 @@ html {
   font-size: 13px;
   color: #666;
 }
+
+
+/** Banner Modal and Autocomplete **/
+.modal-custom-address {
+  max-width: 700px !important;
+  margin: 60px auto !important;
+  padding: 15px;
+}
+
+.autocomplete-dropdown-container {
+  background-color: #fff;
+  position: absolute;
+  width: 95%;
+  padding: 0 5px;
+  z-index: 999999;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.suggestion-item {
+  font-size: 1rem;
+  min-height: 38px;
+  line-height: 38px;
+  padding: 0px 16px;
+}
+
+.suggestion-item:first-child {
+  margin-top: 5px;
+}
+.suggestion-item:last-child {
+  margin-bottom: 5px;
+}
+
+.suggestion-item--active {
+  font-size: 1.05rem;
+  min-height: 38px;
+  line-height: 38px;
+  padding: 0px 16px;
+  border-radius: 5px;
+}
+.suggestion-item--active:first-child {
+  margin-top: 5px;
+}
+
+.suggestion-item--active:last-child {
+  margin-bottom: 5px;
+}
+
+.modal-custom-address-search {
+  width: 100%;
+  text-align: center;
+}
+
+.modal-custom-address-search-btn {
+    display: block;
+    margin: -80px auto 30px auto;
+    padding: 12px 60px !important;
+}
