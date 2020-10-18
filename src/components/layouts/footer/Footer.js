@@ -48,11 +48,11 @@ import { AiOutlineMail } from "react-icons/ai";
                   </i>
                   Ahsan Ahmed Road, 32 Choto Mirzapur, Peace Palace, Khulna, 9100</li>
                 <li> 
-                 <i><BiPhoneIncoming /></i> <a href="tel:+880 01791-159893">01791-159893
+                 <i><BiPhoneIncoming /></i> <a href="tel:+88001882453300">01882-453300
                </a>
                </li>
                 <li> 
-                 <i><AiOutlineMail /></i> <a href="mailto:andit.andimpex@gmail.com"> andit.andimpex@gmail.com
+                 <i><AiOutlineMail /></i> <a href="mailto:foodjocky@gmail.com"> foodjocky@gmail.com
                </a></li>
               </ul>
             </div>
@@ -79,7 +79,7 @@ import { AiOutlineMail } from "react-icons/ai";
               <h4 className="footer-list-heading">Follow Us</h4>
               <div className="follow-us-list">
                 <ul>
-                  <li><a href="#!">
+                  <li><a href="https://twitter.com/FoodJocky" target="_blank">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-735 237 28 28"
                         data-bubblesppbfhhgcdehhbjigifndnfmcihegokbbprevent-events-conflict-installed="true"
                         data-arp-injected="true">
@@ -89,7 +89,7 @@ import { AiOutlineMail } from "react-icons/ai";
                           d="M-711.351 245.296c-.712.302-1.476.505-2.279.597.819-.469 1.448-1.213 1.745-2.098-.767.435-1.616.75-2.52.92-.724-.737-1.755-1.198-2.896-1.198-2.192 0-3.968 1.698-3.968 3.792 0 .297.035.587.103.864-3.298-.158-6.222-1.668-8.179-3.962-.342.56-.537 1.211-.537 1.906 0 1.316.701 2.476 1.765 3.156-.651-.02-1.262-.19-1.797-.474v.048c0 1.837 1.368 3.37 3.183 3.718-.333.087-.684.133-1.045.133-.256 0-.504-.024-.747-.068.505 1.507 1.97 2.603 3.707 2.634-1.358 1.017-3.069 1.623-4.928 1.623-.32 0-.636-.018-.947-.053 1.756 1.076 3.842 1.704 6.083 1.704 7.299 0 11.29-5.778 11.29-10.79l-.011-.491c.774-.533 1.446-1.201 1.978-1.961" />
                       </svg>
                     </a></li>
-                  <li><a href="#!">
+                  <li><a href="https://www.facebook.com/Food-Jocky-108384861049664" target="_blank">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-735 237 28 28"
                         data-bubblesppbfhhgcdehhbjigifndnfmcihegokbbprevent-events-conflict-installed="true"
                         data-arp-injected="true">
@@ -99,7 +99,7 @@ import { AiOutlineMail } from "react-icons/ai";
                           d="M-719.975 265v-9.561h-3.333v-3.726h3.333v-2.748c0-3.189 2.018-4.926 4.964-4.926 1.412 0 2.625.101 2.978.147v3.333l-2.044.001c-1.603 0-1.913.735-1.913 1.814v2.379h3.822l-.498 3.726h-3.325V265h-3.984z" />
                       </svg>
                     </a></li>
-                  <li><a href="#!">
+                  <li><a href="https://www.instagram.com/foodjocky/" target="_blank">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 180 612 612"
                         enableBackground="new 0 180 612 612"
                         data-bubblesppbfhhgcdehhbjigifndnfmcihegokbbprevent-events-conflict-installed="true"
@@ -121,7 +121,7 @@ import { AiOutlineMail } from "react-icons/ai";
                         </g>
                       </svg>
                     </a></li>
-                  <li><a href="#!">
+                  <li><a href="https://www.youtube.com/channel/UCgacNfLOEDQJyCaDEZhNPTA" target="_blank">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-735 237 28 28"
                         data-bubblesppbfhhgcdehhbjigifndnfmcihegokbbprevent-events-conflict-installed="true"
                         data-arp-injected="true">
