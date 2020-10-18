@@ -44,7 +44,6 @@ function Banner() {
         }
         setCoordinates(currentCoordinates)
         setMarkerCoordinates(currentCoordinates);
-        console.log(currentCoordinates);
         setMapModal(true);
     }
 

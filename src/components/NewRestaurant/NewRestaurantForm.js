@@ -22,6 +22,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Swal from 'sweetalert2'
 import Router from "next/router";
 import PageLoader from "../Common/PageLoader";
+import PlacesAutocomplete, {
+    geocodeByAddress,
+} from 'react-places-autocomplete';
 
 function NewRestaurantForm(props) {
 
@@ -118,7 +121,7 @@ function NewRestaurantForm(props) {
 
     async function handleAddRestaurant() {
 
-        if( restaurantName == "" || restaurantNumber == "" || undefined === fullAddress || password == "" || (! validPhoneNumber ) || (!validPassword) || (! validEmail )) {
+        if( restaurantName == "" || restaurantNumber == "" || type == "" || undefined === fullAddress || password == "" || (! validPhoneNumber ) || (!validPassword) || (! validEmail )) {
             Swal.fire(
                 'Warning',
                 'Please fill required fields',
@@ -180,11 +183,7 @@ function NewRestaurantForm(props) {
 
     const [address, setAddress] = useState();
     const [fullAddress, setFullAddress] = useState();
-    const [autoComplete, setAutoComplete] = useState();
 
-    function onLoad(value) {
-        setAutoComplete(value);
-    }
 
     const [marker, setMarker] = useState();
 
@@ -197,33 +196,28 @@ function NewRestaurantForm(props) {
         lng: 89.5635596,
     });
 
-    function handleMarkerPositionChange() {
-        if (marker) {
-            //console.log(marker.position.lat(), marker.position.lng());
-        }
-    }
-
     function handleMarkerPositionUpdate() {
         if (marker) {
             setMarkerCoordinates({
                 lat: marker.position.lat(),
                 lng: marker.position.lng(),
             });
+            updateName();
         }
-        updateName();
     }
 
-    function handleSelect() {
-        let place = autoComplete.getPlace();
-        setAddress(place.formatted_address);
+    async function handleAddressSelect(location) {
+        setAddress(location);
+        let geocode = await geocodeByAddress(location);
         let currentCoordinates = {
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-        };
-        setCoordinates(currentCoordinates);
+            lat: geocode[0].geometry.location.lat(),
+            lng: geocode[0].geometry.location.lng(),
+        }
+        setCoordinates(currentCoordinates)
         setMarkerCoordinates(currentCoordinates);
-        updateName();
+        setFullAddress(geocode[0]);
     }
+
 
     async function updateName() {
         let response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + markerCoordinates.lat + "%2C" + markerCoordinates.lng + "&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw");
@@ -411,25 +405,48 @@ function NewRestaurantForm(props) {
                         </Select>
                       </FormControl>
                     </div>
-                    <div className="col-lg-12" style={{ marginTop: 25 }}>
-                      <useLoadScript
-                        googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
-                        libraries={libraries}
-                      >
-                        <Autocomplete
-                          onLoad={onLoad}
-                          onPlaceChanged={handleSelect}
-                        >
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={address}
-                            onChange={(e) => setAddress(e.currentTarget.value)}
-                            placeholder="Enter Restaurant Location"
-                          />
-                        </Autocomplete>
-                      </useLoadScript>
-                    </div>
+
+                      <div className="col-lg-12 mt-2">
+                          <PlacesAutocomplete
+                              value={address}
+                              onChange={setAddress}
+                              onSelect={handleAddressSelect}
+                          >
+                              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                  <div>
+                                      <MDBInput
+                                          label="Enter Restaurant Location"
+                                          {...getInputProps({
+                                              placeholder: 'Search Places ...',
+                                              className: 'form-control location-search-input',
+                                          })}
+                                      />
+                                      <div className="autocomplete-dropdown-container auto-complete-list" style={{width: "97%"}}>
+                                          {loading && <div className="suggestion-item">Loading...</div>}
+                                          {suggestions.map(suggestion => {
+                                              const className = suggestion.active
+                                                  ? 'suggestion-item--active'
+                                                  : 'suggestion-item';
+                                              // inline style for demonstration purpose
+                                              const style = suggestion.active
+                                                  ? { backgroundColor: '#cacaca', cursor: 'pointer' }
+                                                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                              return (
+                                                  <div
+                                                      {...getSuggestionItemProps(suggestion, {
+                                                          className,
+                                                          style,
+                                                      })}
+                                                  >
+                                                      <span>{suggestion.description}</span>
+                                                  </div>
+                                              );
+                                          })}
+                                      </div>
+                                  </div>
+                              )}
+                          </PlacesAutocomplete>
+                      </div>
 
                     <div className="col-lg-12">
                       <useLoadScript>
@@ -442,7 +459,6 @@ function NewRestaurantForm(props) {
                             onLoad={onMarkerLoad}
                             draggable={true}
                             position={markerCoordinates}
-                            onPositionChanged={handleMarkerPositionChange}
                             onDragEnd={handleMarkerPositionUpdate}
                           />
                         </GoogleMap>

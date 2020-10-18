@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import {Dropdown} from "react-bootstrap";
 import {useRouter} from "next/router";
+import Head from "next/head";
 
 function Header(props) {
  const [click, setClick] = useState(false);
@@ -35,6 +36,9 @@ function Header(props) {
 //  window.addEventListener('resize', showButton);
  return (
   <>
+      <Head>
+          <title>Food Jocky</title>
+      </Head>
 
         <nav className='navbar'>
           <div className='navbar-container container'>

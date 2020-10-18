@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import {Dropdown} from "react-bootstrap";
 import Router from "next/router";
+import Head from "next/head";
 
 function RestaurantHeader(props) {
     const [click, setClick] = useState(false);
@@ -34,7 +35,9 @@ function RestaurantHeader(props) {
 //  window.addEventListener('resize', showButton);
     return (
         <>
-
+            <Head>
+                <title>Food Jocky</title>
+            </Head>
             <nav className='navbar'>
                 <div className='navbar-container container'>
                     <Link href='/' className='navbar-logo' onClick={closeMobileMenu}>
