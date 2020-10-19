@@ -127,6 +127,7 @@ html {
 .modal-custom-address-search {
   width: 100%;
   text-align: center;
+  height: 5px;
 }
 
 .modal-custom-address-search-btn {

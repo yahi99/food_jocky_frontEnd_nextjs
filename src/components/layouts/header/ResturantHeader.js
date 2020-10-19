@@ -42,7 +42,7 @@ function RestaurantHeader(props) {
                 <div className='navbar-container container'>
                     <Link href='/' className='navbar-logo' onClick={closeMobileMenu}>
                         <a>
-                            <img src='/assets/img/logo.png' alt="logo" />
+                            <img src='/assets/img/logo.gif' alt="logo" />
                         </a>
                     </Link>
 

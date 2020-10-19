@@ -52,7 +52,6 @@ function Banner() {
     async function handleAddressSearch(location) {
         setAddressSearch(location);
         let geocode = await geocodeByAddress(location);
-        console.log(geocode[0].geometry.location.lat())
         let currentCoordinates = {
             lat: geocode[0].geometry.location.lat(),
             lng: geocode[0].geometry.location.lng(),
