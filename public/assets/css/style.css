@@ -1017,7 +1017,7 @@ footer .contacts ul li i svg {
 }
 
 #adv-search .form-control:focus {
-  box-shadow: 2px 0px 18px -3px #c8102e2b;
+  box-shadow: 2px 0px 18px -3px #c8102e2b !important;
 }
 
 .dropdown.dropdown-lg .dropdown-menu {
