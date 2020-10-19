@@ -50,7 +50,7 @@ function LoginArea(props) {
                 )
             } else {
                 Cookies.set('token', response.data.token);
-                Router.push("/");
+                Router.back();
             }
         }
     }
