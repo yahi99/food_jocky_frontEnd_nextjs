@@ -95,7 +95,7 @@ const ResAddForm =(props)=> {
 
     const handleCategoryChange = e => setFoodCategory(e.target.value);
     const handleFoodTitleChange = e => setFoodTitle(e.currentTarget.value);
-    const handleFoodPriceChange = e => setFoodPrice(e.currentTarget.value);
+    const handleFoodPriceChange = e => setFoodPrice(e.currentTarget.value.replace(/[^1234567890.]/, ""));
     const handleFoodDescriptionChange = e => setFoodDescription(e.currentTarget.value);
 
     async function handleFoodImageUrlChange(e) {

@@ -71,7 +71,7 @@ function RestaurantHeader(props) {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>{props.restaurantName}</Dropdown.Item>
+                                    {/*<Dropdown.Item>{props.restaurantName}</Dropdown.Item>*/}
                                     <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
