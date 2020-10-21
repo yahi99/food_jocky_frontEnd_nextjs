@@ -29,8 +29,7 @@ function Banner() {
     }
 
     const [mapModal, setMapModal] = useState(false);
-
-    const [address, setAddress] = useState();
+    const [address, setAddress] = useState("");
     const [coordinates, setCoordinates] = useState(defaultCoordinates);
     const [markerCoordinates, setMarkerCoordinates] = useState(defaultCoordinates);
 
@@ -67,7 +66,7 @@ function Banner() {
         setMarker(value);
     }
 
-    const [ getCurrentLocation, setGetCurrentLocation] = useState();
+    const [ getCurrentLocation, setGetCurrentLocation] = useState(true);
 
     function currentLocation() {
         setGetCurrentLocation(true);
@@ -114,7 +113,6 @@ function Banner() {
         setAddressSearch(response.data.results[0].formatted_address);
         setAddress(response.data.results[0].formatted_address)
     }
-
 
 
     return (
