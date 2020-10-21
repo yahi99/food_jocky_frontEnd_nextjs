@@ -525,10 +525,10 @@ function NewRestaurantForm(props) {
                       </MuiPickersUtilsProvider>
                     </div>
                   </div>
-                  <div style={{ marginTop: 25, marginLeft: 0 }}>
+                  <div className="mt-4">
                     <button
                       type="button"
-                      className="btn button-site"
+                      className="btn button-site ml-0"
                       onClick={handleAddRestaurant}
                     >
                       Add Restaurant
