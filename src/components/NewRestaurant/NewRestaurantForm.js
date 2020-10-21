@@ -34,7 +34,6 @@ function NewRestaurantForm(props) {
 
     const [restaurantName, setRestaurantName] = useState('');
     const [restaurantNumber, setRestaurantNumber] = useState('');
-    const [restaurantCategory, setRestaurantCategory] = useState('');
     const [type, setType] = useState('');
     const [foodCategory, setFoodCategory] = useState([]);
     const [tags, setTags] = useState([]);
@@ -64,7 +63,6 @@ function NewRestaurantForm(props) {
         }
     }
 
-    const handleRestaurantCategoryChange = e => setRestaurantCategory(e.currentTarget.value);
     const handleTypeChange = e => setType(e.target.value);
     const handleFoodCategoryChange = e => setFoodCategory(e.target.value);
 
@@ -135,7 +133,7 @@ function NewRestaurantForm(props) {
                 "email": email,
                 "password": password,
                 "type": type,
-                "restaurant_category": restaurantCategory,
+                "restaurant_category": "",
                 "tags": tags,
                 "opening_time": dateFormat(startTime, "h:MM TT"),
                 "closing_time": dateFormat(endTime, "h:MM TT"),
@@ -303,9 +301,10 @@ function NewRestaurantForm(props) {
               <div className="add_form_area">
                 <form id="New_Res_Add">
                   <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-12">
                       <MDBInput
                         label="Restaurant Name"
+                        className="form-control"
                         value={restaurantName}
                         onChange={handleRestaurantNameChange}
                       />
@@ -313,7 +312,8 @@ function NewRestaurantForm(props) {
                     <div className="col-lg-6">
                       <MDBInputGroup
                         material
-                        className={ validPhoneNumber ? "form-control is-valid" : "form-control is-invalid"}
+                        id = "form-phone-number"
+                        className={ validPhoneNumber ? "form-control" : "form-control is-invalid"}
                         prepend="+880"
                         hint="Phone Number"
                         value={restaurantNumber}
@@ -326,13 +326,6 @@ function NewRestaurantForm(props) {
                           Provide a valid Phone Number!
                         </div>
                       </MDBInputGroup>
-                    </div>
-                    <div className="col-lg-6">
-                      <MDBInput
-                        label="Restaurant Category"
-                        value={restaurantCategory}
-                        onChange={handleRestaurantCategoryChange}
-                      />
                     </div>
                     <div className="col-lg-6">
                       <MDBInput
@@ -351,13 +344,11 @@ function NewRestaurantForm(props) {
                       </MDBInput>
                     </div>
                     <div className="col-lg-6">
-                      <FormControl>
+                      <FormControl className="form-control">
                         <InputLabel id="demo-simple-select-label" color="red">
                           Select Type
                         </InputLabel>
                         <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
                           value={type}
                           onChange={handleTypeChange}
                         >
@@ -368,13 +359,12 @@ function NewRestaurantForm(props) {
                     </div>
                     <div className="col-lg-6">
                       <FormControl>
-                        <InputLabel id="demo-simple-select-label" color="red">
+                        <InputLabel id="food-category-label" color="red">
                           Food Category
                         </InputLabel>
 
                         <Select
-                          labelId="demo-mutiple-chip-label"
-                          id="demo-mutiple-chip"
+                          id="food-category-select"
                           multiple
                           value={foodCategory}
                           onChange={handleFoodCategoryChange}
@@ -535,7 +525,7 @@ function NewRestaurantForm(props) {
                       </MuiPickersUtilsProvider>
                     </div>
                   </div>
-                  <div style={{ marginTop: 25 }}>
+                  <div style={{ marginTop: 25, marginLeft: 0 }}>
                     <button
                       type="button"
                       className="btn button-site"

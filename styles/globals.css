@@ -135,3 +135,11 @@ html {
     margin: -80px auto 30px auto;
     padding: 12px 60px !important;
 }
+
+.md-form .input-group-prepend {
+  border-bottom: 1px solid #ced4da !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #4285f4 !important;
+}
