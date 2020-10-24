@@ -8,7 +8,7 @@ function MenuItem(props) {
                   <div className="setmenu-left-side-inner-arae">
                         <h4>{props.heading}</h4>
                     <p>{props.person}</p>
-                    <h5>{props.currprice} <del>{props.oldprice}</del></h5>
+                    <h5>{props.currprice} <span>BDT</span></h5>
                   </div>
                   <div className="setmenu-item-inner-img">
                    <img src={props.img} alt="img" />
