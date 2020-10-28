@@ -1494,8 +1494,8 @@ strong {
 }
 
 .setmenu-item-inner-img img {
-  width: 100%;
-  height: 100%;
+  height: 88px;
+  max-width: 88px;
 }
 
 .heading-arae-setmenu h2 {
