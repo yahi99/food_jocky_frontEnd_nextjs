@@ -29,7 +29,7 @@ const AppImg = '/assets/img/app.png'
                   </g>
                 </svg>
               </a>
-              <a href="#!">
+              <a href="https://www.dropbox.com/s/l6xh2avbvlyw5ga/foodjocky_v1.1.1.apk?dl=0" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="33" viewBox="0 0 130 33">
                   <g className="svg-stroke-container" fill="#FFFFFF" fillRule="evenodd">
                     <g transform="translate(40)">
