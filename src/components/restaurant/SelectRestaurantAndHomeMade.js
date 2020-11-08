@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 
 
-function SelectRestaurantAndHomeMade({coordinates}) {
+function SelectRestaurantAndHomeMade({query}) {
     const router = useRouter();
     let restaurant = true;
     if( "homemade" == router.query.type) {
@@ -22,12 +22,12 @@ function SelectRestaurantAndHomeMade({coordinates}) {
             <div className="search-top-area-wrapper">
                 <ul id="top-select-area">
                     <li className="resta-img">
-                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + name}>
+                        <Link href={"/restaurants_list?lat=" + query.lat  + "&lng=" + query.lng + name}>
                             <a className={restaurant && "active-list"}>Restaurant</a>
                         </Link>
                     </li>
                     <li className="home-made-img">
-                        <Link href={"/restaurants_list?lat=" + coordinates.lat  + "&lng=" + coordinates.lng + "&type=homemade" + name}>
+                        <Link href={"/restaurants_list?lat=" + query.lat  + "&lng=" + query.lng + "&type=homemade" + name}>
                             <a className={ ! restaurant && "active-list"}>Homemade</a>
                         </Link>
                     </li>

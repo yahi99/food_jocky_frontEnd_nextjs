@@ -84,7 +84,7 @@ function Header(props) {
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                              <Dropdown.Item>{props.user.name}</Dropdown.Item>
+                              <Dropdown.Item>{props.user.user.first_name}</Dropdown.Item>
                               <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                           </Dropdown.Menu>
                       </Dropdown>

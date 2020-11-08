@@ -3,17 +3,29 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Router from "next/router";
+import {UrqlClient} from "../urql/urql-provider";
 
 function Register(props) {
 
     const Cookies = require('js-cookie');
 
-    const [name, setName] = useState("");
+    let query = `
+        mutation($customer: CustomerInput!){
+            addCustomer(customerInput: $customer) {
+                error
+                msg
+            }
+        }
+    `
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleNameChange = e => setName(e.currentTarget.value);
+    const handleFirstNameChange = e => setFirstName(e.currentTarget.value);
+    const handleLastNameChange = e => setLastName(e.currentTarget.value);
     const [validPassword, setValidPassword] = useState(true);
     const handlePasswordChange = e => {
         let password = e.currentTarget.value;
@@ -58,30 +70,37 @@ function Register(props) {
     }
 
     async function handleRegister() {
-        if(name == "" || phoneNumber == "" || password == "" || (!validPhoneNumber) || (!validPassword) || (!validEmail)) {
+        if(firstName == "" || lastName == "" || phoneNumber == "" || password == "" || (!validPhoneNumber) || (!validPassword) || (!validEmail)) {
             Swal.fire(
                 "Warning",
                 "Please fill up all required fields",
                 'warning'
             )
         } else {
-            let postData = {
-                full_name: name,
+            let customer = {
+                first_name: firstName,
+                last_name : lastName,
                 mobile: "+880" +  phoneNumber,
                 email: email,
                 password: password
             }
-            let response = await axios.post(`${props.apiUrl}/api/customer/create`, postData);
-           // console.log(response.data);
-            if(response.data.error) {
+            let client = UrqlClient();
+            let request = client.mutation(query, {customer}).toPromise();
+            let response = await request
+            if(response.error || response.data.addCustomer.error) {
                 Swal.fire(
                     "Error",
-                    response.data.msg,
+                    response.data.addCustomer.msg,
                     'error'
                 )
             } else {
-                Cookies.set('token', response.data.token);
-                Router.push("/");
+                Swal.fire(
+                    'Success',
+                    "Successful Registered",
+                    "success"
+                ).then(result => {
+                    Router.push("/login");
+                })
             }
         }
     }
@@ -99,13 +118,23 @@ function Register(props) {
                                 </div>
                                 <form>
                                     <div className="form-group">
-                                        <label>Name</label>
+                                        <label>First Name</label>
                                         <input
                                             type="text"
-                                            placeholder="Name"
+                                            placeholder="First Name"
                                             className="form-control"
-                                            value={name}
-                                            onChange={handleNameChange}
+                                            value={firstName}
+                                            onChange={handleFirstNameChange}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Last Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Last Name"
+                                            className="form-control"
+                                            value={lastName}
+                                            onChange={handleLastNameChange}
                                         />
                                     </div>
                                     <div className="form-group">

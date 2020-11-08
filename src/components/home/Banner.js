@@ -96,7 +96,7 @@ function Banner() {
 
     function handleMarkerPositionUpdate() {
         if( marker ) {
-            console.log(marker)
+
            // console.log("Updated" , marker.position.lat(), marker.position.lng());
             setMarkerCoordinates({
                 lat: marker.position.lat(),
@@ -105,6 +105,14 @@ function Banner() {
         }
         updateName();
 
+    }
+
+    const handleMapClick = e => {
+        setMarkerCoordinates({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+        });
+        updateName();
     }
 
 
@@ -179,24 +187,26 @@ function Banner() {
                                 )}
                             </PlacesAutocomplete>
 
+
+
                         <useLoadScript
-                                        googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
-                                    >
-
-                                        <GoogleMap
-                                            mapContainerStyle={mapStyles}
-                                            zoom={13}
-                                            center={coordinates}>
-
-                                            <Marker
-                                                onLoad={onMarkerLoad}
-                                                draggable={true}
-                                                position={markerCoordinates}
-                                                onDragEnd = {handleMarkerPositionUpdate}
-                                            />
-
-                                        </GoogleMap>
-                                    </useLoadScript>
+                            googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
+                        >
+                            <GoogleMap
+                                mapContainerStyle={mapStyles}
+                                zoom={13}
+                                center={coordinates}
+                                onClick={handleMapClick}
+                            >
+                                <Marker
+                                    onLoad={onMarkerLoad}
+                                    draggable={true}
+                                    position={markerCoordinates}
+                                    onDragEnd = {handleMarkerPositionUpdate}
+                                >
+                                </Marker>
+                            </GoogleMap>
+                        </useLoadScript>
                         <div className="modal-custom-address-search">
                             <Link href={"/restaurants_list?lat=" + markerCoordinates.lat + "&lng=" + markerCoordinates.lng}>
                                 <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn">

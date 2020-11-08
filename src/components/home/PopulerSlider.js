@@ -11,8 +11,8 @@ import PopulerSliderData from "../../components/home/PopulerSliderData"
     {width:768, itemsToShow:4},
 
   ];
-  const sliderData =(val) =>{
-    return(<PopulerSliderItem heading={val.heading} title={val.title} img={val.img} />)
+  const sliderData =(val, index) =>{
+    return(<PopulerSliderItem heading={val.heading} title={val.title} img={val.img} key={index}/>)
   }
  return (
   <>

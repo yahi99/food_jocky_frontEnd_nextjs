@@ -1,33 +1,11 @@
 import React, { useState } from "react";
 
-const BannerImg = "/assets/img/food/food-details-1.jpg";
-import { BiMap } from "react-icons/bi";
-import { ImCross } from "react-icons/im";
-import DetailsData from "./DetailsData";
 import MenuItem from "./MenuItem";
 import Modal from "react-bootstrap/Modal";
 import Heading from "./Heading";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import Link from "next/link";
 import Swal from "sweetalert2";
 
-const DetailsNamesArea = {
-  RestaurantName: "Shorma House",
-  pricesymbole: "$$$",
-  Catagory1: "Chinese Resuatrant",
-  Catagory2: "Fast Food",
-  Tags1: "Bangladeshi",
-  Tags2: "Chinese",
-  Tags3: "Meal Deals...",
-  FoodName1: "MEAL DEALS",
-  FoodName2: "RICE ITEMS",
-  FoodName3: "MUTTON & CHICKEN",
-  FoodName4: "FISH",
-  FoodName5: "DRINKS",
-  FoodName6: "DESERTS & HALIM",
-};
-
-// Data Get Area
 function DetailsLayout({ restaurant , user}) {
 
   const [show, setShow] = useState(false);
@@ -115,12 +93,7 @@ function DetailsLayout({ restaurant , user}) {
                   <div className="restaurant-list-modals-area-wrapper">
                     <div className="restaurant-modals-names-list">
                       <h4>About</h4>
-                      <p> {restaurant.about } </p>
-                    </div>
-                    <div className="restaurant-modals-names-list class-margin-0">
-                      <h4>Contact</h4>
-                      <p>Phone: {restaurant.mobile} </p>
-                      <p>Email: {restaurant.email} </p>
+                      <p> {restaurant.description } </p>
                     </div>
                     <div className="restaurant-modals-names-list">
                       <h4>Address</h4>
@@ -133,10 +106,10 @@ function DetailsLayout({ restaurant , user}) {
                     <GoogleMap
                       mapContainerStyle={mapStyles}
                       zoom={13}
-                      center={defaultCenter}
+                      center={restaurant.address.location || defaultCenter}
                     >
                       <Marker
-                          position={restaurant.address.location || {lat: 22.813761316181107, lng: 89.56029803383788}}
+                          position={restaurant.address.location || defaultCenter}
                       />
                     </GoogleMap>
                   </useLoadScript>
@@ -171,7 +144,10 @@ function DetailsLayout({ restaurant , user}) {
                   </ul>
                 </div>
                 <div className="tags-details-area bulate-list">
-                  <ul>{tagLists}</ul>
+                  <ul>
+                    <li>{restaurant.price_type}</li>
+                    {tagLists}
+                  </ul>
                 </div>
               </div>
             </div>

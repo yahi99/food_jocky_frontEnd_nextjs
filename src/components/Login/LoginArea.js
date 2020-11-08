@@ -3,9 +3,20 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Router from "next/router";
+import {UrqlClient} from "../urql/urql-provider";
 
 
 function LoginArea(props) {
+
+    let query = `
+        query ($phone: String!, $password: String!) {
+            customerLogin(mobile: $phone, password: $password){
+                error
+                msg
+                token
+            }
+        }
+    `
 
     const Cookies = require('js-cookie');
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -37,19 +48,17 @@ function LoginArea(props) {
                 'warning'
             )
         } else {
-            let postData = {
-                mobile: "+880" + phoneNumber,
-                password: password
-            }
-            let response = await axios.post(`${props.apiUrl}/api/customer/login`, postData);
-            if(response.data.error) {
+            let client = UrqlClient();
+            let result = await client.query(query, { phone: "+880" + phoneNumber, password}).toPromise();
+
+            if(result.error || result.data.customerLogin.error) {
                 Swal.fire(
                     "Error",
-                    response.data.msg,
+                    result.data.customerLogin.msg,
                     'error'
                 )
             } else {
-                Cookies.set('token', response.data.token);
+                Cookies.set('token', result.data.customerLogin.token);
                 Router.back();
             }
         }
@@ -110,7 +119,7 @@ function LoginArea(props) {
                                     </div>
                                     <div className="button-singup-area">
                                         <div className="form-submit-button">
-                                            <button type="button" class="btn button-site" onClick={handleLogin}>
+                                            <button type="button" className="btn button-site" onClick={handleLogin}>
                                                 Login
                                             </button>
                                         </div>

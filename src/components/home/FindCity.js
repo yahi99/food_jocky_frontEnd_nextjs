@@ -4,8 +4,8 @@ import CityCard from '../home/CityCard'
 import CityData from '../home/CityData'
 
 const FindCity = () => {
- const cityDatas = (val) =>{
-   return(<CityCard ciytname={val.cityName} imgsrc={val.img} />)
+ const cityDatas = (val, index) =>{
+   return(<CityCard ciytname={val.cityName} imgsrc={val.img} key={index}/>)
  }
  return (
   <>

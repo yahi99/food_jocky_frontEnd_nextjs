@@ -1,34 +1,31 @@
 import React, {useState} from 'react'
 import SelectRestaurantAndHomeMade from './SelectRestaurantAndHomeMade'
-import RestaurantCard from './RestaurantCard'
-import RestaurantData from './RestaurantData'
-import RestaurantItemFixed from './RestaurantItemFixed'
-import Collapse from 'react-bootstrap/Collapse'
 import Router, {useRouter} from "next/router";
+import RestaurantCard from "./RestaurantCard";
  
-function RestaurantListLayout({restaurants, coordinates}) {
+function RestaurantListLayout({restaurants}) {
 
     const router = useRouter();
+    let query = router.query;
+    if(undefined == query.lat || undefined == query.lng) {
+        process.browser && Router.push('/');
+    }
+
     let restaurant = true;
-    if( "homemade" == router.query.type) {
+    if( "homemade" == query.type) {
         restaurant = false;
     }
 
 
     const [open, setOpen] = useState(false);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(query.name || '');
     const handleSearchChange = e => setSearch(e.currentTarget.value);
     function handleSearch(e) {
         if (e.key === 'Enter') {
-            Router.push("/restaurants_list?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&name=" + search + (!restaurant ? "&type=homemade" : ""));
+            Router.push("/restaurants_list?lat=" + query.lat + "&lng=" + query.lng + "&name=" + search + (!restaurant ? "&type=homemade" : ""));
         }
     }
 
-  const ResDatasPas = (val)=>{
-      return <RestaurantCard 
-      img={val.logo_img}  title={val.name} pricesymbole={'$$$'} tags={val.tags} _id={val._id}
-      />
-  }
 
   return (
  
@@ -37,7 +34,7 @@ function RestaurantListLayout({restaurants, coordinates}) {
        <div className="container">
          <div className="row">
            <div className="col-lg-12">
-            <SelectRestaurantAndHomeMade coordinates={coordinates}/>
+            <SelectRestaurantAndHomeMade query={query}/>
              <div className="search-filter-area">
                <div className="input-group" id="adv-search">
                  <input type="text" className="form-control search-shadow"
@@ -72,9 +69,14 @@ function RestaurantListLayout({restaurants, coordinates}) {
                  { restaurant ? "All Restaurant" : "All Homemade" }
              </h2>
            </div>
+
+
            <div className="row">
-             {restaurants.map(ResDatasPas)}
-             {/* {RestaurantData.map(ResDatasPas)} */}
+               {restaurants.map((restaurant, index) => (
+                   <RestaurantCard
+                       img={restaurant.thumb_img}  title={restaurant.name} pricesymbole={restaurant.price_type} tags={restaurant.tags} _id={restaurant._id}
+                       key={index} />
+               ))}
            
            </div>
          </div>
