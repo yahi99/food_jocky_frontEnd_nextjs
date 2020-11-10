@@ -20,7 +20,7 @@ import PopulerSliderData from "../../components/home/PopulerSliderData"
     <div className="container">
       <div className="row">
         <div className="col-lg-6 offset-lg-3">
-          <SectionHeading heading="Popular Categories" title="Cum doctus civibus efficiantur in imperdiet deterruisset"  />
+          <SectionHeading heading="Popular Categories" title="Explore and enjoy our top amazing categories"  />
         </div>
       </div>
       <div className="row">

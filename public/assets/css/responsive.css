@@ -1,8 +1,19 @@
 @media (max-width: 1440px) {
- 
+  .home_banner-text {
+    padding-left: 50px;
+}
+.location-area-map-marker {
+  right: 30%;
+}
+.home_banner-text h1 {
+  font-size: 55px;
+}
 }
 
 @media (max-width: 1199px) {
+  .home_banner-text h1 {
+    font-size: 50px;
+  }
   .location-area-map-marker {
     right: 26%;
   }
@@ -21,6 +32,9 @@
 }
 
 @media (max-width: 992px) {
+  .home_banner-text {
+    padding-left: 0px;
+}
   .MuiFormControl-root {
     margin-top:20px;
 }
@@ -41,8 +55,8 @@
 
   .app-downloads-button a {
     padding: 9px 5px;
-    margin-right: 10px;
-  }
+    margin-right: 12px;
+}
 
   .footer-items {
     padding-bottom: 20px;
@@ -72,6 +86,15 @@
 }
 
 @media (max-width: 768px) {
+  .app-downloads-button a {
+    padding: 9px 5px;
+    margin-right: 33px;
+}
+    .btn-banner-search {
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
   #restaurant-info-modal .tags-details-area ul,    #restaurant-info-modal .catagorys-details-area ul{
     display: inherit;
   }
@@ -135,6 +158,24 @@
   .login-form-area {
     width: 100%;
 }
+.app-downloads-button a {
+  padding: 9px 5px;
+  margin-right: 13px;
+}
+.copy-right-right-side ul {
+  display: inherit;
+  display: inherit;
+}
+.copy-right-right-side ul li {
+  border-right:inherit;
+}
+#top_slider, #top_slider, #city-area, #details-area {
+  padding: 60px 0;
+}
+h2 {
+  font-size: 30px;
+}
+
 }
 
 @media (min-width: 1200px) {

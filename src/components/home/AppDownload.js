@@ -13,9 +13,8 @@ const AppImg = '/assets/img/app.png'
       <div className="row align-items-center">
         <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="app-downloads-text">
-            <h3>Download the food you love</h3>
-            <p>It's all at your fingertips -- the restaurants you love. Find the right food to suit your mood, and make
-              the first bite last. Go ahead, download us.</p>
+            <h3>Have you got the app?</h3>
+            <p>It’s all at your pocket - Order from your favorite restaurants and gets real-time order updates, live chat supports and exclusive offers.</p>
             <div className="app-downloads-button">
               <a href="#!">
                 <svg xmlns="http://www.w3.org/2000/svg" width="129" height="34" viewBox="0 0 129 34">

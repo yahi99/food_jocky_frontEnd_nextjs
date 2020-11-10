@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsSearch } from "react-icons/bs";
+import { FaPaperPlane } from "react-icons/fa";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiPhoneIncoming } from "react-icons/bi";
 import { AiOutlineMail } from "react-icons/ai";
@@ -20,6 +20,9 @@ import { AiOutlineMail } from "react-icons/ai";
                 <li><a href="#!">My account</a></li>
                 <li><a href="#!">Blog</a></li>
                 <li><a href="#!">Support</a></li>
+                <li><a href="#!">Account balance policy</a></li>
+                <li><a href="#!">Security</a></li>
+                <li><a href="#!">Foodjocky deals</a></li>
               </ul>
             </div>
           </div>
@@ -33,6 +36,10 @@ import { AiOutlineMail } from "react-icons/ai";
                 <li><a href="#!">Best Rated</a></li>
                 <li><a href="#!">Best Price</a></li>
                 <li><a href="#!">Recent Update</a></li>
+                <li><a href="#!">Corporate customer</a></li>
+                <li><a href="#!">Career</a></li>
+                <li><a href="#!">Cashback policy</a></li>
+                <li><a href="#!">Become a rider</a></li>
               </ul>
             </div>
           </div>
@@ -68,7 +75,7 @@ import { AiOutlineMail } from "react-icons/ai";
                     <input type="text" className="form-control" placeholder="Your Mail" />
                     <div className="input-group-append">
                       <button type="button" className="btn-submit-footer button-site-footer">
-                      <BsSearch/>
+                      <FaPaperPlane/>
                       </button>
                     </div>
                   </div>

@@ -15,7 +15,7 @@ function Banner() {
     const BannerData ={
         heading:"Find your favorite food and restaurant near You",
         button:"Search",
-        para:"Find your preferred food and restaurant near your area"
+        para:"Order food online & Eat Good, Eat Exciting!"
     }
 
     const mapStyles = {
@@ -218,9 +218,9 @@ function Banner() {
                 </Modal.Body>
             </Modal>
             <section id="home_banner">
-                <div className="container">
+                <div className="container-fluid">
                     <div className="row">
-                        <div className="col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
+                        <div className="col-lg-7  col-md-12 col-sm-12 col-12">
                             <div className="home_banner-text zindex mb-5">
                                 <h1>{BannerData.heading}</h1>
                                 <div className="banner_search_form">
@@ -251,7 +251,7 @@ function Banner() {
                                                             <BiMap size="27px"/>
                                                         </i>
                                                         <div className="input-group-append">
-                                                            <a className="btn-banner-search btn-banner-height border-radius button-site" onClick={()=> setMapModal(true)}>
+                                                            <a className="btn-banner-search btn-banner-height button-site" onClick={()=> setMapModal(true)}>
                                                                 {BannerData.button}
                                                             </a>
                                                         </div>

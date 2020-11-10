@@ -53,7 +53,7 @@ function Header(props) {
             </div>
 
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-              <li className='nav-item'>
+              {/* <li className='nav-item'>
                 <Link href='/'>
                  <a className='nav-links' onClick={closeMobileMenu}>Home</a>
                 </Link>
@@ -72,7 +72,7 @@ function Header(props) {
                 <Link href='#'>
                   <a className='nav-links' onClick={closeMobileMenu}>FAQ</a>
                 </Link>
-              </li>
+              </li> */}
               <li className='nav-item'>
                   {props.user && props.user.authenticated ? (
                       <Dropdown>
@@ -98,15 +98,13 @@ function Header(props) {
                   )}
 
               </li>
-              <li className='nav-item'>
-                <Link href='#'>
-                 <a className='nav-links' onClick={closeMobileMenu}><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                      </path>
-                    </svg></a>
-                </Link>
+              <li className='nav-item lan-area'>
+                <a href='#' className="border-area active">
+                 EN
+                </a>
+                <a href='#'>
+                 BN
+                </a>
               </li>
             </ul>
           </div>

@@ -13,7 +13,7 @@ const FindCity = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-6 offset-lg-3">
-          <SectionHeading heading="Cities find us in these Ares" title="Explore and find desired food and restaurant"  />
+          <SectionHeading heading=" Find us all over Bangladesh" title="Explore and find desired food and restaurant"  />
         </div>
       </div>
       <div className="row">

@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const About = () => {
   const AboutData =  { 
-    heading:"List your restaurant on FoodJocky",
-    para1:"Would you like thousands of new customers to taste your amazing food? So would we!",
-    para2:"It,s simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry  people - in a heartbeat!",
+    heading:"List your Restaurant on FoodJocky",
+    para1:"By fulfilling deliveries as far as 25 miles from your location, Foodjocky enables your business to reach thousands of new customers to taste your amazing food? So would we!",
+    para2:"Make up to 60% net profit on incremental delivery orders. With none of the overhead costs of a traditional dine-in experience, you can focus on cooking—we'll do the rest.",
     para3:"Interested? Let's start our partnership today!",
     button:"Get started"
   }
