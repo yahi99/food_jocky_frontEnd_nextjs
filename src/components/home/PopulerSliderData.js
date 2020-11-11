@@ -53,13 +53,7 @@ const PopulerSliderData = [{
     heading: "Sandwich",
     title: "39 Restaurants",
     img: Sandwich
-  },
-  {
-    heading: "Shawarme",
-    title: "30 Restaurants",
-    img: Shawarma
   }
-
 ];
 
 export default PopulerSliderData

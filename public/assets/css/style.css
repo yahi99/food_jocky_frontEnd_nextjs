@@ -536,6 +536,19 @@ button:focus {
   padding: 24px 21px 0px 25px !important;
   border: none !important;
 }
+.nav-area-padding{
+  padding:0 130px;
+}
+#hide-show{
+  transition: .4s all;
+  -webkit-transition: .4s all;
+  -moz-transition: .4s all;
+  -ms-transition: .4s all;
+  -o-transition: .4s all;
+}
+.faqs-hide-btn{
+  padding-top: 30px;
+}
 /* Populer_Catagory */
 /* -----------------------------
         Top Slider

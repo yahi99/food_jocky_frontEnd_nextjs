@@ -41,7 +41,7 @@ function Header(props) {
       </Head>
 
         <nav className='navbar'>
-          <div className='navbar-container container'>
+          <div className='navbar-container container-fluid nav-area-padding'>
             <Link href='/' className='navbar-logo' onClick={closeMobileMenu}>
                 <a>
                     <img src='/assets/img/logo.gif' alt="logo" />

@@ -8,6 +8,9 @@
 .home_banner-text h1 {
   font-size: 55px;
 }
+.nav-area-padding{
+  padding:0 50px;
+}
 }
 
 @media (max-width: 1199px) {
@@ -17,7 +20,7 @@
   .location-area-map-marker {
     right: 26%;
   }
-
+ 
   #top_slider .owl-carousel .owl-nav button.owl-prev {
     left: -30px;
   }
@@ -83,9 +86,16 @@
     padding: 10px 50px;
     width: auto;
   }
+  .nav-area-padding {
+    padding: 0 0px;
+}
 }
 
 @media (max-width: 768px) {
+  #banner_form {
+    box-shadow: none;
+    border-radius: 5px;
+}
   .app-downloads-button a {
     padding: 9px 5px;
     margin-right: 33px;
@@ -130,10 +140,12 @@
 
   #banner_form input {
     width: 100%;
+    background: #eaeaea;
   }
 
   #banner_form .input-group-append {
     width: 100%;
+ 
   }
 
   #banner_form button {
