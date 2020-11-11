@@ -440,7 +440,7 @@ button:focus {
 
 }
 .home_banner-text{
-  padding-left: 150px;
+  padding-left: 135px;
 }
 .home_banner-text h1 {
   color: var(--heading-color);
@@ -540,14 +540,26 @@ button:focus {
   padding:0 130px;
 }
 #hide-show{
-  transition: .4s all;
-  -webkit-transition: .4s all;
-  -moz-transition: .4s all;
-  -ms-transition: .4s all;
-  -o-transition: .4s all;
+  display: none;
+  transition: 1s all;
+  -webkit-transition: 1s all;
+  -moz-transition: 1s all;
+  -ms-transition: 1s all;
+  -o-transition: 1s all;
 }
+.chowzb {
+  background-color: rgb(103 58 183 / 0%) !important;
+}
+.hCVuYx {
+  background-color: rgb(255 255 255 / 10%) !important;
+  color: #c8102e !important;
+}
+
 .faqs-hide-btn{
   padding-top: 30px;
+}
+.faqs-hide-btn button{
+  margin: 0;
 }
 /* Populer_Catagory */
 /* -----------------------------

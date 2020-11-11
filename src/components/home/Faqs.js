@@ -3,6 +3,17 @@ import { BsCheckCircle } from "react-icons/bs";
 
  const Faqs = () => {
   const [hide, setHide] = useState(true);
+
+  const handleClick = e => {
+      if(hide) {
+          document.querySelector('#hide-show').style.display = 'block'
+      } else {
+        document.querySelector('#hide-show').style.display = 'none'
+      }
+      setHide(!hide)
+  }
+
+
  return (
   <>
     <section id="details-area">
@@ -14,9 +25,9 @@ import { BsCheckCircle } from "react-icons/bs";
             <p>Are you hungry? Did you have a long and stressful day? Foodjocky is passionate about food and bringing people evermore choice. There are amazing restaurants everywhere that we believe everyone should have access to. But Foodjocky’s mission is not only to make sure that the restaurants in your area are available to you when and where you want them - we want to go further and bring new restaurants to your area so you have even more choice of amazing food. Foodjocky Bangladesh has a wide range of 3000+ restaurants available from Khulna, Dhaka, to Chittagong through to Sylhet and all over Bangladesh.</p>
           </div>
           <div className="faqs-hide-btn">
-            <button className="btn button-site" onClick={() => setHide(!hide)}>{ hide ? 'Show' : 'Hide'}</button>
+              <button className="btn button-site" onClick={handleClick} >{hide ? 'Show': 'Hide'}</button>
           </div>
-          <div id="hide-show" style={{display: hide ? 'none' : 'block'}}>
+          <div id="hide-show">
           <div className="details-para-area">
             <h3>Why choose foodjocky?</h3>
             <ul>

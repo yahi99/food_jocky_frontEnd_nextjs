@@ -6,7 +6,7 @@ const CityCard = (props) => {
   <>
          <div className="col-lg-3 col-md-4 col-sm-6 col-12 py-3">
           <div className="location-selcet-area">
-            <a href="!#">
+            <a href="#!">
               <div className="location-sel-img ">
                 <img src= {props.imgsrc} /> 
                 </div>

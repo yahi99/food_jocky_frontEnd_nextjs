@@ -6,7 +6,7 @@ const Pizza ='/assets/img/food/pizza.png'
 const Cake ='/assets/img/food/cake.png'
 const Burgir ='/assets/img/food/burgir.png'
 const Sandwich ='/assets/img/food/sandwich.png'
-const Shawarma ='/assets/img/food/shawarma.png'
+const shawarma ='/assets/img/food/shorma.png'
 
 
 const PopulerSliderData = [{
@@ -30,11 +30,6 @@ const PopulerSliderData = [{
     img: Chicken
   },
   {
-    heading: "Fast Food",
-    title: "210 Restaurants",
-    img: FastFood
-  },
-  {
     heading: "Pizza",
     title: "380 Restaurants",
     img: Pizza
@@ -45,7 +40,7 @@ const PopulerSliderData = [{
     img: Cake
   },
   {
-    heading: "Burgir",
+    heading: "Burger",
     title: "90 Restaurants",
     img: Burgir
   },
@@ -53,6 +48,11 @@ const PopulerSliderData = [{
     heading: "Sandwich",
     title: "39 Restaurants",
     img: Sandwich
+  },
+  {
+    heading: "shawarma",
+    title: "39 Restaurants",
+    img: shawarma
   }
 ];
 
