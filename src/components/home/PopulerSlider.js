@@ -5,7 +5,7 @@ import SectionHeading from "../home/SectionHeading"
 import PopulerSliderData from "../../components/home/PopulerSliderData"
 
  const PopulerSlider = () => {
-  const breakPoints =[
+  const breakPoints =[ 
     {width:1, itemsToShow:1},
     {width:500, itemsToShow:2},
     {width:768, itemsToShow:4},

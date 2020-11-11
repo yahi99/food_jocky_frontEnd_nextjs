@@ -547,14 +547,9 @@ button:focus {
   -ms-transition: 1s all;
   -o-transition: 1s all;
 }
-.chowzb {
+.top_slider_wrap button{
   background-color: rgb(103 58 183 / 0%) !important;
 }
-.hCVuYx {
-  background-color: rgb(255 255 255 / 10%) !important;
-  color: #c8102e !important;
-}
-
 .faqs-hide-btn{
   padding-top: 30px;
 }
