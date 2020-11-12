@@ -2,7 +2,7 @@ import React from 'react'
 import SectionHeading from "../home/SectionHeading"
 import CityCard from '../home/CityCard'
 import CityData from '../home/CityData'
-
+ 
 const FindCity = () => {
  const cityDatas = (val, index) =>{
    return(<CityCard ciytname={val.cityName} imgsrc={val.img} key={index}/>)

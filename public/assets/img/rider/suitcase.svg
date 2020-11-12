@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="49px" viewBox="0 0 57 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Suitcase</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Version-5:-Magazine-style-(WIP)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-V6-Copy" transform="translate(-593.000000, -3537.000000)">
+            <g id="additional-perks" transform="translate(1.000000, 3243.000000)">
+                <g id="suitcase" transform="translate(535.000000, 295.000000)">
+                    <g id="Suitcase" transform="translate(58.000000, 0.000000)">
+                        <path d="M23.0437012,29 L5,29 L5,29 C2.23857625,29 0,26.7614237 0,24 L0,13 L0,13 C0,10.2385763 2.23857625,8 5,8 L5,8 L50,8 L50,8 C52.7614237,8 55,10.2385763 55,13 L55,24 L55,24 C55,26.7614237 52.7614237,29 50,29 L32.232666,29" id="Rectangle-5" stroke="#FFFFFF" stroke-width="2"></path>
+                        <rect id="Rectangle-7" stroke="#FFFFFF" stroke-width="2" x="23" y="23" width="9" height="12" rx="4.5"></rect>
+                        <path d="M53,28.0349121 L53,42 C53,44.7614237 50.7614237,47 48,47 L7,47 C4.23857625,47 2,44.7614237 2,42 L2,28.1469727" id="Rectangle-5-Copy" stroke="#FFFFFF" stroke-width="2"></path>
+                        <path d="M20.0095215,8.09106445 L20.0095215,3.89013672 L20.0095215,3.89013672 C20.0095215,2.23328247 21.3526672,0.890136719 23.0095215,0.890136719 L32.1481934,0.890136719 L32.1481934,0.890136719 C33.8050476,0.890136719 35.1481934,2.23328247 35.1481934,3.89013672 L35.1481934,8.09106445" id="Path-8" stroke="#FFFFFF" stroke-width="2"></path>
+                        <path d="M2,28 L23.3164062,28 L23.3164062,32.3378906 L23.3164062,32.3378906 C23.3164062,33.4424601 24.2118368,34.3378906 25.3164062,34.3378906 L30.9482422,34.3378906 L30.9482422,34.3378906 C31.5005269,34.3378906 31.9482422,33.8901754 31.9482422,33.3378906 L31.9482422,28 L53,28 L53,43 L53,43 C53,45.7614237 50.7614237,48 48,48 L7,48 L7,48 C4.23857625,48 2,45.7614237 2,43 L2,28 Z" id="Rectangle-9" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
