@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 import { FaPaperPlane } from "react-icons/fa";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiPhoneIncoming } from "react-icons/bi";
@@ -39,7 +40,7 @@ import { AiOutlineMail } from "react-icons/ai";
                 <li><a href="#!">Corporate customer</a></li>
                 <li><a href="#!">Career</a></li>
                 <li><a href="#!">Cashback policy</a></li>
-                <li><a href="#!">Become a rider</a></li>
+                <li><Link href="/become_rider"><a>Become a rider</a></Link></li>
               </ul>
             </div>
           </div>
