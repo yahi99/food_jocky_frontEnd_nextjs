@@ -839,7 +839,7 @@ footer .contacts ul li i {
   font-size: 18px;
   font-size: 1.125rem;
   position: absolute;
-  top: 0;
+  top: 6px;
   left: 0;
   color: #fff;
   line-height: 1;
@@ -2030,7 +2030,7 @@ min-height: 30px !important;
   outline: none !important;
   box-shadow: none !important;
 }
-#banner-rider::after{
+/* #banner-rider::after{
 content: "";
 position: absolute;
 width: 100%;
@@ -2038,7 +2038,7 @@ height: 100%;
 background: linear-gradient(rgba(0,0,0,0),rgb(0 0 0 / 80%));
 top: 0;
 z-index: -1;
-}
+} */
 .banner-rider-text h5{
   font-size: 30px;
   color: #fff;

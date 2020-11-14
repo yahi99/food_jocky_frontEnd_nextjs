@@ -23,7 +23,7 @@
   {
   heading:"Spark",
   para:`We believe in, stand for and are evangelists of our culture - both,
-   within Zomato and externally with all our stakeholders.`
+   within Foodjockyand externally with all our stakeholders.`
   },
   {
   heading:"Judgement",

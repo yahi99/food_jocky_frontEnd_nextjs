@@ -14,9 +14,12 @@ const HowItWorks = () => {
          <div className="col-lg-6 col-md-12 col-sm-12 col-12">
             <div className="WhoWeArea-text">
              <h2>Who are we?</h2>
-                <p>Launched in Delhi 12 years ago, Zomato has grown from a home project to one of the
-                  largest food aggregators in the world. We are present in 24 countries and 10000+ cities globally, enabling our vision of better food for more people. We not only
-                  connect people to food in every context but work closely with restaurants to enable a sustainable ecosystem.</p>
+                <p>Nunc lobortis lobortis ultrices. In non dictum turpis.
+                   Phasellus a elit sit amet magna fermentum sollicitudin nec et ligula.
+                    Donec nec nulla scelerisque diam feugiat bibendum egestas eu sem.
+                     Ut aliquam sapien velit, id lacinia dolor facilisis a. Nunc vestibulum quis libero ut molestie.
+                      Ut sodales magna ut turpis sodales posuere. Nunc a maximus nisl. Donec finibus varius lacus ac ultricies. Suspendisse bibendum sagittis semper. Nam maximus tincidunt justo, viverra faucibus fe
+                  lis fringilla in. Maecenas consequat ultrices risus nec semper.</p>
             </div>
          </div>
        </div>
