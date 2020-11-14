@@ -6,7 +6,7 @@ const RiderArea = (props) => {
    <section id="rider-area-left">
     <div className="container">
      <div className="row">
-      <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+      <div className="col-lg-6 col-md-6 col-sm-12 col-12">
        <div className="rider-area-img">
        <img src={props.src} alt="img" />
        </div>

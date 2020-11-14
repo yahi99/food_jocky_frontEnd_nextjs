@@ -1661,7 +1661,7 @@ strong {
   font-size: 1.2rem;
   position: sticky !important;
   top: 0px;
-  z-index: 99;
+  z-index: 99999;
   box-shadow: 0px 0px 9px -5px #c8102e;
 }
 
@@ -2035,7 +2035,7 @@ content: "";
 position: absolute;
 width: 100%;
 height: 100%;
-background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5));
+background: linear-gradient(rgba(0,0,0,0),rgb(0 0 0 / 80%));
 top: 0;
 z-index: -1;
 }
@@ -2047,14 +2047,13 @@ z-index: -1;
 .banner-rider-text h1{
   color: #fff;
   font-size: 100px;
-  padding-top: 30px;
 }
 #city_form {
   padding-top: 40px;
 }
 #city_form label{
   color: #fff;
-  font-size: 30px;
+  font-size: 26px;
 }
 #city_form select{
   margin-bottom:20px;
@@ -2079,9 +2078,11 @@ z-index: -1;
   padding-top: 60px;
 }
 #rider-area-left{
-  padding: 120px ;
+  padding: 120px 0;
 }
-
+#city_form button{
+  margin: 0;
+}
 .rider-area-text h2{
   color:  var(--theme-color-one);
   font-size: 60px;
@@ -2124,4 +2125,116 @@ z-index: -1;
 .somthing-boxed p{
   font-size: 25px;
   line-height: 35px;
+}
+#rider-cta{
+padding: 120px 0;
+text-align: center;
+background-image: url('../img/slider/cta.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+#rider-cta:after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #0000009e;
+  left: 0;
+  top: 0;
+}
+.cat-text{
+  position: relative;
+  z-index: 999;
+}
+.cat-text h2{
+  color: #fff;
+}
+.rider-img{
+  width: 30%;
+  margin: 0 auto;
+}
+.rider-img img{
+  width: 100%;
+}
+/* About Page */
+#common_banner{
+  padding: 160px 0;
+  background-image: url('../img/about/banner.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.common-banner-text h2{
+  text-align: center;
+  font-size: 50px;
+}
+#WhoWeArea-area{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.WhoWeArea-text h2{
+  line-height: 17px;
+}
+.WhoWeArea-text p{
+  padding-top: 30px;
+  line-height: 34px;
+  font-size: 18px;
+}
+#howitwork-area{
+  padding: 120px 0;
+}
+.inner-comomn-heading{
+  text-align: center;
+}
+.how-it-icons{
+  text-align: center;
+  padding-top: 40px;
+}
+.how-it-icons img{
+  width: 250px;
+}
+.how-it-icons h5{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--theme-color-one);
+}
+#OurValues-Area{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.our-values-text{
+  padding-top: 50px;
+}
+.our-values-text p{
+  padding-top: 10px;
+  line-height: 34px;
+  font-size: 18px;
+}
+#WhereWe-Area{
+  padding: 120px 0;
+}
+.map-img{
+  padding-top: 40px;
+}
+.Weboxed{
+  text-align: center;
+  background-color: #f7f7f7;
+  padding: 20px 20px;
+  box-shadow: 0px 0px 20px 0px #ff00001f;
+  margin-top: 50px;
+}
+.Weboxed img{
+  width: 50%;
+}
+.Weboxed p{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 5px;
+}
+.Weboxed h3{
+  font-size: 30px;
+  padding-top: 5px;
+  color: var(--theme-color-one);
 }

@@ -1,16 +1,21 @@
-const  SomeData = [
+
+
+export const SomeData = [
  {
-  img:"/assets/img/rider/suitcase.svg",
-  para:"Performance bonus"
+  img:"/assets/img/rider/icon.svg",
+  para:"An iPhone 4s (or newer) or an Android phone (4.2. or newer)"
  },
  {
-  img:"/assets/img/rider/equipment.svg",
-  para:"High quality equipment"
+  img:"/assets/img/rider/icon.svg",
+  para:"Bicycle, motorcycle or scooter."
  },
  {
-  img:"/assets/img/rider/group.svg",
-  para:"Team events"
+  img:"/assets/img/rider/icon.svg",
+  para:"National ID Card"
+ },
+ {
+  img:"/assets/img/rider/icon.svg",
+  para:"To be 18 years old."
  }
 
 ];
-export default SomeData

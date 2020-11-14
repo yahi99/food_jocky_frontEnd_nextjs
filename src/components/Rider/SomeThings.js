@@ -1,6 +1,11 @@
 import React from 'react'
+import SomeCard from '../Rider/SameCard'
+import {SomeData} from '../Rider/SomeData'
 
 const SomeThings = () => {
+   const someDatas=(val)=>{
+      return <SomeCard img={val.img} para={val.para}/>
+   }
  return (
   <>
    <section id="something-area">
@@ -11,24 +16,9 @@ const SomeThings = () => {
              <h2>Some things you'll need</h2>
           </div> 
          </div>
-         <div className="col-lg-4">
-            <div className="somthing-boxed">
-               <img src="/assets/img/rider/icon.svg" alt="img" />
-               <p>An iPhone 4s (or newer) or an Android phone (4.2. or newer)</p>
-            </div>                    
-         </div>
-         <div className="col-lg-4">
-            <div className="somthing-boxed">
-               <img src="/assets/img/rider/icon.svg" alt="img" />
-               <p>An iPhone 4s (or newer) or an Android phone (4.2. or newer)</p>
-            </div>                    
-         </div>
-         <div className="col-lg-4">
-            <div className="somthing-boxed">
-               <img src="/assets/img/rider/icon.svg" alt="img" />
-               <p>An iPhone 4s (or newer) or an Android phone (4.2. or newer)</p>
-            </div>                    
-         </div>
+         
+        {SomeData.map(someDatas)}
+
       </div>
      </div>
    </section>

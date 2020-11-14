@@ -89,9 +89,45 @@
   .nav-area-padding {
     padding: 0 0px;
 }
+.banner-rider-text h1 {
+  font-size: 65px;
+  padding-top: 0px;
+}
+#rider-area-right .row{
+  flex-direction: column-reverse;
+}
+.rider-area-text{
+  padding-top: 30px;
+}
+.WhoWeArea-text{
+  padding-top: 50px;
+}
+.WhoWeArea-text p {
+  padding-top: 15px;
+}
 }
 
 @media (max-width: 768px) {
+  .Weboxed img {
+    width: 30%;
+}
+#common_banner {
+  background-position: top left;
+}
+  #banner-rider {
+    padding: 105px 0;
+}
+  .rider-heading h3 {
+    width: 100%;
+}
+  .rider-area-text h2 {
+    font-size: 34px;
+    line-height: 40px;
+}
+  .banner-rider-text h1 {
+    font-size: 45px;
+    padding-top: 1px;
+}
   #banner_form {
     box-shadow: none;
     border-radius: 5px;

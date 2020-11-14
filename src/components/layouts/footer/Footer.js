@@ -15,7 +15,7 @@ import { AiOutlineMail } from "react-icons/ai";
             <h4 className="footer-list-heading">QUICK LINKS</h4>
             <div className="footer-list-item">
               <ul>
-                <li><a href="#!">About us</a></li>
+                <li><Link href="/about"><a>About Us</a></Link></li>
                 <li><a href="#!">Add your restaurant</a></li>
                 <li><a href="#!">Help</a></li>
                 <li><a href="#!">My account</a></li>
