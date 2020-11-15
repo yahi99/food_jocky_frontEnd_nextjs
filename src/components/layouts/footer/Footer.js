@@ -16,14 +16,15 @@ import { AiOutlineMail } from "react-icons/ai";
             <div className="footer-list-item">
               <ul>
                 <li><Link href="/about"><a>About Us</a></Link></li>
-                <li><a href="#!">Add your restaurant</a></li>
-                <li><a href="#!">Help</a></li>
-                <li><a href="#!">My account</a></li>
+                <li>
+                <Link href="https://dashboard.foodjocky.com/register">
+                  <a >Add your restaurant</a>
+                  </Link></li>
+                 <li><a href="/accountbalancepolicy">Account balance policy</a></li>
+                <li><a href="#!">Foodjocky deals</a></li>
+                <li><a href="#!">Security</a></li>
                 <li><a href="#!">Blog</a></li>
                 <li><a href="#!">Support</a></li>
-                <li><a href="#!">Account balance policy</a></li>
-                <li><a href="#!">Security</a></li>
-                <li><a href="#!">Foodjocky deals</a></li>
               </ul>
             </div>
           </div>
@@ -47,7 +48,7 @@ import { AiOutlineMail } from "react-icons/ai";
         </div>
         <div className="col-lg-3 col-md-6 col-sm-12 col-12">
           <div className="footer-items">
-            <h4 className="footer-list-heading">CONTACTS</h4>
+            <h4 className="footer-list-heading">CONTACT</h4>
             <div className="footer-list-item contacts">
               <ul>
                 <li>

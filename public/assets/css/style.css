@@ -2238,3 +2238,37 @@ background-attachment: fixed;
   padding-top: 5px;
   color: var(--theme-color-one);
 }
+
+/* AccountBalance Page */
+#accountbalance{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.account-heading p{
+  font-weight: 700;
+  font-size: 18px;
+}
+.account-heading p span{
+color: var(--theme-color-one);
+}
+.account-list-heading{
+padding-top: 30px;
+}
+.account-list-heading h6{
+  font-size: 20px;
+  font-weight: 600;
+}
+.account-list-para{
+  padding-top: 10px;
+}
+.account-list-para p{
+  font-size: 18px;
+  line-height: 32px;
+}
+.account-list-para ul {
+  padding-left: 40px;
+}
+.account-list-para ul li{
+  padding-top: 20px;
+  list-style: disc;
+}
