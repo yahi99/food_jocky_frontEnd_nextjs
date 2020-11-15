@@ -2272,3 +2272,46 @@ padding-top: 30px;
   padding-top: 20px;
   list-style: disc;
 }
+
+/* Deals Page */
+#deals-wrappers{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.deals-headings{
+
+}
+
+.deals-headings p{
+  font-size: 18px;
+    line-height: 30px;
+    padding-top: 10px;
+}
+.deals-headings p span{
+  color: var(--theme-color-one);
+  font-weight: 800;
+}
+.area-secend{
+  padding-top: 40px;
+}
+.top-tables-link{
+padding-top: 40px;
+}
+.top-tables-link h2{
+  font-size: 28px;
+  font-weight: 900;
+}
+.top-tables-link table{
+  margin-top: 30px;
+  background-color: #fff;
+}
+.top-tables-link table tr{
+  text-align: center;
+}
+.top-tables-link table tr td{
+  font-size: 20px;
+  font-weight: 900;
+}
+.top-tables-link table tr td a:hover{
+  color: var(--theme-color-one);
+}

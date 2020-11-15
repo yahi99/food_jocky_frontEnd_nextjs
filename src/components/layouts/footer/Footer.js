@@ -13,7 +13,7 @@ import { AiOutlineMail } from "react-icons/ai";
         <div className="col-lg-3 col-md-6 col-sm-12 col-12">
           <div className="footer-items">
             <h4 className="footer-list-heading">QUICK LINKS</h4>
-            <div className="footer-list-item">
+            <div className="footer-list-item"> 
               <ul>
                 <li><Link href="/about"><a>About Us</a></Link></li>
                 <li>
@@ -21,7 +21,7 @@ import { AiOutlineMail } from "react-icons/ai";
                   <a >Add your restaurant</a>
                   </Link></li>
                  <li><a href="/accountbalancepolicy">Account balance policy</a></li>
-                <li><a href="#!">Foodjocky deals</a></li>
+                <li><a href="/deals">Foodjocky deals</a></li>
                 <li><a href="#!">Security</a></li>
                 <li><a href="#!">Blog</a></li>
                 <li><a href="#!">Support</a></li>
