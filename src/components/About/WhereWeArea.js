@@ -10,7 +10,7 @@ const WhereWeArea = () => {
   <>
    <section id="WhereWe-Area">
    <div className="container">
-    <CommonHeading  heading="Where We Area"/>
+    <CommonHeading  heading="Where We Are"/>
     <div className="row">
      <div className="col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
        <div className="map-img">

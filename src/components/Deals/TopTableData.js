@@ -1,55 +1,43 @@
  
  export const TopTableData = [
   {
-  city:"NATIONWIDE"
+   
+  city:"NATIONWIDE",
+  city2:"BARISAL"
   },
   {
-   city:"BARISAL"
+   city:"CHITTAGONG",   
+   city2:"COMILLA"
   },
   {
-   city:"CHITTAGONG"
+   city:"FENI",
+   city2:"DINAJPUR"
+  },
+  
+  { 
+   city:"JESSORE",
+   city2:"KHULNA"
   },
   {
-   city:"COMILLA"
+   city:"KUSHTIA",
+   city2:"NARAYANGANJ"
+  },
+ 
+  {
+   city:"RAJSHAHI",
+   city2:"RANGPUR"
   },
   {
-   city:"DINAJPUR"
+   city:"SAVAR",
+   city2:"SATKHIRA"
   },
   {
-   city:"FENI"
+   city:"SIRAJGANJ",
+   city2:"SUNAMGANJ"
   },
   {
-   city:"JESSORE"
-  },
-  {
-   city:"KHULNA"
-  },
-  {
-   city:"KUSHTIA"
-  },
-  {
-   city:"NARAYANGANJ"
-  },
-  {
-   city:"RAJSHAHI"
-  },
-  {
-   city:"RANGPUR"
-  },
-  {
-   city:"SATKHIRA"
-  },
-  {
-   city:"SAVAR"
-  },
-  {
-   city:"SIRAJGANJ"
-  },
-  {
-   city:"SUNAMGANJ"
-  },
-  {
-   city:"SYLHET"
+   city:"SYLHET",
+   city2:"HariKhale"
   }
   ]
   

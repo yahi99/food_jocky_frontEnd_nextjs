@@ -2315,3 +2315,34 @@ padding-top: 40px;
 .top-tables-link table tr td a:hover{
   color: var(--theme-color-one);
 }
+.food-list-widget{
+  padding-top: 30px;
+}
+.food-list-widget h2{
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--theme-color-one);
+}
+.food-list-widget table{
+
+}
+.food-list-widget table thead{
+  background-color: var(--theme-color-one);
+}
+.food-list-widget table thead tr th{
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.food-list-widget table tbody tr td{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+.food-list-widget table tbody tr td a:nth-child(1){
+  color: red;
+}
+.food-list-widget table tbody tr td:nth-child(4){
+  color: red;
+}
