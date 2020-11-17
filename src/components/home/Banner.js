@@ -187,8 +187,6 @@ function Banner() {
                                 )}
                             </PlacesAutocomplete>
 
-
-
                         <useLoadScript
                             googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
                         >

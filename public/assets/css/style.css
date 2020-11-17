@@ -2341,8 +2341,165 @@ padding-top: 40px;
   text-align: center;
 }
 .food-list-widget table tbody tr td a:nth-child(1){
-  color: red;
+  color: var(--theme-color-one);
 }
 .food-list-widget table tbody tr td:nth-child(4){
-  color: red;
+  color: var(--theme-color-one);
+}
+
+/* Security Page */
+#security-area{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.security-widgets{
+padding-top: 40px;
+}
+.security-wrappers .security-widgets:nth-child(1){
+  padding: 0;
+}
+.security-widgets h2{
+  font-size: 24px;
+  font-weight: 700;
+}
+.security-widgets p{
+  font-size: 18px;
+  line-height: 30px;
+}
+.security-widgets p a{
+  color: var(--theme-color-one);
+}
+/* Cash Back policy Page */
+#cash_back_policy{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.policy-list h2{
+  font-size: 24px;
+  font-weight: 700;
+}
+.policy-list ul li{
+  padding-top: 20px;
+}
+.policy-list ul li:nth-child(1){
+  padding: 0;
+}
+
+/* Corporate_customer Page */
+#Corporate_Customer{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.corporate_top-two{
+  padding-top: 30px;
+}
+.corporate-top-banner-text  h2{
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 30px;
+}
+#proposal_area{
+  padding: 120px 0;
+  background-image: url("/assets/img/corprote/img1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.proposal-list ul li{
+  display: flex;
+  padding-bottom: 40px;
+}
+.text-proposal{
+  padding-left: 17px;
+}
+.text-proposal h5{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--theme-color-one);
+  margin: 0;
+}
+.text-proposal p{
+padding-top: 5px;
+}
+.icon-proposal svg{
+  font-size: 22px;
+}
+#secure-area{
+  padding: 120px 0;
+}
+.secure-inner{
+  text-align: center;
+}
+.secure-inner svg{
+  font-size: 40px;
+}
+.secure-inner h4{
+  color: var(--theme-color-one);
+  padding-top: 30px;
+}
+.secure-inner p{
+  line-height: 30px;
+  font-size: 20px;
+  padding-top: 25px;
+}
+#proposal_area_two{
+  padding: 120px 0;
+  background-image: url("/assets/img/corprote/img2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#corporate-cta{
+  padding: 120px 0;
+}
+.cta-wrap-cor{
+  text-align: center;
+}
+.cta-wrap-cor h4{
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--theme-color-one);
+}
+
+/* Careers Page */
+#careers-text{
+  padding: 120px 0;
+}
+.texted-careers{
+text-align: center;
+}
+.texted-careers p{
+font-size: 18px;
+line-height: 30px;
+}
+#oppportunities-area{
+  padding: 120px 0;
+  background-image: url('../img/careers/world.png');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.oppportunities-text{
+text-align: center;
+}
+.oppportunities-text h2{
+color: #fff;
+}
+.oppportunities-boxed{
+  box-shadow: 0px 0px 1px 1px #fff;
+  padding: 25px 25px;
+  text-align: center;
+  margin-top: 40px;
+}
+.oppportunities-boxed h3{
+  color: #fff;
+}
+.oppportunities-boxed p{
+  color: #fff;
+}
+#joinus-area{
+  padding: 120px 0;
+}
+.joinus-heading {
+  text-align: center;
 }

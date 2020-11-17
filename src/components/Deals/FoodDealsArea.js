@@ -7,7 +7,7 @@ const FoodDealsArea = () => {
  return (
   <>
   <div className="food-lists-area">
-  
+   
       {BottomTableData.map(data => (
             <div className="food-list-widget" id={"area" + data.area_name.replace(/\s/g, "")}>
             <h2>FoodJocky deals in {data.area_name}</h2>

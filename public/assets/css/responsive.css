@@ -108,6 +108,10 @@
 }
 
 @media (max-width: 768px) {
+  .proposal-list {
+    background: #fff;
+    padding: 35px 40px 0px 40px;
+}
   .Weboxed img {
     width: 30%;
 }

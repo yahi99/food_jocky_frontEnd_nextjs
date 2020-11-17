@@ -20,9 +20,9 @@ import { AiOutlineMail } from "react-icons/ai";
                 <Link href="https://dashboard.foodjocky.com/register">
                   <a >Add your restaurant</a>
                   </Link></li>
-                 <li><a href="/accountbalancepolicy">Account balance policy</a></li>
+                 <li><Link href="/accountbalancepolicy"><a>Account balance policy</a></Link></li>
                 <li><a href="/deals">Foodjocky deals</a></li>
-                <li><a href="#!">Security</a></li>
+                <li><a href="/security">Security</a></li>
                 <li><a href="#!">Blog</a></li>
                 <li><a href="#!">Support</a></li>
               </ul>
@@ -38,9 +38,9 @@ import { AiOutlineMail } from "react-icons/ai";
                 <li><a href="#!">Best Rated</a></li>
                 <li><a href="#!">Best Price</a></li>
                 <li><a href="#!">Recent Update</a></li>
-                <li><a href="#!">Corporate customer</a></li>
-                <li><a href="#!">Career</a></li>
-                <li><a href="#!">Cashback policy</a></li>
+                <li><Link href="/corporate_customer"><a >Corporate customer</a></Link></li>
+                <li><Link href="/careers"><a >Career</a></Link></li>
+                <li><Link href="/cashback_policy"><a>Cashback policy</a></Link></li>
                 <li><Link href="/become_rider"><a>Become a rider</a></Link></li>
               </ul>
             </div>
