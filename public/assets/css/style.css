@@ -2030,7 +2030,7 @@ min-height: 30px !important;
   outline: none !important;
   box-shadow: none !important;
 }
-/* #banner-rider::after{
+#banner-rider::after{
 content: "";
 position: absolute;
 width: 100%;
@@ -2038,7 +2038,7 @@ height: 100%;
 background: linear-gradient(rgba(0,0,0,0),rgb(0 0 0 / 80%));
 top: 0;
 z-index: -1;
-} */
+}
 .banner-rider-text h5{
   font-size: 30px;
   color: #fff;
@@ -2502,4 +2502,45 @@ color: #fff;
 }
 .joinus-heading {
   text-align: center;
+}
+#joinus-From{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+#joinus-From .ui.selection.dropdown {
+  min-width: 95%;}
+  #joinus-From  .form-group {
+    width: 100%;
+}
+#joinus-From  .form-control{
+  height: 49px;
+  width: 95%;
+}
+.secarch-ruselt-form{
+  margin-right: 22px;
+}
+.secarch-ruselt-form ul li{
+  padding: 10px 10px;
+  background: #f1f1f1;
+  margin-bottom: 20px;
+  transition: .4s all ease-in;
+  -webkit-transition: .4s all ease-in;
+  -moz-transition: .4s all ease-in;
+  -ms-transition: .4s all ease-in;
+  -o-transition: .4s all ease-in;
+}
+.secarch-ruselt-form ul li:hover{
+  background-color: var(--theme-color-one);
+
+}
+.secarch-ruselt-form ul li a{
+  font-size: 16px;
+}
+.secarch-ruselt-form ul li:hover a{
+  color: #fff;
+}
+#CareersSliderArea{
+  padding:0 0 120px 0;
 }

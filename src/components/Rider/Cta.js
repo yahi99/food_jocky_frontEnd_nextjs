@@ -1,13 +1,7 @@
 import React from 'react'
+import Link from "next/link";
 
 const Cta = () => {
-  const scroolTop = e => {
-   window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
-  }
 
  return (
   <>
@@ -18,7 +12,9 @@ const Cta = () => {
             <div className="cat-text">
             <h2>Get started</h2>
             <div className="apply-button">
-             <a onClick={scroolTop} className="btn button-site">APPLY NOW</a>
+             <Link href="https://dashboard.foodjocky.com/register">
+                  <a className="btn button-site">Appply Now</a>
+                  </Link>
             </div>
             </div>
          </div>

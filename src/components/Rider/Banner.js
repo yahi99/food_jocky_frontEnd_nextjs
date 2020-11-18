@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdKeyboardArrowDown } from "react-icons/md";
+import Link from "next/link";
 
 const Banner = () => {
  return (
@@ -14,7 +14,7 @@ const Banner = () => {
        </div>
       </div>
       <div className="col-lg-4">
-       <form id="city_form">
+       {/* <form id="city_form">
        <div class="form-group">
     <label for="exampleFormControlSelect1">Enter your city and vehiclet</label>
      <select class="form-control" id="exampleFormControlSelect1">
@@ -31,7 +31,12 @@ const Banner = () => {
     </select>
     <button className="btn button-site">Sign Up</button>
   </div>
-       </form>
+       </form> */}
+       <div className="Apply_Now_Btn">
+       <Link href="https://dashboard.foodjocky.com/register">
+                  <a className="btn button-site">Appply Now</a>
+                  </Link>
+       </div>
       </div>
      </div>
     </div>

@@ -3,6 +3,7 @@ import Banner from '../Careers/Banner'
 import Career_Text from '../Careers/Career_Text'
 import Opportunities from '../Careers/Opportunities'
 import Joinus from '../Careers/Joinus'
+import CareersSliderArea from '../Careers/CareersSliderArea'
 const Careers = () => {
  return (
   <>
@@ -10,6 +11,7 @@ const Careers = () => {
    <Career_Text/>
    <Opportunities/>
    <Joinus/>
+   <CareersSliderArea/>
   </>
  )
 }
