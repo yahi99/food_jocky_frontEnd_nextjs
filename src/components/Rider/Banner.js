@@ -33,7 +33,7 @@ const Banner = () => {
   </div>
        </form> */}
        <div className="Apply_Now_Btn">
-       <Link href="https://dashboard.foodjocky.com/register">
+       <Link href="https://dashboard.foodjocky.com/rider/register">
                   <a className="btn button-site">Appply Now</a>
                   </Link>
        </div>

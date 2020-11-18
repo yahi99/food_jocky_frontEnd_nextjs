@@ -7,12 +7,22 @@ function Loader() {
     const router = useRouter()
     const [show, setShow] = useState(false);
 
+
+    const scroolTop = e => {
+        window.scrollTo({
+         top: 0,
+         left: 0,
+         behavior: 'smooth'
+       });
+       }
+
     useEffect(function (){
         function routeChangeStart(url) {
             setShow(true);
         }
         function routeChangeComplete(url) {
             setShow(false);
+            scroolTop();
         }
         router.events.on( 'routeChangeStart', routeChangeStart);
         router.events.on( 'routeChangeComplete', routeChangeComplete);

@@ -2544,3 +2544,9 @@ color: #fff;
 #CareersSliderArea{
   padding:0 0 120px 0;
 }
+.arrows-area{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

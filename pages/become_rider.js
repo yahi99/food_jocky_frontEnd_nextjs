@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Layout from "../src/components/layouts/main";
 import Loader from "../src/components/Common/Loader";
 import Banner from "../src/components/Rider/Banner";
@@ -10,6 +10,19 @@ import Cta from "../src/components/Rider/Cta";
 import SomeThings from "../src/components/Rider/SomeThings";
 
 const become_rider = () => {
+  const scroolTop = e => {
+    window.scrollTo({
+     top: 0,
+     left: 0,
+     behavior: 'smooth'
+   });
+   }
+   useEffect(() => {
+      window.onload = scroolTop
+   })
+
+
+
  return (
   <>
     <Layout>
