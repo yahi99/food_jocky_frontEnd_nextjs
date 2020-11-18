@@ -19,9 +19,9 @@ const Cta = () => {
             <div className="cat-text">
             <h2>Get started</h2>
             <div className="apply-button">
-            <Link href="https://dashboard.foodjocky.com/rider/register">
-                  <a className="btn button-site">Appply Now</a>
-                  </Link>
+               <Link href="https://dashboard.foodjocky.com/rider/register">
+                   <a className="btn button-site">Appply Now</a>
+               </Link>
             </div>
             </div>
          </div>
