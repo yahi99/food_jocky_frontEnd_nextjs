@@ -1,5 +1,4 @@
 import React from 'react'
-import {TopTableData} from '../Deals/TopTableData'
 import {BottomTableData} from '../Deals/BottomTableData'
  
 const TopTable = () => {
