@@ -8,7 +8,7 @@ const Career_Text = () => {
      <div className="row">
      <div className="col-lg-12">
       <div className="texted-careers">
-      <p>‘Bringing good food into your everyday’ – that is our mission at foodpanda.
+      <p>‘Bringing good food into your everyday’ – that is our mission at Foodjocky.
         Whether it’s by delivering food on our signature pink bikes, providing insights into the newest 
         food trends, or showcasing local favorite restaurants, we’re on a mission to 
         redefine how food, people, culture and tech are connected. </p>

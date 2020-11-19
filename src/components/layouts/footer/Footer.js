@@ -24,7 +24,7 @@ import { AiOutlineMail } from "react-icons/ai";
                 <li><a href="/deals">Foodjocky deals</a></li>
                 <li><a href="/security">Security</a></li>
                 <li><a href="#!">Blog</a></li>
-                <li><a href="#!">Support</a></li>
+                <li><Link href="/support"><a>Support</a></Link></li>
               </ul>
             </div>
           </div>

@@ -9,7 +9,7 @@ const TopTable = () => {
   let areaData = odd.map((val, index) => {
       return [val, even[index] || '' ]
   })
-
+ 
 
   function handleScroll(id) {
     let com = document.querySelector(id).getBoundingClientRect();

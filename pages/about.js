@@ -5,7 +5,7 @@ import WhoWeArea from '../src/components/About/WhoWeAre'
 import HowItWork from '../src/components/About/HowItWork'
 import OurValues from '../src/components/About/OurValues' 
 import WhereWeArea from '../src/components/About/WhereWeArea'
-const about = () => {
+const about = () => { 
  return (
   <>
     <Layout>

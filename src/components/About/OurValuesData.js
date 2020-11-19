@@ -12,7 +12,7 @@
   },
   {
   heading:"Ownership",
-  para:`People here don’t work ‘for’ Zomato, they work ‘with’ Zomato. We treat every problem as our own, 
+  para:`People here don’t work ‘for’ Foodjocky, they work ‘with’ Foodjocky. We treat every problem as our own, 
   take accountability and drive the change.`
   },
   {

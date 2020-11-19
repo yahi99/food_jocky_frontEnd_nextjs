@@ -2550,3 +2550,106 @@ color: #fff;
   justify-content: space-between;
   width: 100%;
 }
+
+/* JobApply Page */
+#JobApply_Wrapper{
+  padding: 120px 0;
+}
+.job-top-head{
+
+}
+.job-top-head h6{
+  font-size: 18px;
+  font-weight: 600;
+}
+.job-details{
+  padding-top: 30px;
+}
+.job-proposal-main h6{
+font-size: 14px;
+font-weight: 800;
+color: var(--theme-color-one);
+padding-top:20px;
+}
+.job-proposal-main ul{
+padding-left: 30px;
+}
+.job-proposal-main ul li{
+  list-style: disc;
+  padding-top: 5px;
+  font-size: 16px;
+}
+.apply-area-form{
+  margin-top: 40px;
+  background: #f7f7f7;
+  padding: 30px 30px;
+}
+.apply-form-top{
+display: flex;
+justify-content: space-between;
+}
+.apply-form-left button{
+  margin: 0;
+}
+.apply-form-right p{
+  color: var(--theme-color-one);
+  font-weight: 900;
+}
+.form-applys-join{
+  padding-top: 30px;
+}
+/* Support Page */
+#support_Wrappers_area{
+  padding: 120px 0;
+  background-color: #f7f7f7;
+}
+.support_main_heading{
+  text-align: center;
+}
+.support_first_banner{
+  background: #fff;
+  text-align: center;
+  padding: 30px 30px;
+  box-shadow: 0px 0px 14px -2px #0000001f;
+  margin-top: 40px;
+}
+
+/* Order_Help Page */
+#order_helps_area{
+  padding: 120px 0;
+}
+
+.help_sidebar ul li{
+  background: #f7f7f7;
+  margin-bottom: 30px;
+  padding: 10px 30px;
+}
+.help_sidebar ul li.active{
+  background-color: var(--theme-color-one);
+  color: #fff;
+}
+.help-centers a{
+  color: var(--theme-color-one);
+}
+.help_area_one{
+padding-top: 40px;
+}
+.help_area_one h2{
+
+}
+.helps-text-inner {
+padding-top: 30px;
+}
+.helps-text-inner a h3{
+  font-size: 20px;
+  font-weight: bold;
+}
+.helps-text-inner a ul{
+padding-top: 10px;
+}
+.helps-text-inner a ul li{
+padding-top: 5px;
+}
+.helps-text-inner a ul li a:hover{
+  color: var(--theme-color-one);
+}
