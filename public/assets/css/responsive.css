@@ -207,6 +207,9 @@
 }
 
 @media (max-width: 576px) {
+  .home_banner-text {
+    padding-top: 44px;
+}
   .login-form-area {
     width: 100%;
 }
