@@ -10,14 +10,12 @@ const Order_Help_Content = () => {
       {HelpData.map(data=>(
       <div className="col-lg-6">
       <div className="helps-text-inner">
-      <a href="#!">
       <h3>{data.heading}</h3>
       <ul>
       {data.list.map(data=>(
       <li><a href="#!">{data}</a></li>
       ))}
       </ul>
-      </a>
       </div>
       </div>
       ))}

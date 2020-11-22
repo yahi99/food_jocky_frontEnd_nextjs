@@ -2618,7 +2618,6 @@ justify-content: space-between;
 #order_helps_area{
   padding: 120px 0;
 }
-
 .help_sidebar ul li{
   background: #f7f7f7;
   margin-bottom: 30px;
@@ -2633,9 +2632,6 @@ justify-content: space-between;
 }
 .help_area_one{
 padding-top: 40px;
-}
-.help_area_one h2{
-
 }
 .helps-text-inner {
 padding-top: 30px;
@@ -2652,4 +2648,90 @@ padding-top: 5px;
 }
 .helps-text-inner a ul li a:hover{
   color: var(--theme-color-one);
+}
+/* Add_Your_Restaurant_Footer */
+#Add_Your_Restaurant_Banner{
+  padding: 180px 0;
+  background-image: url('../img/add_res/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+
+}
+.add_res_foot_Wrap{
+  text-align: center;
+}
+.add_res_foot_Wrap h2{
+  color: #fff;
+  padding-bottom: 20px;
+}
+#Our_Customers_wrap{
+  padding: 120px 0;
+  background-color: #F7F7F7;
+}
+.customer_headings{
+  text-align: center;
+}
+.customers_inner_texted{
+  padding-top: 30px;
+}
+.customers_inner_texted h2{
+  color: var(--theme-color-one);
+}
+.customers_inner_texted p{
+  font-size: 18px;
+  line-height: 30px;
+}
+#Add_About_Foodjocky{
+  padding: 120px 0;
+  background-image: url('../img/add_res/fixed.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.Add_Foodjocky_text{
+text-align: center;
+}
+.Add_Foodjocky_text h2{
+color: var(--theme-color-one);
+padding-bottom: 10px;
+}
+.Add_Foodjocky_text p{
+color: #fff;
+font-size: 20px;
+line-height: 30px;
+}
+#How_It_Works_Res{
+  padding: 120px 0;
+}
+.tile_how_it{
+  text-align: center;
+}
+.res_how_it_inner{
+text-align: center;
+padding-top: 30px;
+}
+.res_how_it_inner p{
+padding-top: 20px;
+font-size: 18px;
+line-height: 30px;
+}
+/* Terms And Conditions Page */
+#Terms_And_Conditions{
+  background-color: #f7f7f7;
+  padding: 120px 0;
+}
+.terms_area_wrapper{
+  background-color: #fff;
+  padding: 55px 50px;
+}
+.area_terms_items{
+  padding-top:20px;
+}
+.area_terms_items h3{
+
+}
+.area_terms_items p{
+
 }

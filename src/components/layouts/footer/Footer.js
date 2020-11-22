@@ -17,7 +17,7 @@ import { AiOutlineMail } from "react-icons/ai";
               <ul>
                 <li><Link href="/about"><a>About Us</a></Link></li>
                 <li>
-                <Link href="https://dashboard.foodjocky.com/register">
+                <Link href="/add_your_restaurant">
                   <a >Add your restaurant</a>
                   </Link></li>
                  <li><Link href="/accountbalancepolicy"><a>Account balance policy</a></Link></li>
@@ -164,8 +164,8 @@ import { AiOutlineMail } from "react-icons/ai";
           <div className="col-lg-6 col-md-12 col-sm-12 col-12">
             <div className="copy-right-right-side">
               <ul>
-                <li><a href="#!">Terms and conditions</a></li>
-                <li><a href="#!">Privacy</a></li>
+                <li><Link href="/terms"><a>Terms and conditions</a></Link></li>
+                <li><Link href="/privacy"><a>Privacy</a></Link></li>
                 <li><a href="#!"> © Foodjocky</a></li>
               </ul>
             </div>
