@@ -148,10 +148,12 @@
     margin-top: 30px;
     text-align: center;
 }
-  #restaurant-info-modal .tags-details-area ul,    #restaurant-info-modal .catagorys-details-area ul{
+  #restaurant-info-modal .tags-details-area ul,  
+  #restaurant-info-modal .catagorys-details-area ul{
     display: inherit;
   }
-  #restaurant-info-modal .tags-details-area ul li,   #restaurant-info-modal .catagorys-details-area ul li{
+  #restaurant-info-modal .tags-details-area ul li, 
+  #restaurant-info-modal .catagorys-details-area ul li{
     display: inline-flex;
   }
   #top-select-area li {

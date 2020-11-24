@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Link from "next/link";
+import ModalVideo from 'react-modal-video'
+import '../../../node_modules/react-modal-video/css/modal-video.min.css'
 
 const About = () => {
+  const [isOpen, setOpen] = useState(false)
   const AboutData =  {
     heading:"List your Restaurant on FoodJocky",
     para1:"By fulfilling deliveries as far as 25 miles from your location, Foodjocky enables your business to reach thousands of new customers to taste your amazing food? So would we!",
@@ -21,10 +24,13 @@ const About = () => {
             <p>{AboutData.para1}</p>
             <p>{AboutData.para2}</p>
             <p>{AboutData.para3}</p>
+            <ModalVideo channel='youtube' api={false} autoplay isOpen={isOpen} videoId="APVrmPcUbM4" onClose={() => setOpen(false)} />
             <div className="about-food-btn text-right">
+            <a href="#!" onClick={()=> setOpen(true)}>Watch Video</a>
                 <Link href="https://dashboard.foodjocky.com/register">
                     <a className="btn button-site">{AboutData.button}</a>
                 </Link>
+                
             </div>
           </div>
         </div>
