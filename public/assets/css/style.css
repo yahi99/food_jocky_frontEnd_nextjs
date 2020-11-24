@@ -1671,7 +1671,9 @@ strong {
   height: 80px;
 }
 
-
+.watch_area{
+  padding-right: 10px;
+}
 .navbar-logo {
   color: #fff;
   justify-self: start;
@@ -2555,9 +2557,7 @@ color: #fff;
 #JobApply_Wrapper{
   padding: 120px 0;
 }
-.job-top-head{
 
-}
 .job-top-head h6{
   font-size: 18px;
   font-weight: 600;

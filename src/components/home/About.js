@@ -26,7 +26,7 @@ const About = () => {
             <p>{AboutData.para3}</p>
             <ModalVideo channel='youtube' api={false} autoplay isOpen={isOpen} videoId="APVrmPcUbM4" onClose={() => setOpen(false)} />
             <div className="about-food-btn text-right">
-            <a href="#!" onClick={()=> setOpen(true)}>Watch Video</a>
+            <a href="#!" className="watch_area" onClick={()=> setOpen(true)}>Watch Video</a>
                 <Link href="https://dashboard.foodjocky.com/register">
                     <a className="btn button-site">{AboutData.button}</a>
                 </Link>
