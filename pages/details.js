@@ -1,8 +1,6 @@
 import DetailsLayout from '../src/components/details/DetailsLayout'
-import axios from 'axios'
 import Loader from "../src/components/Common/Loader";
 import Layout from "../src/components/layouts/main";
-import cookie from "cookie";
 import {getQuery, isUser} from "../src/components/auth";
 import {getRestaurant} from "../src/components/restaurant/Restaurants";
 
@@ -14,7 +12,7 @@ function detailsLayout({restaurant,user}) {
             <DetailsLayout restaurant={restaurant} user={user}/>
         </Layout>
     )
-  
+
 }
 
 export async function getServerSideProps(context) {

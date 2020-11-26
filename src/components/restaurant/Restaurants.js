@@ -1,4 +1,5 @@
 import {UrqlClient} from "../urql/urql-provider";
+import Cookies from 'js-cookie'
 
 const restaurantSearch = async (lat, lng, name, type) => {
     let query = `
@@ -36,6 +37,7 @@ const getRestaurant = async id => {
                 error
                 msg
                 data {
+                    _id
                     name
                     tags
                     cover_img
@@ -49,12 +51,18 @@ const getRestaurant = async id => {
                         }
                     }
                     food_categories{
+                        _id
                         name
                         foods {
+                            _id
                             name
                             price
                             description
                             dish_img
+                            price_and_size {
+                                size
+                                price
+                            }
                         }
                     }
                 }
@@ -76,3 +84,27 @@ const getRestaurant = async id => {
 }
 
 export {getRestaurant}
+
+
+export const addOrder = async order => {
+    let query = `
+        mutation( $order: OrderInput ) {
+            addOrder( orderInput: $order ) {
+                error
+                msg
+            }
+        }
+    `
+    let client = UrqlClient(Cookies.get('token'));
+    let result = await client.mutation(query, {order}).toPromise();
+    if(result.error) {
+        return {
+            error: true,
+            msg: 'Request Failed, Check your network connection !'
+        }
+    }
+    return {
+        error: result.data.addOrder.error,
+        msg: result.data.addOrder.msg
+    }
+}

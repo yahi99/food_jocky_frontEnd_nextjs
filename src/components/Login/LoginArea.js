@@ -40,6 +40,12 @@ function LoginArea(props) {
         }
     }
 
+    const handleKeyPress = async e => {
+        if( e.key == 'Enter') {
+           await handleLogin()
+        }
+    }
+
     async function handleLogin() {
         if(phoneNumber == "" || password == "" || (!validPhoneNumber) ) {
             Swal.fire(
@@ -59,7 +65,7 @@ function LoginArea(props) {
                 )
             } else {
                 Cookies.set('token', result.data.customerLogin.token);
-                Router.back();
+                Router.push('/');
             }
         }
     }
@@ -100,6 +106,7 @@ function LoginArea(props) {
                                             placeholder="Password"
                                             className="form-control"
                                             value={password}
+                                            onKeyPress={handleKeyPress}
                                             onChange={handlePasswordChange}
                                         />
                                     </div>
