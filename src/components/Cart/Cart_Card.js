@@ -1,20 +1,11 @@
 import React from 'react'
-import Link from "next/link";
 import { AiOutlineMinusSquare } from 'react-icons/ai';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
-const Cart = () => {
+const Cart_Card = () => {
  return (
   <>
-
- <div className="Catr-Heading">
-  <h2>My Cart</h2>
- </div>
-<div className="Cart_area_wrappers">
-    <div className="Cart_top_area">
-      <h4>Biriyani House</h4>
-      <h5>2 Items Added</h5>
-    </div>
-    <div className="food_cart_wrapper">
+   <div className="Cart_Top_Card">
+   <div className="food_cart_wrapper">
      <div className="food_cart_items">
        <div className="food_names">
         <h3>Chicken </h3>
@@ -58,12 +49,18 @@ const Cart = () => {
      <h3>Total</h3>
      <h3>Tk. 101.45</h3>
     </div>
-    <div className="Orders-Button">
-    <Link  href="/cart"><a className="btn button-site">Place Order</a></Link>
+    <div className="pro_code_area">
+     <h3>Promo Code</h3>
+     <div className="input-group mb-3">
+  <input type="text" className="form-control" placeholder="Enter Your Promo Code" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+  <div className="input-group-append">
+    <button className="btn button-site" type="button">Apply</button>
+  </div>
+</div>
     </div>
    </div>
   </>
  )
 }
 
-export default Cart
+export default Cart_Card

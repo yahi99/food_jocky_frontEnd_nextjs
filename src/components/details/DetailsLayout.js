@@ -94,7 +94,6 @@ function DetailsLayout({ restaurant , user}) {
                       />
                     );
                   })}
-                
                 </div>
             </div>
           ))}
