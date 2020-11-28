@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { GoogleMap , Marker } from '@react-google-maps/api'
 import Link from 'next/link'
 import {BiMap} from "react-icons/bi";
-import axios from "axios";
+import axios from "axios"; 
 import {Modal} from "react-bootstrap";
 
 import PlacesAutocomplete, {

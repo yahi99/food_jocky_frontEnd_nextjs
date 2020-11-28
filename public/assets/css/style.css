@@ -2247,10 +2247,6 @@ padding-top: 30px;
   padding: 120px 0;
   background-color: #f7f7f7;
 }
-.deals-headings{
-
-}
-
 .deals-headings p{
   font-size: 18px;
     line-height: 30px;
@@ -2292,9 +2288,7 @@ padding-top: 40px;
   font-weight: 900;
   color: var(--theme-color-one);
 }
-.food-list-widget table{
 
-}
 .food-list-widget table thead{
   background-color: var(--theme-color-one);
 }
@@ -2524,9 +2518,7 @@ color: #fff;
 #JobApply_Wrapper{
   padding: 120px 0;
 }
-.job-top-head{
 
-}
 .job-top-head h6{
   font-size: 18px;
   font-weight: 600;
@@ -2698,20 +2690,17 @@ line-height: 30px;
 .area_terms_items{
   padding-top:20px;
 }
+.area_terms_items ul{
+  padding-left: 25px;
+}
+.area_terms_items ul li{
+  list-style: disc;
+}
 /* Restaurant Detail page */
 .top_res_details_wrapper{
   background: #ffffffe0;
   padding: 30px 25px;
   margin-top: 85px;
-}
-.top_res_details{
-
-}
-.top_res_heading h2{
-
-}
-.rest_top_catagory{
-
 }
 .rest_top_catagory ul {
   display: flex;
@@ -2873,11 +2862,179 @@ padding-top: 0px;
 }
 .Modal_footer_Price h3 span{
   display: block;
-  font-size: 14px;
+  font-size: 14px; 
   font-weight: 300;
   padding-top: 5px;
 }
 .footer_Add_btn {
   text-align: right;
   width: 100%;
+} 
+
+/* Add To Cart Page */
+#My_Cart_Wrappers_Area{
+  padding: 120px 0;
+}
+.Cart-Area-Heading-top{
+  display: flex;
+  align-items: center;
+}
+.Cart-Area-Heading-top span{
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #7b7b7b;
+}
+.restaurant_thumd_area{
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+.res_thumd_img{
+  width: 40px;
+  height: 40px;
+  background: #ba0804;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid red;
+}
+.res_thumd_img img{
+  width: 40px;
+  height: 40px;
+}
+.thumb_name_details{
+  padding-left: 15px;
+}
+.thumb_name_details p{
+  margin: 0;
+  font-size: 18px;
+}
+.thumb_name_details h6{
+padding-top: 5px;
+}
+.thumb_name_details a{
+  font-size: 16px;
+  font-weight: 600;
+  color: #f40910;
+}
+
+.pro_code_area button{
+  margin: 0;
+}
+.pro_code_area{
+  padding: 5px 15px;
+}
+.pro_code_area h3{
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+.Cart_Top_Card{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  margin-top: 30px;
+  background: #fff;
+}
+.Cart_Top_Card .Total_Areas h3{
+  font-size: 24px;
+}
+.additional_itesm_wrap{
+  padding-top: 50px;
+}
+.Additional_Item_modal{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  text-align: center;
+  padding: 30px 20px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.Additional_Item_modal img{
+  width: 20%;
+}
+.Additional_Item_modal p{
+  padding-top: 15px;
+  margin: 0;
+}
+.area_Modal_inner{
+  padding: 0 20px;
+}
+.area_Modal_flexed:first-child{
+  padding: 0 0 14px 0;
+}
+.area_Modal_flexed{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e4e4e4;
+  padding: 14px 0;
+}
+.Delivery_Address_wrappers{
+ padding-top: 50px;
+}
+.devlivery_address_flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.devlivery_address_flex h4{
+  font-size: 20px;
+  color: var(--theme-color-one);
+  cursor: pointer;
+}
+
+.Add_add_modals{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  text-align: center;
+  padding: 30px 20px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.Add_add_modals  h4{
+  padding-top: 15px;
+}
+.add_location_area{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  cursor: pointer;
+  margin-top: 30px;
+  position: relative;
+}
+.add_texted p{
+padding-top: 20px;
+margin: 0;
+}
+.add_texted span{
+  font-size: 16px;
+  padding-top: 12px;
+  display: block;
+  color: #909090;
+}
+.icon_area_edite{
+  position: absolute;
+  right: 25px;
+  top: 10px;
+
+}
+.icon_area_edite svg{
+margin-left: 10px;
+cursor: pointer;
+}
+.add_location_texted{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  margin-top: 30px;
+}
+.submits_form{
+  text-align: right;
+}
+.payment_method{
+  padding-top: 50px;
+}
+.payment-area-inner{
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  margin-top: 30px;
+}
+#payment-form .form-check{
+margin-bottom: 20px;
+}
+#payment-form .form-check:last-child{
+  margin-bottom: 0;
 }

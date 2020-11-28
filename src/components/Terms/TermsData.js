@@ -1,12 +1,13 @@
 export const TermsData =[
  {
   title:"I. Acceptance of terms",
-  para:`Thank you for using Foodjocky. These Terms of Service (the "Terms") are intended to make you
-  aware of your legal rights and responsibilities with respect to your access to and use of 
-  the Foodjocky website at www.Foodjocky.com (the "Site") and any related mobile or software 
-  applications ("Foodjocky Platform") including but not limited to delivery of information
-   via the website whether existing now or in the future that
-    link to the Terms (collectively, the "Services").`
+  para:`AND IT  and/or its affiliates ("FoodJocky," the "Company," "we," "us," and "our,") 
+  respect your privacy and is committed to protecting it through its compliance with its 
+  privacy policies. This policy describes:
+  `,
+  para1: `para:the types of information that FoodJocky may collect from you when you access or use its websites, applications and other online services (collectively, referred as "Services");
+         andits practices for collecting, using, maintaining, protecting and disclosing that information.
+  `
  },
  {
   title:"II. Definitions",
