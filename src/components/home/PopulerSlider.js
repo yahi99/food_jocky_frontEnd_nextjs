@@ -5,7 +5,7 @@ import SectionHeading from "../home/SectionHeading"
 import PopulerSliderData from "../../components/home/PopulerSliderData"
 
  const PopulerSlider = () => {
-  const breakPoints =[ 
+  const breakPoints =[
     {width:1, itemsToShow:1},
     {width:500, itemsToShow:2},
     {width:768, itemsToShow:4},
@@ -26,7 +26,7 @@ import PopulerSliderData from "../../components/home/PopulerSliderData"
       <div className="row">
         <div className="col-lg-12 col-sm-12 col-md-12 col-12">
           <div className="top_slider_wrap">
-           <Carousel breakPoints={breakPoints} pagination={false}>
+           <Carousel breakPoints={breakPoints} pagination={false} enableAutoPlay>
               {PopulerSliderData.map(sliderData)}
             </Carousel>
           </div>

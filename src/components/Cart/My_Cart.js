@@ -12,7 +12,7 @@ const My_Cart = props => {
                 <div className="col-lg-12">
                     <div className="Cart-Area-Heading-top">
                         <Cart_Heading heading='My Cart' />
-                        <span>({props.order.orders.length} Items)</span>
+                        <span>({props.order.orders ? props.order.orders.length : '0'} Items)</span>
                     </div>
                     <div className="restaurant_thumd_area">
                         <div className="res_thumd_img">
@@ -20,7 +20,7 @@ const My_Cart = props => {
                         </div>
                         <div className="thumb_name_details">
                         <p>Ordered From</p>
-                            <h6><Link href={"/details?id=" + props.order.restaurant_id}>{props.order.restaurant_name}</Link></h6>
+                            <h6><Link href={"/details?id=" + props.order.restaurant_id}>{props.order.restaurant_name || ''}</Link></h6>
                         </div>
                     </div>
                     <div className="Cart_Top_Card">

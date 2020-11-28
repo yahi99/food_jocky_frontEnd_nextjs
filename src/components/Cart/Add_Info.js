@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Add_Info = () => {
+const Add_Info = props => {
+    const handleAddAddress = e => {
+        e.preventDefault();
+        props.setAddAddress(false);
+    }
+
  return (
   <>
    <div className="add_location_texted">
@@ -12,7 +17,7 @@ const Add_Info = () => {
       <textarea  className="form-control" placeholder="Note to rider - e.g. floor / directions / landmark#" rows="4"></textarea>
       </div>
       <div className="submits_form">
-       <button className="btn button-site">Submit</button>
+       <button className="btn button-site" onClick={handleAddAddress}>Submit</button>
       </div>
      </form>
    </div>

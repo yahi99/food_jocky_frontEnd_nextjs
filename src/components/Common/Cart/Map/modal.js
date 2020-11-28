@@ -19,23 +19,8 @@ const MapModal = props => {
         lat: 22.8136822, lng:89.5635596
     }
 
-    const [mapModal, setMapModal] = useState(false);
-    const [address, setAddress] = useState("");
     const [coordinates, setCoordinates] = useState(defaultCoordinates);
     const [markerCoordinates, setMarkerCoordinates] = useState(defaultCoordinates);
-
-    async function handleAddressSelect(location) {
-        setAddress(location);
-        setAddressSearch(location)
-        let geocode = await geocodeByAddress(location);
-        let currentCoordinates = {
-            lat: geocode[0].geometry.location.lat(),
-            lng: geocode[0].geometry.location.lng(),
-        }
-        setCoordinates(currentCoordinates)
-        setMarkerCoordinates(currentCoordinates);
-        setMapModal(true);
-    }
 
 
     const [addressSearch, setAddressSearch] = useState('');
@@ -110,7 +95,19 @@ const MapModal = props => {
     async function updateName() {
         let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + markerCoordinates.lat + '%2C' + markerCoordinates.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
         setAddressSearch(response.data.results[0].formatted_address);
-        setAddress(response.data.results[0].formatted_address)
+
+    }
+
+    const handleAdd = e => {
+        props.handleSelect();
+        let address = {
+            address: addressSearch,
+            location: {
+                lat: markerCoordinates.lat,
+                lng: markerCoordinates.lng
+            }
+        }
+        props.setAddress(address);
     }
 
 
@@ -197,11 +194,7 @@ const MapModal = props => {
                         </GoogleMap>
                     </useLoadScript>
                     <div className="modal-custom-address-search">
-                        <Link href={"/restaurants_list?lat=" + markerCoordinates.lat + "&lng=" + markerCoordinates.lng}>
-                            <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn">
-                                Search
-                            </a>
-                        </Link>
+                        <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn" onClick={handleAdd}> Add Address</a>
                     </div>
                 </form>
             </Modal.Body>

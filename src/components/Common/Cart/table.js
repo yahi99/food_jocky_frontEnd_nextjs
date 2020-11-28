@@ -6,6 +6,12 @@ import Swal from "sweetalert2";
 
 const CartTable = props => {
 
+    if(props.order.orders == undefined ) {
+        return (
+            <h4 className="text-center mt-5" style={{padding: 100}}>Cart is Empty</h4>
+        )
+    }
+
     let total = 0
     props.order.orders.forEach(order => {
         total += order.quantity * order.price
