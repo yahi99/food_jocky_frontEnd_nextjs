@@ -3,6 +3,7 @@ import Loader from "../src/components/Common/Loader";
 import Layout from "../src/components/layouts/main";
 import {getQuery, isUser} from "../src/components/auth";
 import {getRestaurant} from "../src/components/restaurant/Restaurants";
+import React from "react";
 
 function detailsLayout({restaurant,user}) {
 
