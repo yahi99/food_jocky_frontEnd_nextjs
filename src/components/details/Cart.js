@@ -3,8 +3,6 @@ import { AiOutlineMinusSquare } from "react-icons/ai";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import Cookies from 'js-cookie'
 import Swal from "sweetalert2";
-import {useRouter} from "next/router";
-import {addOrder} from "../restaurant/Restaurants";
 import Link from "next/link";
 import CartTable from "../Common/Cart/table";
 

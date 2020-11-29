@@ -97,6 +97,7 @@ export const addOrder = async order => {
     `
     let client = UrqlClient(Cookies.get('token'));
     let result = await client.mutation(query, {order}).toPromise();
+    console.log(result)
     if(result.error) {
         return {
             error: true,

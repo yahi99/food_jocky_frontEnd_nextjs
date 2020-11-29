@@ -26,6 +26,9 @@ const CartTable = props => {
         })
         order.orders = order.orders.filter(orderItem => orderItem.quantity > 0)
         Cookies.set('my_order', order);
+        if(order.orders.length < 1 ) {
+            Cookies.set('my_order', {});
+        }
         props.setOrder(JSON.parse(Cookies.get('my_order')))
     }
     const handlePlus = (id, size) => {
@@ -39,50 +42,6 @@ const CartTable = props => {
         props.setOrder(JSON.parse(Cookies.get('my_order')))
     }
 
-    const handleOrder = async e => {
-        if(props.user.authenticated) {
-            let items = props.order.orders.map(order => {
-                return {
-                    _id: order.food_id,
-                    category_id: order.category_id,
-                    name: order.food_name,
-                    price: order.price,
-                    quantity: order.quantity,
-                    size: order.size
-                }
-            })
-            let order = {
-                total: total,
-                restaurant: props.order.restaurant_id,
-                items: items
-            }
-            let result = await addOrder(order);
-            if(result.error) {
-                Swal.fire(
-                    'Error',
-                    result.msg,
-                    'error'
-                )
-            } else {
-                Swal.fire(
-                    'Success',
-                    'Order Placed Successfully',
-                    'success'
-                )
-                Cookies.set('my_order', {});
-                props.setOrder(JSON.parse(Cookies.get('my_order')))
-            }
-        } else {
-            Swal.fire(
-                'Warning',
-                'Please Log In to place order',
-                'warning'
-            ).then( e => {
-
-                }
-            )
-        }
-    }
 
     return (
         <>

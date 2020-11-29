@@ -7,8 +7,6 @@ import AppDownload from "../src/components/home/AppDownload";
 import Faqs from "../src/components/home/Faqs";
 import Layout from "../src/components/layouts/main";
 import Loader from "../src/components/Common/Loader";
-import cookie from "cookie";
-import axios from "axios";
 import {isUser} from "../src/components/auth";
 
 export default function Home(props) {

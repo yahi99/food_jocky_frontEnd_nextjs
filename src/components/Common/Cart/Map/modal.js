@@ -99,7 +99,6 @@ const MapModal = props => {
     }
 
     const handleAdd = e => {
-        props.handleSelect();
         let address = {
             address: addressSearch,
             location: {
@@ -107,7 +106,7 @@ const MapModal = props => {
                 lng: markerCoordinates.lng
             }
         }
-        props.setAddress(address);
+        props.handleSelect(address);
     }
 
 
