@@ -1,13 +1,19 @@
 import React from "react";
-import { AiOutlineMinusSquare } from "react-icons/ai";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import Cookies from 'js-cookie'
 import Swal from "sweetalert2";
 import Link from "next/link";
 import CartTable from "../Common/Cart/table";
+import {useRouter} from "next/router";
 
 
 const Cart = props => {
+
+    let router = useRouter();
+    const goOrder = e => {
+        router.push('/check_out');
+    }
+    const goLogin = e => {
+        router.push('/login');
+    }
 
     if(! props.order.restaurant_name) {
         return <></>
@@ -16,6 +22,10 @@ const Cart = props => {
     if( props.order.orders.length < 1) {
         return <></>
     }
+
+    let auth = props.user.authenticated;
+    let orderAble = auth && (props.user.user.last_order.status == 'paid' ||  props.user.user.last_order.status == 'cancelled')
+
 
     return (
         <>
@@ -29,11 +39,24 @@ const Cart = props => {
                 </div>
                 <CartTable order={props.order} setOrder={props.setOrder}/>
                 <div className="Orders-Button">
-                    <Link href='/cart'>
-                        <a className="btn button-site">
+                    {auth && orderAble && (
+                        <Link href='/cart'>
+                            <a className="btn button-site">
+                                Place Order
+                            </a>
+                        </Link>
+                    )}
+                    {auth && ! orderAble && (
+                        <a className="btn button-site" onClick={()=> Swal.fire('Warning', "You have a previous order", 'warning').then(goOrder)}>
                             Place Order
                         </a>
-                    </Link>
+                    )}
+
+                    { ! auth && (
+                        <a className="btn button-site" onClick={()=> Swal.fire('Warning', "Please log in to place order", 'warning').then(goLogin)}>
+                            Place Order
+                        </a>
+                    )}
                 </div>
             </div>
         </>

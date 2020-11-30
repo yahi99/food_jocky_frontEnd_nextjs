@@ -68,13 +68,16 @@ const Cart = props => {
                             'error'
                         )
                     } else {
+                        Cookies.set('my_order', {});
+                        setOrder(JSON.parse(Cookies.get('my_order')))
                         Swal.fire(
                             'Success',
                             'Order Placed Successfully',
                             'success'
-                        )
-                        Cookies.set('my_order', {});
-                        setOrder(JSON.parse(Cookies.get('my_order')))
+                        ).then(result => {
+                            router.push('/check_out')
+                        })
+
                     }
                 } else {
                     Swal.fire('Warning', 'Cart is empty', 'warning')

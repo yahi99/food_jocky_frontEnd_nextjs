@@ -31,6 +31,10 @@ export const isUser = async context => {
                     data {
                         first_name
                         last_name
+                        last_order {
+                            _id
+                            status
+                        }
                     }
                 }
             }

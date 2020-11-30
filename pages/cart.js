@@ -22,6 +22,16 @@ export default cart;
 export async function getServerSideProps(context) {
     let user = await isUser(context);
 
+    if(!user.authenticated) {
+        context.res.writeHeader(307, { Location: "/login" });
+        context.res.end()
+    }
+
+    if(user.user.last_order.status == 'pending' || user.user.last_order.status == 'accepted' || user.user.last_order.status == 'delivered') {
+        context.res.writeHeader(307, { Location: "/check_out" });
+        context.res.end()
+    }
+
     return {
         props: {
             user

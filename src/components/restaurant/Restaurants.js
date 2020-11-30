@@ -97,7 +97,6 @@ export const addOrder = async order => {
     `
     let client = UrqlClient(Cookies.get('token'));
     let result = await client.mutation(query, {order}).toPromise();
-    console.log(result)
     if(result.error) {
         return {
             error: true,
@@ -107,5 +106,50 @@ export const addOrder = async order => {
     return {
         error: result.data.addOrder.error,
         msg: result.data.addOrder.msg
+    }
+}
+
+
+export const getAOrder = async (token, id) => {
+    let query = `
+        query($id: ID) {
+            getOneOrder(_id: $id) {
+                error
+                data {
+                    _id
+                    restaurant {
+                        name
+                    }
+                    delivery_info {
+                        floor_no
+                        house_no
+                        address {
+                            address
+                        }
+                    }
+                    total
+                    items {
+                        name
+                        quantity
+                        price
+                        size
+                    }
+                    status
+                    delivery_time
+                    pin
+                }
+            }
+        }
+    `
+    let client = UrqlClient(token);
+    let result = await client.mutation(query, {id}).toPromise();
+    if(result.error || result.data.getOneOrder.error ) {
+        return {
+            error: true,
+        }
+    }
+    return {
+        error: result.data.getOneOrder.error,
+        data: result.data.getOneOrder.data
     }
 }
