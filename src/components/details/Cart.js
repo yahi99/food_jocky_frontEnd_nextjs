@@ -25,7 +25,9 @@ const Cart = props => {
 
     let auth = props.user.authenticated;
     let orderAble = auth && ( props.user.user.last_order && ( props.user.user.last_order.status == 'paid' ||  props.user.user.last_order.status == 'cancelled'))
-
+    if(!props.user.user.last_order) {
+        orderAble = true
+    }
 
     return (
         <>

@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
         context.res.end()
     }
 
-    if(user.user.last_order.status == 'pending' || user.user.last_order.status == 'accepted' || user.user.last_order.status == 'delivered') {
+    if( user.user.last_order && (user.user.last_order.status == 'pending' || user.user.last_order.status == 'accepted' || user.user.last_order.status == 'delivered')) {
         context.res.writeHeader(307, { Location: "/check_out" });
         context.res.end()
     }

@@ -19,6 +19,11 @@ import {getAOrder} from "../src/components/restaurant/Restaurants";
 export async function getServerSideProps(context) {
     let user = await isUser(context);
     let token = getToken(context);
+    if((!user.authenticated) || (!user.user.last_order)) {
+        context.res.writeHeader(307, { Location: "/" });
+        context.res.end()
+    }
+
     let order = await getAOrder(token, user.user.last_order._id);
     if(order.error) {
         context.res.writeHeader(307, { Location: "/" });
