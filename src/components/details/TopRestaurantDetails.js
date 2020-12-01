@@ -43,7 +43,7 @@ const TopRestaurantDetails = props => {
                    <ul>
                 <li><strong>Cost for each person:</strong>{props.restaurant.price_type}</li>
                     <li><strong>Minimum Order:</strong> $20</li>
-                    <li><strong>Hours:</strong> 11am – 12midnight (Mon-Fri)</li>
+                    <li><strong>Address:</strong> 32,choto Mirzapur Khulna</li>
                    </ul>
                </div>
             </div>

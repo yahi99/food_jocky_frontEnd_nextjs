@@ -1,4 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 * {
   margin: 0;
@@ -15,7 +16,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 18px;
-  font-family: 'Karla', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 img {
@@ -61,7 +62,7 @@ h4,
 h5,
 h6,
 p {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Roboto', sans-serif;
 
 }
 
@@ -238,7 +239,6 @@ a:focus {
   color: var(--color-white) !important;
 }
 
-
 .button-site-footer {
   background-color: var(--theme-color-one);
   color: var(--color-white);
@@ -301,10 +301,6 @@ a:focus {
   -o-border-radius: 5px;
   color: #fff;
 }
-
-
-
-
 button:focus {
   outline: none;
   outline: none;
@@ -466,7 +462,9 @@ button:focus {
   border-top-left-radius: 5px;
   box-shadow: 0px 0px 15px 0px #00000024;
 }
-
+#banner_form input:focus{
+  border: 1px solid var(--theme-color-one);
+}
 .icon_search {
   position: absolute;
   z-index: 999;
@@ -2944,7 +2942,7 @@ padding-top: 5px;
   text-align: center;
   padding: 30px 20px;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top:40px;
 }
 .Additional_Item_modal img{
   width: 20%;
@@ -2952,6 +2950,10 @@ padding-top: 5px;
 .Additional_Item_modal p{
   padding-top: 15px;
   margin: 0;
+}
+.add_texted h6{
+  font-size: 20px;
+  font-weight: 500;
 }
 .area_Modal_inner{
   padding: 0 20px;
@@ -3006,11 +3008,13 @@ margin: 0;
   display: block;
   color: #909090;
 }
+.add_texted p strong{
+  font-weight: 500;
+}
 .icon_area_edite{
   position: absolute;
   right: 25px;
-  top: 10px;
-
+  top: 30px;
 }
 .icon_area_edite svg{
 margin-left: 10px;

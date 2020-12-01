@@ -12,7 +12,7 @@ function detailsLayout({restaurant,user}) {
             <Loader/>
             <DetailsLayout restaurant={restaurant} user={user}/>
         </Layout>
-    )
+    ) 
 
 }
 

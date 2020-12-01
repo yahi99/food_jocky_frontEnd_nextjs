@@ -53,11 +53,11 @@ const CartTable = props => {
                             <p>{order.size}</p>
                         </div>
                         <div className="food_count_price">
-                            <p>
+                            <p style={{  alignItems:" center", display: "flex"}}>
                                 Tk. {order.price}
-                                <AiOutlineMinusSquare style={{cursor: 'pointer'}} onClick={() => handleMinus(order.food_id, order.size)}/>
+                                <AiOutlineMinusSquare style={{cursor: 'pointer', marginLeft:'8px',  marginRight:'8px',fontSize: "20px"}} onClick={() => handleMinus(order.food_id, order.size)}/>
                                 <span>{order.quantity}</span>
-                                <AiOutlinePlusSquare style={{cursor: 'pointer'}} onClick={() => handlePlus(order.food_id, order.size)}/>
+                                <AiOutlinePlusSquare style={{cursor: 'pointer', marginLeft:'8px',  fontSize: "20px"}} onClick={() => handlePlus(order.food_id, order.size)}/>
                             </p>
                         </div>
                         <div className="food_count_total_price">

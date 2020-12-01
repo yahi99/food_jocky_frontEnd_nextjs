@@ -102,9 +102,11 @@ export const GetAllAddress = props => {
                     <div className="add_location_area" style={{border: (props.location && location._id == props.location._id) ? '1px solid limegreen': 'none'}} onClick={()=> props.setLocation(location)}>
                         <div className="add_texted">
                             <h6>{location.title}</h6>
-                            <p>{location.address.address}</p>
-                            <p>{location.reciver_name + ", " + location.reciver_mobile_no}</p>
-                            <p>{location.floor_no + ", " + location.house_no}</p>
+                            <p><strong>Address:</strong> {location.address.address}</p>
+                            <p><strong>Reciver Name: </strong>{location.reciver_name}</p>
+                            <p><strong>Mobile No: </strong>{location.reciver_mobile_no}</p>
+                            <p><strong>House No: </strong>{location.house_no}</p>
+                            <p><strong>Floor No: </strong>{location.floor_no}</p>
                             <span>Note to rider: {location.note_to_rider.length > 0 ? location.note_to_rider : 'none'}</span>
                         </div>
                         <div className="icon_area_edite">
