@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import axios from "axios";
-import Router from "next/router";
 import {UrqlClient} from "../urql/urql-provider";
+import {useRouter} from "next/router";
 
 
 function LoginArea(props) {
+
+    const router = useRouter();
 
     let query = `
         query ($phone: String!, $password: String!) {
@@ -65,7 +66,7 @@ function LoginArea(props) {
                 )
             } else {
                 Cookies.set('token', result.data.customerLogin.token);
-                Router.push('/');
+                router.back();
             }
         }
     }

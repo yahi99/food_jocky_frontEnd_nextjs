@@ -2,18 +2,20 @@ import React, {useState} from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
-import Router from "next/router";
+import Router, {useRouter} from "next/router";
 import {UrqlClient} from "../urql/urql-provider";
 
 function Register(props) {
 
     const Cookies = require('js-cookie');
+    let router = useRouter();
 
     let query = `
         mutation($customer: CustomerInput!){
             addCustomer(customerInput: $customer) {
                 error
                 msg
+                token
             }
         }
     `
@@ -99,7 +101,8 @@ function Register(props) {
                     "Successful Registered",
                     "success"
                 ).then(result => {
-                    Router.push("/login");
+                    Cookies.set('token', response.data.addCustomer.token);
+                    router.push('/');
                 })
             }
         }
