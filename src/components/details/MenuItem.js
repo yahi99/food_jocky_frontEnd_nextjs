@@ -96,7 +96,7 @@ const MenuItem = (props) => {
                                     <p>
                                         {props.item.description}
                                     </p>
-                                    <h4> &#2547; {props.item.price}</h4>
+                                    <h4> BDT {props.item.price}</h4>
                                 </div>
                             </div>
                             <div className="col-lg-1">
