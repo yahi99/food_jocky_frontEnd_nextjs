@@ -33,7 +33,7 @@ const TopRestaurantDetails = props => {
                <div className="areas-opning-list">
                    <ul>
                     <li><strong>Hours:</strong> 11am – 12midnight (Mon-Fri)</li>
-                    <li><strong>Featured in:</strong>  Gourmet Pizza</li>
+                    <li><strong>Featured in:</strong> </li>
                     <li><strong>Delivery Fees:</strong> Free</li>
                    </ul>
                </div>
