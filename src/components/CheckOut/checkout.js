@@ -32,7 +32,7 @@ const Checkout = props => {
                             {order.status == "paid" && (
                                 <Thanks/>
                             )}
-                            <NeedSupport/>
+                            <NeedSupport order={order}/>
                         </div>
                         <div className="col-lg-4">
                             <Order_details order={order}/>
