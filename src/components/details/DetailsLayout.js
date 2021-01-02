@@ -16,9 +16,16 @@ function DetailsLayout({ restaurant, user }) {
         window.scrollTo({ top: offset, left: 0, behavior: "smooth" });
     }
 
+    let bannerStyle = {
+        backgroundImage: `url(${restaurant.cover_img})` ,
+        backgroundSize:"cover",
+        backgroundRepeat:"no-repeat",
+        backgroundPosition:"center"
+    }
+
     return (
         <>
-            <section id="restaurant-details-banner" style={{ backgroundImage: `url(${restaurant.cover_img})` }}>
+            <section id="restaurant-details-banner" style={bannerStyle}>
                 <div className="container">
                     <TopRestaurantDetails restaurant={restaurant} />
                 </div>
