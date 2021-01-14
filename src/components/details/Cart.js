@@ -39,7 +39,7 @@ const Cart = props => {
                     <h4>{props.order.restaurant_name}</h4>
                     <h5>{props.order.orders.length} Items Added</h5>
                 </div>
-                <CartTable order={props.order} setOrder={props.setOrder}/>
+                <CartTable order={props.order} setOrder={props.setOrder} delivery_charge={props.user.user.delivery_charge || 0}/>
                 <div className="Orders-Button">
                     {auth && orderAble && (
                         <Link href='/cart'>

@@ -24,7 +24,7 @@ const order_details = props => {
                             </div>
 
                             <div className="order-items-product">
-                                <p>BDT {item.price}</p>
+                                <p>BDT {item.price * item.quantity}</p>
                             </div>
                         </div>
                     ))}
@@ -35,7 +35,24 @@ const order_details = props => {
                             <p>Subtotal</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT {props.order.total}</p>
+                            <p>BDT {props.order.sub_total}</p>
+                        </div>
+                    </div>
+                    <div className="order-items-list-totals">
+                        <div className="order-items-product">
+                            <p>Vat</p>
+                        </div>
+                        <div className="order-items-product">
+                            <p>BDT 0</p>
+                        </div>
+                    </div>
+
+                    <div className="order-items-list-totals">
+                        <div className="order-items-product">
+                            <p>Delivery Charge</p>
+                        </div>
+                        <div className="order-items-product">
+                            <p>BDT {props.order.delivery_charge}</p>
                         </div>
                     </div>
                 </div>

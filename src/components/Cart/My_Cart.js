@@ -24,7 +24,7 @@ const My_Cart = props => {
                         </div>
                     </div>
                     <div className="Cart_Top_Card">
-                       <CartTable order={props.order} setOrder={props.setOrder}/>
+                       <CartTable order={props.order} setOrder={props.setOrder} delivery_charge={props.delivery_charge}/>
                         <div className="pro_code_area">
                             <h3>Promo Code</h3>
                             <div className="input-group mb-3">

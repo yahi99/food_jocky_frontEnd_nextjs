@@ -77,12 +77,12 @@ const CartTable = props => {
                 </div>
                 <div className="vat-inner-area">
                     <h6>Delivery Fee</h6>
-                    <p>Tk. 0</p>
+                    <p>Tk. {props.delivery_charge}</p>
                 </div>
             </div>
             <div className="Total_Areas">
                 <h3>Total</h3>
-                <h3>Tk. {total}</h3>
+                <h3>Tk. {total + props.delivery_charge}</h3>
             </div>
         </>
     )

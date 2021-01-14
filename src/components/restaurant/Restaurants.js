@@ -128,6 +128,8 @@ export const getAOrder = async (token, id) => {
                         }
                     }
                     total
+                    sub_total
+                    delivery_charge
                     items {
                         name
                         quantity

@@ -13,6 +13,8 @@ const Cart = props => {
     const [ order, setOrder ] = useState(JSON.parse(Cookies.get('my_order') || "{}"));
     const [ location, setLocation ] = useState(null);
 
+    let delivery_charge = props.user.user.delivery_charge || 0
+
 
 
     const handlePlaceOrder = async e => {
@@ -40,7 +42,9 @@ const Cart = props => {
                         }
                     })
                     let newOrder = {
-                        total: total,
+                        delivery_charge: delivery_charge,
+                        sub_total: total,
+                        total: total + delivery_charge,
                         restaurant: order.restaurant_id,
                         items: items,
                         delivery_info: {
@@ -99,7 +103,7 @@ const Cart = props => {
         <>
             <section id="My_Cart_Wrappers_Area">
                 <div className="container">
-                    <My_Cart order={order} setOrder={setOrder} />
+                    <My_Cart order={order} setOrder={setOrder} delivery_charge={delivery_charge}/>
                     <Additional_Items_Select_Delivery user={props.user} location={location} setLocation={setLocation}/>
                     <Payment_Area/>
                     <div className="Orders-Button" style={{ float: 'right',marginTop: 20}}>
