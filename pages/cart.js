@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import Layout from "../src/components/layouts/main";
 import Cart from "../src/components/Cart/Cart";
-import Cookies from "js-cookie";
 import Loader from "../src/components/Common/Loader";
 import {isUser} from "../src/components/auth";
+import {getSettings} from "../src/components/restaurant/Restaurants";
 
 const cart = props => {
 
@@ -11,7 +11,7 @@ const cart = props => {
         <>
             <Layout user={props.user}>
                 <Loader/>
-                <Cart user={props.user}/>
+                <Cart user={props.user} settings={props.settings}/>
             </Layout>
         </>
     )
@@ -20,6 +20,7 @@ const cart = props => {
 export default cart;
 
 export async function getServerSideProps(context) {
+    let allSettings = await getSettings()
     let user = await isUser(context);
 
     if(!user.authenticated) {
@@ -32,8 +33,14 @@ export async function getServerSideProps(context) {
         context.res.end()
     }
 
+    let settings = {
+        delivery_charge: allSettings.delivery_charge || 0
+    }
+
+
     return {
         props: {
+            settings,
             user
         }
     }

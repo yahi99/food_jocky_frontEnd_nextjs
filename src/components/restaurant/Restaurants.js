@@ -155,3 +155,26 @@ export const getAOrder = async (token, id) => {
         data: result.data.getOneOrder.data
     }
 }
+
+
+export const getSettings = async () => {
+    let query = `
+        query {
+            getSettings {
+                error
+                msg
+                data {
+                    delivery_charge
+                }
+            }
+        }
+    `
+    let client = UrqlClient()
+    let result = await client.query(query).toPromise()
+    if(result.error || result.data.getSettings.error ) {
+        return {
+
+        }
+    }
+    return result.data.getSettings.data
+}

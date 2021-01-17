@@ -5,7 +5,7 @@ import Heading from "./Heading";
 import TopRestaurantDetails from "./TopRestaurantDetails";
 import Cookies from 'js-cookie'
 
-function DetailsLayout({ restaurant, user }) {
+function DetailsLayout({ restaurant, user, settings }) {
 
     const [ order, setOrder ] = useState(JSON.parse(Cookies.get('my_order') || "{}"));
 
@@ -70,7 +70,7 @@ function DetailsLayout({ restaurant, user }) {
                             </div>
                         </div>
                         <div className="col-lg-4">
-                            <Cart order={order} setOrder={setOrder} restaurant={restaurant} user={user}/>
+                            <Cart order={order} setOrder={setOrder} restaurant={restaurant} user={user} settings={settings}/>
                         </div>
                     </div>
                 </div>
