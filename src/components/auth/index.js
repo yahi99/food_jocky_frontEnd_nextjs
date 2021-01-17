@@ -35,7 +35,6 @@ export const isUser = async context => {
                             _id
                             status
                         }
-                        delivery_charge
                     }
                 }
             }
