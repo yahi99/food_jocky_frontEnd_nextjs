@@ -962,7 +962,7 @@ footer .contacts ul li i svg {
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, .08);
 }
 
-.resta-img {
+.restaurant-img {
   background-image: url('../img/select/restaurant.png');
 }
 
@@ -1222,11 +1222,11 @@ footer .contacts ul li i svg {
   padding-top: 55px;
 }
 
-.resturent-wrappers-heading {
+.restaurant-wrapper-heading {
   padding-bottom: 30px;
 }
 
-.resturent-wrappers-heading h2 {
+.restaurant-wrapper-heading h2 {
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -1265,7 +1265,7 @@ footer .contacts ul li i svg {
   color: var(--theme-color-one);
 }
 
-.restuarant-lists-des {
+.restaurant-lists-des {
   padding-top: 20px;
   padding: 25px 15px;
 }
@@ -1284,18 +1284,18 @@ strong {
   font-weight: 800;
 }
 
-.catagory-lists-shows {
+.category-lists-shows {
   display: flex;
 }
 
-.catagory-lists-shows li {
+.category-lists-shows li {
   padding-left: 10px;
   font-size: 16px;
   font-weight: 300;
   color: #333333;
 }
 
-.catagory-lists-shows li:first-child {
+.category-lists-shows li:first-child {
   padding-left: 0;
 }
 

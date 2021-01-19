@@ -1,16 +1,22 @@
 import React from 'react'
 import "bootstrap-css-only/css/bootstrap.min.css"
-import'mdbreact/dist/css/mdb.css'
-
-
+import 'mdbreact/dist/css/mdb.css'
 import '../styles/globals.css'
 import "../public/assets/css/style.css"
 import "../public/assets/css/color.css"
 import "../public/assets/css/responsive.css"
 
+import 'antd/dist/antd.css'
+import {Provider} from "react-redux";
+import store from "../app/store";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+function MyApp({Component, pageProps}) {
+    return (
+        <Provider store={store}>
+            <Component {...pageProps} />
+        </Provider>
+    )
 
 }
 
