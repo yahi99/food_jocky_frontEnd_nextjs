@@ -21,7 +21,7 @@ function SelectRestaurantAndHomeMade({query}) {
         <>
             <div className="search-top-area-wrapper">
                 <ul id="top-select-area">
-                    <li className="resta-img">
+                    <li className="restaurant-img">
                         <Link href={"/restaurants_list?lat=" + query.lat  + "&lng=" + query.lng + name}>
                             <a className={restaurant && "active-list"}>Restaurant</a>
                         </Link>

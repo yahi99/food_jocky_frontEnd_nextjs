@@ -64,7 +64,7 @@ function RestaurantListLayout({restaurants}) {
            </div>
          </div>
          <div className="restaurant-list-wrapper">
-           <div className="resturent-wrappers-heading">
+           <div className="restaurant-wrapper-heading">
              <h2>
                  { restaurant ? "All Restaurant" : "All Homemade" }
              </h2>
