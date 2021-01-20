@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import state from "./state";
 import reducers from "./reducers";
 
-export const userSlice = createSlice({
-    name: 'user',
+const orderSlice = createSlice({
+    name: 'order',
     initialState: state,
     ...reducers
 })
 
-export const {reloadUser, logoutUser} = userSlice.actions
+//export const {reloadRestaurants} = orderSlice.actions
 
-export default userSlice.reducer
+export default orderSlice.reducer

@@ -6,8 +6,6 @@ import FindCity from "../src/components/home/FindCity";
 import AppDownload from "../src/components/home/AppDownload";
 import Faqs from "../src/components/home/Faqs";
 import Layout from "../components/layout";
-import Loader from "../src/components/Common/Loader";
-import {isUser} from "../src/components/auth";
 
 const Home = () => {
     return (

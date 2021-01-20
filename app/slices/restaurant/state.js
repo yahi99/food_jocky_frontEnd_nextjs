@@ -4,6 +4,15 @@ const state = {
         error: false,
         msg: '',
         data: []
+    },
+    restaurant: {
+        loading: true,
+        error: false,
+        msg: '',
+        data: {}
+    },
+    cart: {
+
     }
 }
 

@@ -1,20 +1,25 @@
-import React, {useState} from "react";
+import React from "react";
 import Layout from "../components/layout";
 import Link from "next/link";
-import {Button, Form, Input} from "antd";
+import { Form, Input} from "antd";
+import {useDispatch} from "react-redux";
+import {userLogin} from "../app/slices/user/actions";
+import Swal from "sweetalert2";
+import {useRouter} from "next/router";
+import {reloadUser} from "../app/slices/user";
 
-function login(props) {
-    const [phoneNumber, setPhoneNumber] = useState("");
-    function handlePhoneNumberChange(e) {
-        let number = e.currentTarget.value.replace(/\D/g,'');
-        setPhoneNumber(number);
+const Login = () => {
+    let router = useRouter()
+    let dispatch = useDispatch()
+    const handleSubmit = async value => {
+        let { payload } = await dispatch(userLogin({...value}))
+        if(payload.error) {
+            await Swal.fire('Error', payload.msg, 'error')
+        } else {
+            await router.push('/')
+            dispatch(reloadUser({}))
+        }
     }
-
-    const handleSubmit = () => {
-
-    }
-
-
     return (
         <Layout>
             <section className="login_main_area">
@@ -32,11 +37,11 @@ function login(props) {
                                 >
                                     <Form.Item
                                         label="Phone Number"
-                                        name="username"
+                                        name="phone"
                                         rules={
                                             [
                                                 { required: true, message: 'Please input your phone number!' },
-                                                { pattern: /\d*/, message: 'Please input valid phone number!' }
+                                                { pattern: /\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
                                             ]
                                         }
                                     >
@@ -78,9 +83,8 @@ function login(props) {
                     </div>
                 </div>
             </section>
-
         </Layout>
     );
 }
 
-export default login;
+export default Login;

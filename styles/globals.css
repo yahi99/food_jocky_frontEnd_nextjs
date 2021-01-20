@@ -143,3 +143,11 @@ html {
 .MuiFormLabel-root.Mui-focused {
   color: #4285f4 !important;
 }
+
+.ant-input-password input.ant-input {
+    border: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
