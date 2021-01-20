@@ -17,7 +17,7 @@ const RestaurantCard = (props) => {
         <>
             <div className="col-lg-4 col-md-6 col-sm-12 col-12 padding-bottom-30">
                 <div className="restaurant-list-boxed">
-                    <Link href={{pathname: "/details", query: {id: props.restaurant._id}}}>
+                    <Link href={{pathname: "/restaurant", query: {id: props.restaurant._id}}}>
                         <a>
                             <div className="restaurant-lists-img" style={imageDiv}>
                                 <img src={props.restaurant.thumb_img} alt="no img" style={imageStyle}/>
