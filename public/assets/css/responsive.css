@@ -122,12 +122,26 @@
 .secarch-ruselt-form {
   margin-right: 0;
 }
+.profile_sidebar_wrapper {
+  margin-bottom: 30px;
+}
+.dashboard_top_box{
+  margin-bottom: 30px;
+}
+.row .col-lg-6:last-child .dashboard_top_box{
+  margin-bottom: 0;
+}
 }
 
 @media (max-width: 768px) {
+  .boxshadow_Wallet {
+    margin-bottom: 30px;
+}
   .timelines-wrappers {
     padding: 30px 85px;
-
+}
+.wallets_table {
+  padding-top: 0px;
 }
   .proposal-list {
     background: #fff;
@@ -251,6 +265,9 @@
 }
 h2 {
   font-size: 30px;
+}
+.wallet_balance_flex{
+  display: inherit;
 }
 }
 

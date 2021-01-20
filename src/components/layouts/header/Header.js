@@ -86,8 +86,6 @@ function Header(props) {
                         </a>
                     </Link>
                 </li>
-
-
               <li className='nav-item' style={{marginRight: 25}}>
                   {props.user && props.user.authenticated ? (
                       <Dropdown>
@@ -101,7 +99,11 @@ function Header(props) {
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                              <Dropdown.Item>{props.user.user.first_name}</Dropdown.Item>
+                              <Dropdown.Item>
+                              <Link href='/user/dashBoard'>
+                                {props.user.user.first_name}
+                          </Link>    
+                          </Dropdown.Item>
                               <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                           </Dropdown.Menu>
                       </Dropdown>

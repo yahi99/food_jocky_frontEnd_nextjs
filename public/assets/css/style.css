@@ -3205,3 +3205,249 @@ position: relative;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+/* --Dashboard Area Start-- */
+#dashbords_wrappers{
+  padding: 120px 0;
+}
+.profile_sidebar_wrapper{
+  box-shadow: 0px 0px 6px -2px #0000002e;
+  padding: 30px 30px;
+}
+.profile_detsils{
+  border-bottom: 1px solid #cecece;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.profile_detsils img{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.profile_detsils h3{
+margin: 0;
+padding-top: 15px;
+font-size: 20px;
+}
+.profile_detsils p{
+padding-top: 5px;
+}
+.profiles_link ul li{
+padding-top: 20px;
+font-weight: 500;
+}
+.profiles_link ul li .active{
+  color: var(--theme-color-one);
+  font-weight: 700;
+}
+.profiles_link ul li a svg{
+  margin-right: 6px;
+}
+.dashboard_wrappers_area{
+  box-shadow: 0px 0px 6px -2px #0000002e;
+  padding: 30px 30px;
+}
+.dashboard_top_box{
+  box-shadow: 0px 0px 6px -2px #0000002e;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.dashboard_top_icon svg{
+  font-size: 60px;
+}
+.dashboard_top_text{
+  text-align:right;
+}
+.dashboard_top_text h3{
+font-size: 26px;
+}
+.dashboard_top_text p{
+  font-size: 24px;
+}
+.dashboard_table{
+  padding-top: 50px;
+}
+.dashboard_table table.table th {
+  font-size: 16px;
+  background: #f5f5f5;
+  font-weight: 700;
+  color: var(--theme-color-one);
+  text-align: center;
+  border: none;
+}
+.dashboard_table table.table td {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+}
+.dashboard_table table.table td i{
+  background:#f5f5f5;
+  width:50px;
+  height: 40px;
+  display: block;
+  line-height: 35px;
+  cursor: pointer;
+}
+.dashboard_table table.table td span{
+  background: #2196F3;
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 42px;
+  line-height: 30px;
+}
+.dashboard_table table.table td i svg{
+  color: #fff;
+}
+.dashboard_table ul li.page-item {
+  border: 1px solid #dadada;
+}
+/* --Dashboard Area End-- */
+
+/* --Profile Area Start -- */
+#profile_wrappers{
+  padding: 120px 0;
+}
+.profile_setting_form{
+  box-shadow: 0px 0px 6px -2px #0000002e;
+  padding: 30px 30px;
+}
+.change_pass_profile{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 24px;
+}
+.profile_setting_form h3{
+  padding-bottom: 20px;
+}
+/* --Profile Area End -- */
+
+/* --Wallet Area Start -- */
+#wallet_area{
+  padding: 120px 0;
+}
+.all_wallets_wrappers{
+
+}
+.common_wallet_heading{
+
+}
+.common_wallet_heading h3{
+
+}
+.wallet_balance_area{
+  padding-top: 10px;
+}
+.wallet_balance_area p{
+  margin: 0;
+  font-size: 13px;
+}
+.wallet_balance_area h4{
+  margin: 0;
+  padding-top: 3px;
+}
+.boxshadow_Wallet{
+  box-shadow: 0px 0px 6px -2px #0000002e;
+  padding: 30px 30px;
+}
+.wallet_balance_flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+.wallet_range_bar{
+padding-top: 20px;
+}
+.top_range_bar{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.top_range_bar p{
+ margin: 0;
+}
+.main_range_bar{
+  background-color: #e0e0e0;
+  text-align: center;
+  font-size: 14px;
+  height: 19px;
+  color: #fff;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  position: relative;
+z-index: 9;
+width: 100%;
+}
+.main_range_bar::before{
+  content: "";
+  background: var(--theme-color-one);
+  position: absolute;
+  width: 71%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  z-index: -1;
+}
+.add_wallet_input{
+  padding-top: 20px;
+}
+.add_wallet_button{
+text-align: center;
+padding-top: 15px;
+}
+.add_wallet_main_button{
+text-align: center;
+padding-top: 10px;
+}
+.add_wallet_main_button button.btn {
+  padding: 5px 15px;
+}
+.add_wallet_submit_button{
+margin-top: 20px;
+}
+.add_wallet_submit_button button{
+  width: 100%;
+  margin: 0;
+}
+.wallets_table{
+  padding-top: 50px;
+}
+.wallets_table h3{
+  padding-bottom:20px;
+}
+.wallets_table table.table{
+  border: 1px solid #f1f1f1;
+}
+.wallets_table table.table th {
+  padding-top: 1.1rem;
+  padding-bottom: 1rem;
+  background: var(--theme-color-one);
+  text-align: center;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+.wallets_table table.table td span{
+  display: block;
+  background: red;
+  text-align: center;
+  color: #fff;
+  padding: 2px 4px;
+  font-size: 12px;
+  border-radius: 20px;
+}
+/* --Wallet Area End -- */
