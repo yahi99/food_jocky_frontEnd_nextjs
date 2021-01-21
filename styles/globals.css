@@ -151,3 +151,22 @@ html {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.cart-count {
+  position: absolute;
+  right: -14px;
+  margin-top: -6px;
+  display: block;
+  padding: 2px;
+  background: #c8102f;
+  border-radius: 20px;
+  height: 18px;
+  width: 18px;
+  font-size: 10px;
+  color: white;
+}
+
+.add_texted p{
+  padding-top: 10px !important;
+  font-size: 15px;
+}

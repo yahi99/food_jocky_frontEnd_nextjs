@@ -1,8 +1,7 @@
 import Head from "next/head";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser} from "../../app/slices/user/actions";
 import {Dropdown} from "react-bootstrap";
 import {logoutUser} from "../../app/slices/user";
 import Cookies from 'js-cookie'
@@ -10,12 +9,16 @@ import Cookies from 'js-cookie'
 const Header = () => {
     let user = useSelector(state => state.user)
     let dispatch = useDispatch()
-    if(user.loaded === false) {
-        dispatch(fetchUser({}))
-    }
+
     const handleLogout = () => {
         Cookies.remove('fj_token')
         dispatch(logoutUser({}))
+    }
+
+    let cart = useSelector(state => state.restaurant.cart)
+    let count = 0
+    if(cart.foods) {
+        count = cart.foods.length
     }
 
     return (
@@ -32,6 +35,20 @@ const Header = () => {
                     </Link>
 
                     <ul className="nav-menu">
+                        <li className='nav-item lan-area mr-1'>
+                            <Link href='/cart'>
+                                <a className='nav-links position-relative'>
+                                    <span className="cart-count">{count}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                         strokeLinejoin="round" className="feather feather-shopping-cart">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg>
+                                </a>
+                            </Link>
+                        </li>
                         <li>
                             {user.auth ? (
                                 <Dropdown className="mr-3 cursor-pointer">

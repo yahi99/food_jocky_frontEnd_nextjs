@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../src/components/layouts/main";
 import {Form, Input} from "antd";
 import Link from "next/link";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {userRegister} from "../app/slices/user/actions";
 import Swal from "sweetalert2";
 import {useRouter} from "next/router";
@@ -11,13 +11,18 @@ import {reloadUser} from "../app/slices/user";
 function register(props) {
     let router = useRouter()
     let dispatch = useDispatch()
+    let user = useSelector(state => state.user)
+    if(user.auth) {
+        router.push('/').then(()=> {})
+    }
+
     const handleSubmit = async user => {
         let { payload } = await dispatch(userRegister({user}))
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')
         } else {
-            await router.push('/')
             dispatch(reloadUser({}))
+            await router.push('/')
         }
 
     }

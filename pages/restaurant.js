@@ -6,13 +6,11 @@ import {fetchRestaurant} from "../app/slices/restaurant/actions";
 import RestaurantBanner from "../components/restaurant/RestaurantBanner";
 import FoodCategories from "../components/restaurant/FoodCategories";
 import FoodsWithCart from "../components/restaurant/FoodsWithCart";
-import {loadCart} from "../app/slices/restaurant";
 
 const Restaurant = () => {
     const [loaded, setLoaded] = useState(false)
     let router = useRouter()
     let dispatch = useDispatch()
-    dispatch(loadCart({}))
     let restaurant = useSelector(state => state.restaurant.restaurant)
 
     useEffect(() => {

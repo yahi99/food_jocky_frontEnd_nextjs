@@ -1,10 +1,24 @@
 import React from "react";
 import Food from "./Food";
-import CartTable from "../../src/components/Common/Cart/table";
-import Link from "next/link";
+import {useSelector} from "react-redux";
+import CartTable from "../cart/table";
 import Swal from "sweetalert2";
+import {useRouter} from "next/router";
 
 const FoodsWithCart = ({restaurant}) => {
+    let router = useRouter()
+    let cart = useSelector(state => state.restaurant.cart)
+    let user = useSelector(state => state.user)
+    const handleOrder = () => {
+        if(!user.auth) {
+            Swal.fire('Warning', "Please log in to place order", 'warning').then (() => {
+                router.push('/login').then(() => {})
+            })
+        } else {
+            router.push('/cart').then(() => {})
+        }
+    }
+
     return (
         <section id="Top_cata_food_area">
             <div className="container">
@@ -25,21 +39,28 @@ const FoodsWithCart = ({restaurant}) => {
                             ))}
                         </div>
                     </div>
-                    <div className="col-lg-4">
-                        <div className="Catr-Heading">
-                            <h2>My Cart</h2>
-                        </div>
-                        <div className="Cart_area_wrappers">
-                            <div className="Cart_top_area">
-                                <h4>{props.order.restaurant_name}</h4>
-                                <h5>{props.order.orders.length} Items Added</h5>
-                            </div>
-                            <CartTable order={props.order} setOrder={props.setOrder} delivery_charge={props.settings.delivery_charge || 0}/>
-                            <div className="Orders-Button">
 
+                    {cart.foods && (
+                        <div className="col-lg-4">
+                            <div className="Catr-Heading">
+                                <h2>My Cart</h2>
+                            </div>
+                            <div className="Cart_area_wrappers">
+                                <div className="Cart_top_area">
+                                    <h4>{cart.restaurant_name}</h4>
+                                    <h5>{cart.foods.length} Items Added</h5>
+                                </div>
+
+                                <CartTable cart={cart}/>
+
+                                <div className="Orders-Button">
+                                    <a className="btn button-site" onClick={handleOrder}>
+                                        Place Order
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>

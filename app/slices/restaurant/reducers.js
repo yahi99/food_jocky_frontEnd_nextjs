@@ -56,6 +56,30 @@ const reducers = {
             state.cart = cart
             Cookies.set('fj-cart', cart)
         },
+        removeFromCart(state, action) {
+            let { food, cart } = action.payload
+            let foods = cart.foods.map( item => {
+                if( food._id === item._id ) {
+                    if( food.size === item.size) {
+                        return {
+                            ...item,
+                            quantity: item.quantity - 1
+                        }
+                    }
+                }
+                return item
+            })
+            foods = foods.filter(item => item.quantity > 0)
+            cart = {
+                ...cart,
+                foods
+            }
+            if(foods.length === 0) {
+                cart = {}
+            }
+            state.cart = cart
+            Cookies.set('fj-cart', cart)
+        },
         loadCart (state, action) {
             let cart = Cookies.get('fj-cart') || '{}'
             state.cart = JSON.parse(cart)

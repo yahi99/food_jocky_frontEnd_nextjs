@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {Radio} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart} from "../../app/slices/restaurant";
+import Swal from "sweetalert2";
 
 const Food = ({food, category_id}) => {
     let dispatch = useDispatch()
@@ -24,11 +25,21 @@ const Food = ({food, category_id}) => {
     }
 
     const addVariation = () => {
+        handleAdd({
+            _id: food._id,
+            name: food.name,
+            size: food.price_and_size[variation].size,
+            price: food.price_and_size[variation].price,
+            quantity: 1,
+            category_id,
+            restaurant,
+            cart
+        })
         handleClose()
     }
 
     const addFoodToCart = () => {
-        dispatch(addToCart({
+        handleAdd({
             _id: food._id,
             name: food.name,
             size: '',
@@ -37,10 +48,28 @@ const Food = ({food, category_id}) => {
             category_id,
             restaurant,
             cart
-        }))
+        })
     }
 
-
+    const handleAdd = food => {
+        if(cart.restaurant_id && cart.restaurant_id !== restaurant._id) {
+            Swal.fire({
+                title: 'Want to order from this restaurant?',
+                text: "Your added items will be removed!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(result => {
+                if(result.isConfirmed) {
+                    dispatch(addToCart({...food}))
+                }
+            })
+        } else {
+            dispatch(addToCart({...food}))
+        }
+    }
 
     return (
         <>
