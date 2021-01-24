@@ -13,6 +13,7 @@ export const fetchUser = createAsyncThunk('user/fetch', async ({}) => {
                         first_name
                         last_name
                         email
+                        mobile
                         last_order {
                             _id
                             status
