@@ -32,7 +32,7 @@ const Add_Info = props => {
 
 
 
-    const handleAddAddress = async e => {
+    const handleAddAddress = e => {
         e.preventDefault();
 
         if( title == '' || receiverName == '' || receiverNumber == '' || !validPhoneNumber) {
