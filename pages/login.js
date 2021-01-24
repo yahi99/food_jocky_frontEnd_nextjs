@@ -17,6 +17,7 @@ const Login = () => {
     }
 
     const handleSubmit = async value => {
+        value.phone = "+880" + value.phone
         let { payload } = await dispatch(userLogin({...value}))
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')

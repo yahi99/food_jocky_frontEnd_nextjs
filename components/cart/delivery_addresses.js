@@ -20,8 +20,6 @@ const DeliveryAddresses = ({selected, setSelected}) => {
 
     let addresses = useSelector(state => state.order.delivery_locations )
 
-
-
     return (
         <div className="Delivery_Address_wrappers" id="delivery_address">
             <div className="devlivery_address_flex">
@@ -46,7 +44,6 @@ const DeliveryAddresses = ({selected, setSelected}) => {
                     </div>
                 ) }
                 <MapModal show={show} handleClose={handleClose} handleSelect={handleMapLocationSet}/>
-
             </div>
         </div>
     )

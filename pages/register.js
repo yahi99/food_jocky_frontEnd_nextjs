@@ -17,6 +17,7 @@ function register(props) {
     }
 
     const handleSubmit = async user => {
+        user.mobile = "+880" + user.mobile
         let { payload } = await dispatch(userRegister({user}))
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')
@@ -94,7 +95,7 @@ function register(props) {
                                     <div className="button-singup-area">
                                         <div className="form-submit-button">
                                             <button type="submit" className="btn button-site">
-                                                Login
+                                                Register
                                             </button>
                                         </div>
                                         <div className="create-account">
