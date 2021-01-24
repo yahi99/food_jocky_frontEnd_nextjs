@@ -1,17 +1,37 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import {Form, Input} from "antd";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addDeliveryAddress, fetchDeliveryAddresses} from "../../app/slices/order/actions";
 import Swal from "sweetalert2";
 
 const AddAddress = ({address, setAddAddress}) => {
+    let user = useSelector(state => state.user)
+    let form = useRef()
+
+    let initialValues = {
+        reciver_name: user.first_name + " " + user.last_name,
+        reciver_mobile_no: user.mobile.replace('+880', '')
+    }
+
+    const clearName = () => {
+        form.current.setFieldsValue({
+            reciver_name: null
+        })
+    }
+
+    const clearMobile = () => {
+        form.current.setFieldsValue({
+            reciver_mobile_no: null
+        })
+    }
+
     let dispatch = useDispatch()
     const handleSubmit = async value => {
         let newAddress = {
             title: value.title,
             address: address,
-            reciver_mobile_no: value.reciver_mobile_no || '',
-            reciver_name: value.reciver_name || '',
+            reciver_mobile_no: "+880" + value.reciver_mobile_no ,
+            reciver_name: value.reciver_name ,
             house_no: value.house_no || '',
             floor_no: value.floor_no || '',
             note_to_rider: value.note_to_rider || ''
@@ -37,7 +57,9 @@ const AddAddress = ({address, setAddAddress}) => {
         <div className="add_location_texted p-5">
             <Form
                 layout="vertical"
+                initialValues={initialValues}
                 requiredMark={false}
+                ref={form}
                 onFinish={handleSubmit}
                 id="Add_Form_Location">
                 <Form.Item
@@ -61,7 +83,7 @@ const AddAddress = ({address, setAddAddress}) => {
                     rules={[
                         {required: true, message: 'Please provide receiver name'}
                     ]}>
-                    <Input/>
+                    <Input suffix={<a onClick={clearName} style={{color: "red"}}>Clear</a>} />
                 </Form.Item>
                 <Form.Item
                     label="Receiver Phone Number"
@@ -71,9 +93,8 @@ const AddAddress = ({address, setAddAddress}) => {
                             { required: true, message: 'Please input receiver phone number!' },
                             { pattern: /\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
                         ]
-                    }
-                >
-                    <Input addonBefore="+880" maxLength={10}/>
+                    }>
+                    <Input addonBefore="+880"  suffix={<a onClick={clearMobile} style={{color: "red"}}>Clear</a>} maxLength={10}/>
                 </Form.Item>
 
                 <Form.Item

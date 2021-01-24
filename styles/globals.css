@@ -148,6 +148,15 @@ html {
     border: none !important;
 }
 
+.ant-input-affix-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ant-input-affix-wrapper > input {
+   border: none !important;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
