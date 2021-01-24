@@ -2,9 +2,10 @@ import Head from "next/head";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
-import {Dropdown} from "react-bootstrap";
 import {logoutUser} from "../../app/slices/user";
 import Cookies from 'js-cookie'
+import {Dropdown, Menu} from "antd";
+import { DownOutlined } from '@ant-design/icons';
 
 const Header = () => {
     let user = useSelector(state => state.user)
@@ -20,6 +21,24 @@ const Header = () => {
     if(cart.foods) {
         count = cart.foods.length
     }
+
+    let overlayStyle = {
+        minWidth: 150
+    }
+
+    const menu = (
+        <Menu>
+            <Menu.Item key="0">
+                <Link href="/user/dashboard">
+                    Profile
+                </Link>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="3">
+                <a onClick={handleLogout}>Logout</a>
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <>
@@ -49,23 +68,36 @@ const Header = () => {
                                 </a>
                             </Link>
                         </li>
+
                         <li>
                             {user.auth ? (
-                                <Dropdown className="mr-3 cursor-pointer">
-                                    <Dropdown.Toggle as='span' >
+
+                                <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" overlayStyle={overlayStyle} arrow>
+                                    <a className="ant-dropdown-link mr-3" onClick={e => e.preventDefault()}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                             strokeLinejoin="round" className="feather feather-user">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
+                                             strokeLinejoin="round" className="feather feather-user mr-1">
+                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item>{user.first_name}</Dropdown.Item>
-                                        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                                    </Dropdown.Menu>
+                                        <DownOutlined style={{fontSize: 13,fontWeight: 900}}/>
+                                    </a>
                                 </Dropdown>
+                                // <Dropdown className="mr-3 cursor-pointer">
+                                //     <Dropdown.Toggle as='span' >
+                                //         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                //              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                //              strokeLinejoin="round" className="feather feather-user">
+                                //             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                //             <circle cx="12" cy="7" r="4"></circle>
+                                //         </svg>
+                                //     </Dropdown.Toggle>
+                                //
+                                //     <Dropdown.Menu>
+                                //         <Dropdown.Item>{user.first_name}</Dropdown.Item>
+                                //         <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                //     </Dropdown.Menu>
+                                // </Dropdown>
                             ) : (
                                 <Link href='/login'>
                                     <a className='nav-links' style={{marginLeft: 2}}>

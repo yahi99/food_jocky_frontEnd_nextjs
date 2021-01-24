@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from "../../src/components/layouts/main";
 import DashBoardArea from '../../src/components/user/DashBoard'
 
-const dashBoard = () => {
+const dashboard = () => {
  return (
   <>
    <Layout>
@@ -11,4 +11,4 @@ const dashBoard = () => {
   </>
  )
 }
-export default dashBoard
+export default dashboard
