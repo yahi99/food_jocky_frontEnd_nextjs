@@ -180,4 +180,8 @@ html {
   font-size: 15px;
 }
 
+.pp-upload-btn {
+  position: absolute;
+}
+
 .pac-container { z-index: 100000 !important; }

@@ -1,6 +1,6 @@
 const state = {
     loaded: false,
-    auth: false
+    auth: false,
 }
 
 export default state

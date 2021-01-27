@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {UrqlClient} from "../../../src/components/urql/urql-provider";
 import Cookies from 'js-cookie'
 import graphqlClient from "../../graphql";
+import axios from "axios";
 
 export const fetchUser = createAsyncThunk('user/fetch', async ({}) => {
     let query = `
@@ -18,13 +18,14 @@ export const fetchUser = createAsyncThunk('user/fetch', async ({}) => {
                             _id
                             status
                         }
+                        profile_picture
                     }
                 }
             }
         `
     let token = Cookies.get('fj_token')
     if( token ) {
-        let client = UrqlClient();
+        let client = graphqlClient();
         let {error, data} = await client.query(query, {token}).toPromise();
         if (error) {
             return {error: true, msg: 'Network failed'}
@@ -88,3 +89,66 @@ export const userRegister = createAsyncThunk('user/register', async ({user}) => 
         msg: addCustomer.msg
     }
 })
+
+export const userUpdate = createAsyncThunk('user/register', async ({user}) => {
+    let mutation = `
+        mutation ($user: CustomerInput){
+            updateCustomer(customerInput: $user) {
+                error
+                msg
+            }
+        }
+    `
+    let token = Cookies.get('fj_token')
+    let client = graphqlClient(token)
+    let { error, data } = await client.mutation(mutation, {user}).toPromise()
+    if(error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {updateCustomer} = data
+    return {
+        error: updateCustomer.error,
+        msg: updateCustomer.msg
+    }
+})
+
+export const uploadProfilePicture = createAsyncThunk('user/uploadProfilePicture', async ({file}) => {
+    let url = await uploadImage(file)
+    if(url.length > 5) {
+        let mutation = `
+            mutation($url: String) {
+                updateCustomerProfilePicture(profile_picture: $url) {
+                    error
+                    msg
+                }
+            }
+        `
+        let token = Cookies.get('fj_token')
+        let client = graphqlClient(token)
+        let { error, data } = await client.mutation(mutation, {url}).toPromise()
+        if(error) {
+            return {error: true, msg: 'Network failed'}
+        }
+        let {updateCustomerProfilePicture} = data
+        return {
+            error: updateCustomerProfilePicture.error,
+            msg: updateCustomerProfilePicture.msg
+        }
+
+    }
+})
+
+
+export const uploadImage = async (file) => {
+    try {
+        const data = new FormData()
+        data.append('image', file)
+        let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+        const res = await axios.post(url, data, {})
+        if (res.data.success) {
+            return res.data.data.image.url
+        }
+    } catch (e) {
+        return ''
+    }
+}

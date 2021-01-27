@@ -6,8 +6,10 @@ import {logoutUser} from "../../app/slices/user";
 import Cookies from 'js-cookie'
 import {Dropdown, Menu} from "antd";
 import { DownOutlined } from '@ant-design/icons';
+import {useRouter} from "next/router";
 
 const Header = () => {
+    let router = useRouter()
     let user = useSelector(state => state.user)
     let dispatch = useDispatch()
 

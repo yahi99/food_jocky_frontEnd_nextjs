@@ -1,31 +1,59 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Sidebar from "../../components/user/sidebar";
 import MainLayout from "../../components/layout";
 import {Form, Input} from "antd";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
+import {fetchUser, userUpdate} from "../../app/slices/user/actions";
+import Swal from "sweetalert2";
+import {swalLoading} from "../../components/loader/swal-loading";
 
 const profile = () => {
+    let router = useRouter()
+    let [form] = Form.useForm()
+    let dispatch = useDispatch()
     let user = useSelector(state => state.user)
+    const [loaded, setLoaded] = useState(false)
 
-    console.log(user)
+    useEffect(() => {
+        if(user.loaded && !user.auth) {
+            router.push('/').then(() => {})
+        }
+        if(!loaded && user.loaded) {
+            setLoaded(true)
+            form.setFieldsValue({
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                password: undefined,
+                confirm: undefined
+            })
+        }
+    })
 
-    if(!user.loaded ) {
+    if(!user.auth ) {
         return (
-            <MainLayout auth>
+            <MainLayout>
             </MainLayout>
         )
     }
 
-    let initialValues = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email
-    }
-
-
-
-    const handleSubmit = value => {
-
+    const handleSubmit = async value => {
+        swalLoading()
+        let user = {
+            first_name: value.first_name,
+            last_name: value.last_name,
+            email: value.email || '',
+            password: value.password || ''
+        }
+        let {payload} = await dispatch(userUpdate({user}))
+        if(payload.error) {
+            await Swal.fire('Error', payload.error, 'error')
+        } else {
+            await Swal.fire('Success', 'Profile updated successfully', 'success')
+            await dispatch(fetchUser({}))
+            setLoaded(false)
+        }
     }
 
 
@@ -39,10 +67,10 @@ const profile = () => {
                             <div className="profile_setting_form">
                                 <h3>Profile</h3>
                                 <Form
+                                    form={form}
                                     layout="vertical"
                                     requiredMark={false}
                                     onFinish={handleSubmit}
-                                    initialValues={initialValues}
                                 >
                                     <div className="row">
                                         <div className="col-lg-6 col-md-12 col-sm-12 col-12">
