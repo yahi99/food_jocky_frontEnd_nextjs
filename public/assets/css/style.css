@@ -3213,24 +3213,48 @@ position: relative;
   box-shadow: 0px 0px 6px -2px #0000002e;
   padding: 30px 30px;
 }
-.profile_detsils{
+.profile_details{
   border-bottom: 1px solid #cecece;
   padding-bottom: 20px;
   text-align: center;
 }
-.profile_detsils img{
+.profile_details .ant-upload {
+  border: none!important;
+  border-radius: 100px;
+  position: relative;
+  background: rgba(0,0,0, .1);
+  overflow: hidden;
+}
+
+.profile_details .ant-upload .browse-text {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 3px;
+  font-size: 12px;
+  display: block;
+  color: white;
+  background: rgba(0,0,0, .6);
+  display: none;
+}
+.profile_details .ant-upload:hover .browse-text {
+  display: block;
+}
+
+
+.profile_details img{
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-.profile_detsils h3{
+.profile_details h3{
 margin: 0;
 padding-top: 15px;
 font-size: 20px;
 }
-.profile_detsils p{
+.profile_details p{
 padding-top: 5px;
 }
 .profiles_link ul li{

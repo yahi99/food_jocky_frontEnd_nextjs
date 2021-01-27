@@ -11,7 +11,7 @@ const Sidebar = () => {
   <>
     <div className="col-lg-4 col-md-4 col-sm-12 col-12">
       <div className="profile_sidebar_wrapper">
-        <div className="profile_detsils">
+        <div className="profile_details">
          <img src={img1} alt="" />
          <h3>Surya Aysha</h3>
          <p>Surya999@gmail.com</p>

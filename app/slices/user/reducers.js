@@ -13,13 +13,18 @@ const reducers = {
     },
     extraReducers: {
         [fetchUser.fulfilled]: (state, action) => {
+            let {error, data} = action.payload
             state.loaded = true
-            if(!action.payload.error) {
+            if(!error) {
                 state.auth = true
-                state.first_name = action.payload.data.first_name
-                state.last_name = action.payload.data.last_name
-                state.mobile = action.payload.data.mobile
-                state.email = action.payload.data.email
+                state.first_name = data.first_name
+                state.last_name = data.last_name
+                state.mobile = data.mobile
+                state.email = data.email
+                let { profile_picture } = data
+                if( typeof profile_picture === 'string' && profile_picture.length > 5 ) {
+                    state.profile_picture = profile_picture
+                }
             }
         }
     }
