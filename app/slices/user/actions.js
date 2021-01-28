@@ -139,6 +139,52 @@ export const uploadProfilePicture = createAsyncThunk('user/uploadProfilePicture'
 })
 
 
+export const fetchDashboardData = createAsyncThunk('user/fetchDashboardData', async ({}) => {
+    let query = `
+        query {
+            getCustomerDashboardData {
+                error
+                msg
+                data {
+                    totalOrders
+                    pendingOrders
+                    orders {
+                        _id
+                        sub_total
+                        delivery_charge
+                        createdAt
+                        total
+                        status
+                        restaurant {
+                            name
+                        }
+                        items {
+                            name
+                            size
+                            quantity
+                            price
+                        }
+                    }
+                }
+            }
+        }
+    `
+    let token = Cookies.get('fj_token')
+    let client = graphqlClient(token)
+    let { error, data } = await client.query(query).toPromise()
+    if(error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {getCustomerDashboardData} = data
+    return {
+        error: getCustomerDashboardData.error,
+        msg: getCustomerDashboardData.msg,
+        data: getCustomerDashboardData.data
+    }
+
+})
+
+
 export const uploadImage = async (file) => {
     try {
         const data = new FormData()
