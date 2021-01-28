@@ -31,7 +31,7 @@ const Header = () => {
     const menu = (
         <Menu>
             <Menu.Item key="0">
-                <Link href="/user/dashboard">
+                <Link href="/user">
                     Profile
                 </Link>
             </Menu.Item>
@@ -85,21 +85,6 @@ const Header = () => {
                                         <DownOutlined style={{fontSize: 13,fontWeight: 900}}/>
                                     </a>
                                 </Dropdown>
-                                // <Dropdown className="mr-3 cursor-pointer">
-                                //     <Dropdown.Toggle as='span' >
-                                //         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                //              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                //              strokeLinejoin="round" className="feather feather-user">
-                                //             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                //             <circle cx="12" cy="7" r="4"></circle>
-                                //         </svg>
-                                //     </Dropdown.Toggle>
-                                //
-                                //     <Dropdown.Menu>
-                                //         <Dropdown.Item>{user.first_name}</Dropdown.Item>
-                                //         <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                                //     </Dropdown.Menu>
-                                // </Dropdown>
                             ) : (
                                 <Link href='/login'>
                                     <a className='nav-links' style={{marginLeft: 2}}>

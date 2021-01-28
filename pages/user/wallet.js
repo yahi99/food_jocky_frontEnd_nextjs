@@ -1,21 +1,31 @@
-import React, {useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import MainLayout from "../../components/layout";
 import Sidebar from "../../components/user/sidebar";
 import {Form, Input} from "antd";
+import axios from "axios";
 
 
 const wallet = () => {
     const form = useRef(null)
-
+    let [payAmount, setPayAmount] = useState(0)
     const setAmount = value => {
         form.current.setFieldsValue({
             amount: value
         })
     }
-    const handleSubmit = value => {
-        console.log(value)
+    const handleSubmit = async value => {
+        let payBtn = document.getElementById('sslczPayBtn')
+        payBtn.click()
     }
 
+    useEffect(() => {
+        let loader = function () {
+            let script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+            tag.parentNode.insertBefore(script, tag);
+        };
+        window.addEventListener("load", loader, false)
+    })
 
     return (
         <MainLayout>
@@ -75,7 +85,7 @@ const wallet = () => {
                                                             ]
                                                         }
                                                     >
-                                                        <Input addonBefore="BDT" maxLength={10}/>
+                                                        <Input addonBefore="BDT" value={payAmount} onChange={e => setPayAmount(e.target.value)}  maxLength={10}/>
                                                     </Form.Item>
                                                 </div>
                                                 <div className="add_wallet_button">
@@ -86,10 +96,18 @@ const wallet = () => {
                                                         <button type="button" className="btn button-site" onClick={() => setAmount(150)}>BDT 150</button>
                                                     </div>
                                                     <div className="add_wallet_submit_button">
-                                                        <button className="btn button-site">Add to Wallet</button>
+                                                        <button className="btn button-site" type="submit">Add to Wallet</button>
                                                     </div>
                                                 </div>
                                             </Form>
+
+                                            <button
+                                                className="d-none"
+                                                id="sslczPayBtn"
+                                                postdata={JSON.stringify({amount: payAmount})}
+                                                endpoint="http://localhost:3500/payment"
+                                                order={{}}
+                                            >Add to Wallet</button>
                                         </div>
                                     </div>
                                 </div>

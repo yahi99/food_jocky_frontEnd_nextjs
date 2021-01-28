@@ -1,4 +1,5 @@
-import {fetchUser} from "./actions";
+import {fetchDashboardData, fetchUser} from "./actions";
+import dashboard from "../../../pages/user/dashboard";
 
 const reducers = {
     reducers: {
@@ -24,6 +25,15 @@ const reducers = {
                 let { profile_picture } = data
                 if( typeof profile_picture === 'string' && profile_picture.length > 5 ) {
                     state.profile_picture = profile_picture
+                }
+            }
+        },
+        [fetchDashboardData.fulfilled]: (state, action) => {
+            let {error, data} = action.payload
+            if(!error) {
+                state.dashboard = {
+                    loaded: true,
+                    ...data
                 }
             }
         }

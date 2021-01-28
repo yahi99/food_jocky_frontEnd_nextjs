@@ -7,7 +7,7 @@ import Sidebar from './Sidebar'
 const DashBoardArea = () => {
  return (
   <>
-   <section id="dashbords_wrappers">
+   <section id="dashboard_wrappers">
     <div className="container">
      <div className="row">
       <Sidebar/>

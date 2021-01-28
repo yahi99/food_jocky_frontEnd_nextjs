@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-const img1 = '/assets/img/profile.png'
+import React, {useEffect, useState} from 'react'
 import { AiFillDashboard } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
@@ -7,16 +6,26 @@ import { BsWallet } from 'react-icons/bs';
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {LoadingOutlined, PlusOutlined, UserOutlined} from "@ant-design/icons";
-import {Avatar, Form, Upload, Button} from "antd";
+import {LoadingOutlined, UserOutlined} from "@ant-design/icons";
+import {Upload} from "antd";
 import ImgCrop from "antd-img-crop";
 import Swal from "sweetalert2";
 import {fetchUser, uploadProfilePicture} from "../../app/slices/user/actions";
 
 const Sidebar = () => {
     let dispatch = useDispatch()
+    let router = useRouter()
     let user = useSelector(state => state.user)
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if (user.loaded && !user.auth) {
+            router.push('/').then(() => {
+            })
+        }
+    })
+
+
     let image = null
     const onChange = async ({file: newFile}) => {
         setLoading(true)
