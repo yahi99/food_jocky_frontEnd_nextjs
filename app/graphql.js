@@ -1,6 +1,7 @@
 import {SubscriptionClient} from "subscriptions-transport-ws";
-import {Client, createClient, defaultExchanges, subscriptionExchange} from "urql";
+import {Client, createClient, defaultExchanges, Provider, subscriptionExchange} from "urql";
 import process from "process";
+import React from "react";
 
 const ServerUrl = 'https://dev.foodjocky.com/graphql';
 const SubscriptionUrl = 'wss://dev.foodjocky.com/graphql';
@@ -36,3 +37,15 @@ const graphqlClient = token => {
 
 
 export default graphqlClient
+
+export const GraphqlProvider = props => {
+    let token = props.token || "abc"
+    const client = graphqlClient(token);
+
+    return (
+        <Provider value={client}>
+            {props.children}
+        </Provider>
+    );
+
+}

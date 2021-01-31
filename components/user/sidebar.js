@@ -84,6 +84,9 @@ const Sidebar = () => {
                             <NavLink href="/user/profile">
                                 <span><CgProfile /> Profile</span>
                             </NavLink>
+                            <NavLink href="/user/delivery_address">
+                                <span><BsWallet /> Delivery Address</span>
+                            </NavLink>
                             <NavLink href="/user/wallet">
                                 <span><BsWallet /> Wallet</span>
                             </NavLink>

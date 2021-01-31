@@ -32,8 +32,8 @@ const DeliveryAddresses = ({selected, setSelected}) => {
                     <AddAddress address={address} setAddAddress={setAddAddress}/>
                 ) : (
                     <div className="row">
-                        <div className="col-lg-6">
-                            <div className="Add_add_modals" style={{height: 320, paddingTop: 120}} onClick={handleShow}>
+                        <div className="col-lg-4">
+                            <div className="Add_add_modals" style={{height: 300, paddingTop: 120}} onClick={handleShow}>
                                 <a href="#!"><AiOutlinePlus/></a>
                                 <h4>Add address</h4>
                             </div>
