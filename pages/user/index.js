@@ -8,7 +8,6 @@ import {BsBagFill} from "react-icons/bs";
 import {FiRefreshCw} from "react-icons/fi";
 import {GrView} from "react-icons/gr";
 import {Modal, Table} from "antd";
-import {AiOutlineMinusSquare, AiOutlinePlusSquare} from "react-icons/ai";
 
 const User = () => {
     let router = useRouter()

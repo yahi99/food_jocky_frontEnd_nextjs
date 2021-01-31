@@ -3,7 +3,8 @@ const state = {
     auth: false,
     dashboard: {
         loaded: false
-    }
+    },
+    last_order: false
 }
 
 export default state

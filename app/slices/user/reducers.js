@@ -10,6 +10,7 @@ const reducers = {
             state.auth = false
             state.first_name = ""
             state.last_name = ""
+            state.last_order = false
         }
     },
     extraReducers: {
@@ -25,6 +26,9 @@ const reducers = {
                 let { profile_picture } = data
                 if( typeof profile_picture === 'string' && profile_picture.length > 5 ) {
                     state.profile_picture = profile_picture
+                }
+                if(data.last_order && (data.last_order.status === 'pending' || data.last_order.status === 'accepted' || data.last_order.status === 'delivered' )) {
+                    state.last_order = data.last_order
                 }
             }
         },

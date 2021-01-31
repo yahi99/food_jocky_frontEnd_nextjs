@@ -28,7 +28,7 @@ const Address = ({address, selected, setSelected}) => {
     }
 
     return (
-        <div className="col-lg-6">
+        <div className="col-lg-4">
             <div className="add_location_area" style={{outline: (selected && selected._id == address._id) ? '1px solid limegreen': 'none'}} onClick={()=>setSelected(address)}>
                 <div className="add_texted">
                     <h6>{address.title}</h6>

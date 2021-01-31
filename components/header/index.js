@@ -56,20 +56,37 @@ const Header = () => {
                     </Link>
 
                     <ul className="nav-menu">
-                        <li className='nav-item lan-area mr-1'>
-                            <Link href='/cart'>
-                                <a className='nav-links position-relative'>
-                                    <span className="cart-count">{count}</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                         strokeLinejoin="round" className="feather feather-shopping-cart">
-                                        <circle cx="9" cy="21" r="1"></circle>
-                                        <circle cx="20" cy="21" r="1"></circle>
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                    </svg>
-                                </a>
-                            </Link>
-                        </li>
+                        {user.last_order ? (
+                            <li className='nav-item lan-area mr-1'>
+                                <Link href='/checkout'>
+                                    <a className='nav-links position-relative'>
+                                        <span className="cart-count">1</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                             stroke-linejoin="round" className="feather feather-shopping-bag">
+                                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                        </svg>
+                                    </a>
+                                </Link>
+                            </li>
+                        ) : (
+                            <li className='nav-item lan-area mr-1'>
+                                <Link href='/cart'>
+                                    <a className='nav-links position-relative'>
+                                        <span className="cart-count">{count}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                             strokeLinejoin="round" className="feather feather-shopping-cart">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                        </svg>
+                                    </a>
+                                </Link>
+                            </li>
+                        )}
 
                         <li>
                             {user.auth ? (

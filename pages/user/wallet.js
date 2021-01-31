@@ -3,9 +3,12 @@ import MainLayout from "../../components/layout";
 import Sidebar from "../../components/user/sidebar";
 import {Form, Input} from "antd";
 import axios from "axios";
+import {useRouter} from "next/router";
+
 
 
 const wallet = () => {
+    let router = useRouter()
     const form = useRef(null)
     let [payAmount, setPayAmount] = useState(0)
     const setAmount = value => {
@@ -14,8 +17,8 @@ const wallet = () => {
         })
     }
     const handleSubmit = async value => {
-        let payBtn = document.getElementById('sslczPayBtn')
-        payBtn.click()
+        let response = await axios.post('http://localhost:3500/payment', {})
+        await router.push(response.data.data)
     }
 
     useEffect(() => {
@@ -100,14 +103,6 @@ const wallet = () => {
                                                     </div>
                                                 </div>
                                             </Form>
-
-                                            <button
-                                                className="d-none"
-                                                id="sslczPayBtn"
-                                                postdata={JSON.stringify({amount: payAmount})}
-                                                endpoint="http://localhost:3500/payment"
-                                                order={{}}
-                                            >Add to Wallet</button>
                                         </div>
                                     </div>
                                 </div>

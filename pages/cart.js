@@ -35,6 +35,20 @@ const Cart = () => {
 
     }
 
+    if(user.last_order) {
+        return (
+            <MainLayout>
+                <div className="flex text-center" style={{height: '50vh', padding: '20vh'}}>
+                    <h2>You have a previous order</h2>
+                    <Link href="/checkout">
+                        <a className="btn button-site" type="button">Show Order</a>
+                    </Link>
+                </div>
+            </MainLayout>
+        )
+    }
+
+
     if(!cart.foods) {
         return (
             <MainLayout>
@@ -91,10 +105,7 @@ const Cart = () => {
                     {user.auth ? (
                         <>
                             <div className="row">
-                                <div className="col-lg-4">
-                                    <AdditionalItems/>
-                                </div>
-                                <div className="col-lg-8">
+                                <div className="col-lg-12">
                                     <DeliveryAddresses selected={selected} setSelected={setSelected}/>
                                 </div>
                             </div>
