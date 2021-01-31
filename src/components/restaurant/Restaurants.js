@@ -138,7 +138,6 @@ export const getAOrder = async (token, id) => {
                     }
                     status
                     delivery_time
-                    pin
                 }
             }
         }

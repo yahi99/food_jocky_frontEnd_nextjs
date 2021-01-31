@@ -36,9 +36,6 @@ const Checkout = props => {
                         </div>
                         <div className="col-lg-4">
                             <Order_details order={order}/>
-                            <div className="card mt-3" style={{padding: 20}}>
-                                <h4 className="mt-2 font-weight-normal">Delivery Pin: <span style={{color: '#d30807'}}>{props.order.pin}</span></h4>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ const Timeline = props => {
 
                 </div>
                 <h4 className="text-center" style={{padding: 30, fontSize: 18}}>
-                    Estimated delivery time: <span style={{fontSize: 25, color: "#d30807"}}>{dateFormat( date, "h:MM TT")}</span>
+                    Estimated delivery time: <span style={{fontSize: 25, color: "#d30807"}}>{props.order.delivery_time}</span>
                 </h4>
             </div>
         </>
