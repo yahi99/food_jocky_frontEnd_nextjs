@@ -31,8 +31,8 @@ const wallet = () => {
     }
     const handleSubmit = async value => {
         let mutation = `
-            mutation ($amount: Int) {
-                addBalance(amount: $amount) {
+            mutation ($amount: Int,$url: String) {
+                addBalance(amount: $amount, url: $url) {
                     error
                     msg
                     data {
@@ -43,7 +43,7 @@ const wallet = () => {
             }
         `
         let client = graphqlClient(Cookies.get('fj_token'))
-        let {error, data} = await client.mutation(mutation, {amount: +value.amount}).toPromise()
+        let {error, data} = await client.mutation(mutation, {amount: +value.amount, url: 'http://localhost:3050/user/payment_verify'}).toPromise()
         if(error) {
             await Swal.fire('Error', 'Network failed', 'error')
         } else {
