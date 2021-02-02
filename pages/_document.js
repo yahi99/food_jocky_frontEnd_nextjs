@@ -17,7 +17,7 @@ class MyDocument extends Document {
                     {/* <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet"></link> */}
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"></link>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw&libraries=places"></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk&libraries=places"></script>
                 </Head>
                 <body>
                 <Main />

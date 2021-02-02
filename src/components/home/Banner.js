@@ -117,7 +117,7 @@ function Banner() {
 
 
     async function updateName() {
-        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + markerCoordinates.lat + '%2C' + markerCoordinates.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + markerCoordinates.lat + '%2C' + markerCoordinates.lng + '&language=en&key=AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk');
         setAddressSearch(response.data.results[0].formatted_address);
         setAddress(response.data.results[0].formatted_address)
     }
@@ -188,7 +188,7 @@ function Banner() {
                             </PlacesAutocomplete>
 
                         <useLoadScript
-                            googleMapsApiKey="AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw"
+                            googleMapsApiKey="AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk"
                         >
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
