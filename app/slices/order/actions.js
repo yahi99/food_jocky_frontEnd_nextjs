@@ -97,46 +97,61 @@ export const deleteDeliveryAddress = createAsyncThunk('order/delete_delivery_add
     return deleteCustomerLocation
 })
 
-export const placeOrder = createAsyncThunk('order/placeOrder', async ({cart, delivery_address}) => {
-
+export const placeOrder = createAsyncThunk('order/placeOrder', async ({cart, delivery_address, delivery_charge}) => {
     let total = 0
-
     let items = cart.foods.map(order => {
         total += order.quantity * order.price
         return {
-            _id: order.food_id,
+            _id: order._id,
             category_id: order.category_id,
-            name: order.food_name,
+            name: order.name,
             price: order.price,
             quantity: order.quantity,
             size: order.size
         }
     })
-    let newOrder = {
-        delivery_charge: props.settings.delivery_charge,
+    let order = {
+        delivery_charge: delivery_charge,
         sub_total: total,
-        total: total + props.settings.delivery_charge,
-        restaurant: order.restaurant_id,
+        total: total + delivery_charge,
+        restaurant: cart.restaurant_id,
         items: items,
         delivery_info: {
-            _id: location._id,
-            title: location.title,
+            _id: delivery_address._id,
+            title: delivery_address.title,
             address: {
-                address: location.address.address,
+                address: delivery_address.address.address,
                 location: {
-                    lat: location.address.location.lat,
-                    lng: location.address.location.lng
+                    lat: delivery_address.address.location.lat,
+                    lng: delivery_address.address.location.lng
                 }
             },
-            reciver_mobile_no: location.reciver_mobile_no,
-            reciver_name: location.reciver_name,
-            house_no: location.house_no,
-            floor_no: location.floor_no,
-            note_to_rider: location.note_to_rider
+            reciver_mobile_no: delivery_address.reciver_mobile_no,
+            reciver_name: delivery_address.reciver_name,
+            house_no: delivery_address.house_no,
+            floor_no: delivery_address.floor_no,
+            note_to_rider: delivery_address.note_to_rider
         }
     }
-
-
+    let mutation = `
+        mutation( $order: OrderInput ) {
+            addOrder( orderInput: $order ) {
+                error
+                msg
+            }
+        }
+    `
+    let token = Cookies.get('fj_token')
+    let client = graphqlClient(token)
+    let {error, data} = await client.mutation(mutation, {order}).toPromise()
+    if (error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {addOrder} = data
+    return {
+        error: addOrder.error,
+        msg: addOrder.msg
+    }
 })
 
 export const fetchOrder = createAsyncThunk('order/fetch', async ({id}) => {

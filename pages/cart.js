@@ -10,6 +10,8 @@ import DeliveryAddresses from "../components/cart/delivery_addresses";
 import {fetchDeliveryAddresses, placeOrder} from "../app/slices/order/actions";
 import Payment_Area from "../src/components/Cart/Payment_Area";
 import Swal from "sweetalert2";
+import {fetchUser} from "../app/slices/user/actions";
+import {clearCart} from "../app/slices/restaurant";
 
 const Cart = () => {
     let dispatch = useDispatch()
@@ -18,6 +20,7 @@ const Cart = () => {
     let router = useRouter()
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
+    let delivery_charge = useSelector(state => state.order.delivery_charge)
     useEffect(() => {
         if(!loaded) {
             setLoaded(true)
@@ -29,7 +32,15 @@ const Cart = () => {
         if(!selected) {
             await Swal.fire('Warning', 'Please select delivery address', 'warning')
         } else {
-            dispatch(placeOrder({cart, delivery_address: selected}))
+            let {payload} = await dispatch(placeOrder({cart, delivery_address: selected, delivery_charge}))
+            if(payload.error) {
+                await Swal.fire('Error', payload.msg, 'error')
+            } else {
+                await Swal.fire('Success', 'Order placed Successfully')
+                await dispatch(fetchUser({}))
+                dispatch(clearCart({}))
+                await router.push('/checkout')
+            }
         }
 
 

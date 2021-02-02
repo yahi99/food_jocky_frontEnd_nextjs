@@ -4,7 +4,8 @@ const state = {
     dashboard: {
         loaded: false
     },
-    last_order: false
+    last_order: false,
+    wallet: null
 }
 
 export default state

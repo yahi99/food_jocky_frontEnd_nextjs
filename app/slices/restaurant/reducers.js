@@ -83,8 +83,11 @@ const reducers = {
         loadCart (state, action) {
             let cart = Cookies.get('fj-cart') || '{}'
             state.cart = JSON.parse(cart)
+        },
+        clearCart (state, action) {
+            Cookies.set('fj-cart', {})
+            state.cart = {}
         }
-
     },
     extraReducers: {
         [fetchRestaurants.fulfilled]: (state, action) => {
