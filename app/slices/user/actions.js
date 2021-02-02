@@ -184,6 +184,42 @@ export const fetchDashboardData = createAsyncThunk('user/fetchDashboardData', as
 
 })
 
+export const fetchWallet = createAsyncThunk('user/fetchWallet', async ({}) => {
+    let query = `
+        query{
+            getWalletPageData {
+                error
+                data {
+                    balance
+                    totalCredit
+                    totalDebit
+                    transactions {
+                        _id
+                        current_balance
+                        previous_balance
+                        status
+                        debit_or_credit
+                        createdAt
+                        updatedAt
+                    }
+                }
+            }
+        }
+    `
+    let token = Cookies.get('fj_token')
+    let client = graphqlClient(token)
+    let { error, data } = await client.query(query).toPromise()
+    if(error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {getWalletPageData} = data
+    return {
+        error: getWalletPageData.error,
+        msg: getWalletPageData.msg,
+        data: getWalletPageData.data
+    }
+})
+
 
 export const uploadImage = async (file) => {
     try {
@@ -198,3 +234,4 @@ export const uploadImage = async (file) => {
         return ''
     }
 }
+

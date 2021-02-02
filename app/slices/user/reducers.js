@@ -1,5 +1,4 @@
-import {fetchDashboardData, fetchUser} from "./actions";
-import dashboard from "../../../pages/user/dashboard";
+import {fetchDashboardData, fetchUser, fetchWallet} from "./actions";
 
 const reducers = {
     reducers: {
@@ -39,6 +38,12 @@ const reducers = {
                     loaded: true,
                     ...data
                 }
+            }
+        },
+        [fetchWallet.fulfilled]: (state, action) => {
+            let {error, data} = action.payload
+            if(!error) {
+                state.wallet = data
             }
         }
     }

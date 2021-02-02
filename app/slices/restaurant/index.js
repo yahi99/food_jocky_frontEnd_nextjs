@@ -9,6 +9,6 @@ const restaurantSlice = createSlice({
     ...reducers
 })
 
-export const {reloadRestaurants, loadCart, addToCart, removeFromCart} = restaurantSlice.actions
+export const {reloadRestaurants, loadCart, addToCart, removeFromCart, clearCart} = restaurantSlice.actions
 
 export default restaurantSlice.reducer

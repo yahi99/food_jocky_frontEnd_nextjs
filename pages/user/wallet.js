@@ -2,33 +2,60 @@ import React, {useEffect, useRef, useState} from 'react'
 import MainLayout from "../../components/layout";
 import Sidebar from "../../components/user/sidebar";
 import {Form, Input} from "antd";
-import axios from "axios";
 import {useRouter} from "next/router";
-
-
+import graphqlClient from "../../app/graphql";
+import Cookies from 'js-cookie'
+import Swal from "sweetalert2";
+import {fetchWallet} from "../../app/slices/user/actions";
+import {useDispatch} from "react-redux";
 
 const wallet = () => {
     let router = useRouter()
-    const form = useRef(null)
+    let dispatch = useDispatch()
+    const [form] = Form.useForm()
     let [payAmount, setPayAmount] = useState(0)
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        if (!loaded) {
+            setLoaded(true)
+            dispatch(fetchWallet(({})))
+        }
+    })
+
+
     const setAmount = value => {
-        form.current.setFieldsValue({
+        form.setFieldsValue({
             amount: value
         })
     }
     const handleSubmit = async value => {
-        let response = await axios.post('http://localhost:3500/payment', {})
-        await router.push(response.data.data)
+        let mutation = `
+            mutation ($amount: Int) {
+                addBalance(amount: $amount) {
+                    error
+                    msg
+                    data {
+                        transaction_id
+                        GatewayPageURL
+                    }
+                }
+            }
+        `
+        let client = graphqlClient(Cookies.get('fj_token'))
+        let {error, data} = await client.mutation(mutation, {amount: +value.amount}).toPromise()
+        if(error) {
+            await Swal.fire('Error', 'Network failed', 'error')
+        } else {
+            let { addBalance } =  data
+            if(addBalance.error) {
+                await Swal.fire('Error', addBalance.msg, 'error')
+            } else {
+                Cookies.set('fj_transaction_id', addBalance.data.transaction_id)
+                await router.push(addBalance.data.GatewayPageURL)
+            }
+        }
     }
-
-    useEffect(() => {
-        let loader = function () {
-            let script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
-            tag.parentNode.insertBefore(script, tag);
-        };
-        window.addEventListener("load", loader, false)
-    })
 
     return (
         <MainLayout>
@@ -75,7 +102,7 @@ const wallet = () => {
                                                 <h3>Add Wallet</h3>
                                             </div>
                                             <Form layout="vertical"
-                                                  ref={form}
+                                                  form={form}
                                                   requiredMark={false}
                                                   onFinish={handleSubmit}>
                                                 <div className="add_wallet_input ">
@@ -84,7 +111,7 @@ const wallet = () => {
                                                         rules={
                                                             [
                                                                 { required: true, message: 'Please input your Amount!' },
-                                                                { pattern: /\d+(\.\d{1,2})?/, message: 'Please input a valid amount!' }
+                                                                { pattern: /^[1-9]\d*$/, message: 'Please input only full amount!' }
                                                             ]
                                                         }
                                                     >
