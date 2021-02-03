@@ -199,6 +199,9 @@ export const fetchWallet = createAsyncThunk('user/fetchWallet', async ({}) => {
                         previous_balance
                         status
                         debit_or_credit
+                        amount
+                        cashback
+                        cashback_percentange
                         createdAt
                         updatedAt
                     }
@@ -218,6 +221,33 @@ export const fetchWallet = createAsyncThunk('user/fetchWallet', async ({}) => {
         msg: getWalletPageData.msg,
         data: getWalletPageData.data
     }
+})
+
+export const confirmTransaction = createAsyncThunk('user/confirmPayment', async ({id}) => {
+    let mutation = `
+        mutation ($id: ID){
+            trackTransaction(_id: $id){
+                error
+                msg
+                data {
+                    status
+                }
+            }
+        }
+    `
+    let token = Cookies.get('fj_token')
+    let client = graphqlClient(token)
+    let { error, data } = await client.mutation(mutation, {id}).toPromise()
+    if(error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {trackTransaction} = data
+    return {
+        error: trackTransaction.error,
+        msg: trackTransaction.msg,
+        data: trackTransaction.data
+    }
+
 })
 
 

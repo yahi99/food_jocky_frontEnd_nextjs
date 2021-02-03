@@ -3427,18 +3427,21 @@ width: 100%;
   z-index: -1;
 }
 .add_wallet_input{
-  padding-top: 20px;
+  padding-top: 5px;
 }
 .add_wallet_button{
 text-align: center;
 padding-top: 15px;
 }
 .add_wallet_main_button{
+  display: flex;
+  justify-content: space-between;
 text-align: center;
 padding-top: 10px;
 }
 .add_wallet_main_button button.btn {
   padding: 5px 15px;
+  margin: 0;
 }
 .add_wallet_submit_button{
 margin-top: 20px;
