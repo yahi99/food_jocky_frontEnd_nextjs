@@ -5,7 +5,7 @@ const state = {
         loaded: false
     },
     last_order: false,
-    wallet: null
+    wallet: {}
 }
 
 export default state

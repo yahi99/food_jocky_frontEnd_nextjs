@@ -1,13 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react'
 import MainLayout from "../../components/layout";
 import Sidebar from "../../components/user/sidebar";
-import {Form, Input} from "antd";
+import {Form, Input, Progress, Slider, Table} from "antd";
 import {useRouter} from "next/router";
 import graphqlClient from "../../app/graphql";
 import Cookies from 'js-cookie'
 import Swal from "sweetalert2";
 import {fetchWallet} from "../../app/slices/user/actions";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import dateformat from 'dateformat'
 
 const wallet = () => {
     let router = useRouter()
@@ -22,6 +23,8 @@ const wallet = () => {
             dispatch(fetchWallet(({})))
         }
     })
+
+    const wallet = useSelector(state => state.user.wallet)
 
 
     const setAmount = value => {
@@ -57,6 +60,89 @@ const wallet = () => {
         }
     }
 
+    const columns = [
+        {
+            title: '#',
+            dataIndex: 'key',
+            key: 'key',
+        },
+        {
+            title: 'Date',
+            dataIndex: 'date',
+            key: 'date',
+            render: (date, _) => (
+                <p>{dateformat(+date, 'dd mmm,yyyy')}</p>
+            )
+        },
+        {
+            title: 'Time',
+            dataIndex: 'date',
+            key: 'time',
+            render: (date, _) => (
+                <p>{dateformat(+date, 'hh:MM tt')}</p>
+            )
+        },
+        {
+            title: 'Wallet',
+            dataIndex: 'wallet',
+            key: 'wallet',
+        },
+        {
+            title: 'Debit',
+            dataIndex: 'debit',
+            key: 'debit',
+        },
+        {
+            title: 'Credit',
+            dataIndex: 'credit',
+            key: 'credit',
+        },
+        {
+            title: 'Cashback',
+            dataIndex: 'cashback',
+            key: 'cashback',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            className: 'text-center',
+            key: 'status',
+            render: (status, record) => {
+                if(status === 'pending')
+                    return <span className="btn btn-warning btn-sm shadow-none rounded"> Pending </span>
+                if(status === 'success')
+                    return <span className="btn btn-primary btn-sm shadow-none"> Success </span>
+                if(status === 'cancelled')
+                    return <span className="btn btn-danger btn-sm shadow-none"> Cancelled </span>
+
+                return <></>
+            }
+        }
+    ];
+
+    const getPercentages = () => {
+        try {
+            return 100 - (+wallet.totalCredit / +wallet.totalDebit) * 100
+        } catch (e) {
+            return 0
+        }
+    }
+
+    let data = []
+    if(wallet.transactions) {
+        data = wallet.transactions.map((transition, index) => {
+            return {
+                key: index + 1,
+                date: transition.createdAt,
+                wallet: transition.current_balance,
+                debit: transition.debit_or_credit === 'debit' ? transition.amount : 0,
+                credit: transition.debit_or_credit === 'credit' ? transition.amount : 0,
+                cashback: transition.cashback,
+                status: transition.status
+            }
+        })
+    }
+
     return (
         <MainLayout>
             <section id="wallet_area">
@@ -73,25 +159,21 @@ const wallet = () => {
                                             </div>
                                             <div className="wallet_balance_area">
                                                 <p>Wallet Balance</p>
-                                                <h4>$345.90</h4>
+                                                <h4>BDT {wallet.balance}</h4>
                                             </div>
                                             <div className="wallet_balance_flex">
                                                 <div className="wallet_balance_area">
                                                     <p>Total Credit</p>
-                                                    <h4>$335445.90</h4>
+                                                    <h4>BDT {wallet.totalCredit}</h4>
                                                 </div>
                                                 <div className="wallet_balance_area">
                                                     <p>Total Debit</p>
-                                                    <h4>$34d78745.60</h4>
+                                                    <h4>BDT {wallet.totalDebit}</h4>
                                                 </div>
                                             </div>
                                             <div className="wallet_range_bar">
-                                                <div className="top_range_bar">
-                                                    <p>$478545</p>
-                                                    <p>$478545</p>
-                                                </div>
-                                                <div className="main_range_bar">
-                                                    <span>45%.44</span>
+                                                <div className="my-3">
+                                                    <Progress percent={getPercentages()} strokeWidth={20} strokeColor="#c8102f" showInfo={true}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,78 +217,9 @@ const wallet = () => {
                                 </div>
                                 <div className="wallets_table">
                                     <h3>Wallet Transactions</h3>
-                                    <div className="table-responsive">
-
-
-                                        <table className="table">
-                                            <tr>
-                                                <th>S.NO</th>
-                                                <th>Date</th>
-                                                <th>Wallet</th>
-                                                <th>Credit</th>
-                                                <th>Debit</th>
-                                                <th>Txt amt</th>
-                                                <th>Available</th>
-                                                <th>Reason</th>
-                                                <th>Status</th>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>22 jul 2020</td>
-                                                <td>$576.2</td>
-                                                <td>$0</td>
-                                                <td>$200</td>
-                                                <td>$0</td>
-                                                <td>$567.6</td>
-                                                <td>Booked a Service</td>
-                                                <td><span>Debit</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>22 jul 2020</td>
-                                                <td>$576.2</td>
-                                                <td>$0</td>
-                                                <td>$200</td>
-                                                <td>$0</td>
-                                                <td>$567.6</td>
-                                                <td>Booked a Service</td>
-                                                <td><span>Debit</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>22 jul 2020</td>
-                                                <td>$576.2</td>
-                                                <td>$0</td>
-                                                <td>$200</td>
-                                                <td>$0</td>
-                                                <td>$567.6</td>
-                                                <td>Booked a Service</td>
-                                                <td><span>Debit</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>22 jul 2020</td>
-                                                <td>$576.2</td>
-                                                <td>$0</td>
-                                                <td>$200</td>
-                                                <td>$0</td>
-                                                <td>$567.6</td>
-                                                <td>Booked a Service</td>
-                                                <td><span>Debit</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>22 jul 2020</td>
-                                                <td>$576.2</td>
-                                                <td>$0</td>
-                                                <td>$200</td>
-                                                <td>$0</td>
-                                                <td>$567.6</td>
-                                                <td>Booked a Service</td>
-                                                <td><span>Debit</span></td>
-                                            </tr>
-
-                                        </table>
+                                    <div className="">
+                                        <Table columns={columns} pagination={{pageSize: 5}} dataSource={data} >
+                                        </Table>
                                     </div>
                                 </div>
                             </div>
