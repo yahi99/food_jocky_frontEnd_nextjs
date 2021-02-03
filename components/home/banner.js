@@ -9,7 +9,7 @@ import {Form} from "antd";
 function Banner() {
     let [form] = Form.useForm()
     const {isLoaded} = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw",
+        googleMapsApiKey: "AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk",
         libraries: ['places']
     })
 
@@ -64,7 +64,7 @@ function Banner() {
         }
     }
     const getGeocode = async (lat, lng) => {
-        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + '%2C' + lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + '%2C' + lng + '&language=en&key=AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk');
         return response.data.results[0]
     }
     const getAddress = () => {
