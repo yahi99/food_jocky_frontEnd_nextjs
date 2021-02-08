@@ -44,6 +44,8 @@ export const fetchRestaurant = createAsyncThunk('restaurant/fetchRestaurant', as
                     cover_img
                     price_type
                     description
+                    rider_cost
+                    vat
                     address {
                         address
                         location {
