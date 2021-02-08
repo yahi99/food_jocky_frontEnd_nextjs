@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import graphqlClient from "../../graphql";
 import Cookies from 'js-cookie'
 
-export const fetchDeliveryAmount = createAsyncThunk('order/fetch_delivery_amount', async ({}) => {
+export const fetchSettings = createAsyncThunk('order/fetchSettings', async ({}) => {
     let query = `
         query {
             getSettings {
@@ -10,6 +10,13 @@ export const fetchDeliveryAmount = createAsyncThunk('order/fetch_delivery_amount
                 msg
                 data {
                     delivery_charge
+                    customer_cashback_percentange
+                    google_map_api_key
+                    rider_extra_time
+                    restaurant_extra_time
+                    customer_vat
+                    rider_cost
+                    restaurant_vat
                 }
             }
         }

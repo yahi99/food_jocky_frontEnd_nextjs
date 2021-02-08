@@ -1,14 +1,15 @@
-import {fetchDeliveryAddresses, fetchDeliveryAmount, fetchOrder} from "./actions";
+import {fetchDeliveryAddresses, fetchOrder, fetchSettings} from "./actions";
 
 const reducers = {
     reducers: {
 
     },
     extraReducers: {
-        [fetchDeliveryAmount.fulfilled]: (state, action) => {
+        [fetchSettings.fulfilled]: (state, action) => {
             let { error, data } = action.payload
             if(!error) {
-                state.delivery_charge = data.delivery_charge
+                state.settings = data
+                state.settings.loaded = true
             }
         },
         [fetchDeliveryAddresses.fulfilled]: (state, action) => {

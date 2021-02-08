@@ -7,12 +7,7 @@ import Swal from "sweetalert2";
 
 const Food = ({food, category_id}) => {
     let dispatch = useDispatch()
-    let restaurant = useSelector(state => {
-        return {
-            _id: state.restaurant.restaurant.data._id,
-            name: state.restaurant.restaurant.data.name
-        }
-    })
+    let restaurant = useSelector(state => state.restaurant.restaurant.data)
     let cart = useSelector(state => state.restaurant.cart)
 
     const [show, setShow] = useState(false)
