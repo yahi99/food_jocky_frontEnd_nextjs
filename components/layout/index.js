@@ -21,7 +21,6 @@ const MainLayout = props => {
             }
         }
     })
-
     if(!settings.loaded) {
         return <></>
     }

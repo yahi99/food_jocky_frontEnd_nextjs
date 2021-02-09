@@ -9,14 +9,11 @@ export const fetchSettings = createAsyncThunk('order/fetchSettings', async ({}) 
                 error
                 msg
                 data {
-                    delivery_charge
-                    customer_cashback_percentange
                     google_map_api_key
                     rider_extra_time
                     restaurant_extra_time
                     customer_vat
                     rider_cost
-                    restaurant_vat
                 }
             }
         }
@@ -204,5 +201,30 @@ export const fetchOrder = createAsyncThunk('order/fetch', async ({id}) => {
         error: getOneOrder.error,
         msg: getOneOrder.msg,
         data: getOneOrder.data
+    }
+})
+
+export const getDistance = createAsyncThunk('order/fetchDistance', async ({lat1, lng1, lat2, lng2}) => {
+    let query = `
+       query($lat1: Float, $lng1: Float, $lat2: Float, $lng2: Float) {
+            getDistanceFromLatLng(customer_lat: $lat1, customer_lng: $lng1, restaurant_lat: $lat2, restaurant_lng: $lng2){
+                error
+                msg
+                data {
+                    distance
+                }
+            }
+        }
+    `
+    let client = graphqlClient()
+    let {error, data} = await client.query(query, {lat1, lng1, lat2, lng2}).toPromise()
+    if (error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {getDistanceFromLatLng} = data
+    return {
+        error: getDistanceFromLatLng.error,
+        msg: getDistanceFromLatLng.msg,
+        data: getDistanceFromLatLng.data
     }
 })

@@ -1,4 +1,4 @@
-import {fetchDeliveryAddresses, fetchOrder, fetchSettings} from "./actions";
+import {fetchDeliveryAddresses, fetchOrder, fetchSettings, getDistance} from "./actions";
 
 const reducers = {
     reducers: {
@@ -22,6 +22,12 @@ const reducers = {
             let { error, data } = action.payload
             state.loaded = !error
             state.data = data
+        },
+        [getDistance.fulfilled]: (state, action) => {
+            let { error, data } = action.payload
+            if(!error) {
+                state.distance = Math.max(1, data.distance )
+            }
         }
     }
 }

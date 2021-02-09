@@ -7,8 +7,29 @@ import Swal from "sweetalert2";
 
 const Food = ({food, category_id}) => {
     let dispatch = useDispatch()
-    let restaurant = useSelector(state => state.restaurant.restaurant.data)
+    let restaurant = useSelector(state => {
+        return {
+            _id: state.restaurant.restaurant.data._id,
+            name: state.restaurant.restaurant.data.name,
+            discount: state.restaurant.restaurant.data.discount_given_by_restaurant + state.restaurant.restaurant.data.discount_given_by_admin
+        }
+    })
     let cart = useSelector(state => state.restaurant.cart)
+
+    if(restaurant.discount > 0) {
+        food = {
+            ...food,
+            price: Math.ceil(food.price),
+            d_price: Math.ceil(food.price * (1 - (restaurant.discount * 0.01))),
+            price_and_size: food.price_and_size.map(variation => {
+                return {
+                    size: variation.size,
+                    price: Math.ceil(variation.price),
+                    d_price: Math.ceil(variation.price * (1 - (restaurant.discount * 0.01)))
+                }
+            })
+        }
+    }
 
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true)
@@ -83,7 +104,7 @@ const Food = ({food, category_id}) => {
                                     <p>
                                         {food.description}
                                     </p>
-                                    <h4> BDT {food.price}</h4>
+                                    <h4> BDT {food.d_price}</h4>
                                 </div>
                             </div>
                             <div className="col-lg-1">
@@ -120,7 +141,7 @@ const Food = ({food, category_id}) => {
                         </div>
                         <div className="start_from">
                             <p>Starts From</p>
-                            <h3>Tk. {food.price}</h3>
+                            <h3>Tk. {food.d_price}</h3>
                         </div>
                     </div>
                 </Modal.Header>

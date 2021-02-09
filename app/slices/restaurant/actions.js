@@ -44,7 +44,6 @@ export const fetchRestaurant = createAsyncThunk('restaurant/fetchRestaurant', as
                     cover_img
                     price_type
                     description
-                    rider_cost
                     vat
                     address {
                         address
@@ -53,6 +52,8 @@ export const fetchRestaurant = createAsyncThunk('restaurant/fetchRestaurant', as
                             lng
                         }
                     }
+                    discount_given_by_restaurant
+                    discount_given_by_admin
                     food_categories{
                         _id
                         name

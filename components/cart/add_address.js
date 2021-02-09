@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Form, Input} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {addDeliveryAddress, fetchDeliveryAddresses} from "../../app/slices/order/actions";
@@ -6,21 +6,26 @@ import Swal from "sweetalert2";
 
 const AddAddress = ({address, setAddAddress}) => {
     let user = useSelector(state => state.user)
-    let form = useRef()
-
-    let initialValues = {
-        reciver_name: user.first_name + " " + user.last_name,
-        reciver_mobile_no: user.mobile.replace('+880', '')
-    }
-
+    let [form] = Form.useForm()
+    const [loaded, setLoaded ] = useState(false)
+    useEffect(() => {
+        if(!loaded) {
+            setLoaded(true)
+            form.setFieldsValue({
+                reciver_name: user.first_name + " " + user.last_name,
+                reciver_mobile_no: user.mobile.replace('+880', ''),
+                address: address.address
+            })
+        }
+    })
     const clearName = () => {
-        form.current.setFieldsValue({
+        form.setFieldsValue({
             reciver_name: null
         })
     }
 
     const clearMobile = () => {
-        form.current.setFieldsValue({
+        form.setFieldsValue({
             reciver_mobile_no: null
         })
     }
@@ -57,9 +62,8 @@ const AddAddress = ({address, setAddAddress}) => {
         <div className="add_location_texted p-5">
             <Form
                 layout="vertical"
-                initialValues={initialValues}
                 requiredMark={false}
-                ref={form}
+                form={form}
                 onFinish={handleSubmit}
                 id="Add_Form_Location">
                 <Form.Item
@@ -73,7 +77,6 @@ const AddAddress = ({address, setAddAddress}) => {
                 <Form.Item
                     label="Address"
                     name="address"
-                    initialValue={address.address}
                 >
                     <Input disabled/>
                 </Form.Item>
