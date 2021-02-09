@@ -5,6 +5,7 @@ import {BiMap} from "react-icons/bi";
 import axios from "axios";
 import {Modal} from "react-bootstrap";
 import {Form} from "antd";
+import Cookies from 'js-cookie'
 
 function Banner() {
     let [form] = Form.useForm()
@@ -83,9 +84,15 @@ function Banner() {
         if (fields.address && fields.address.location) {
             return fields.address.location
         }
+        let location = JSON.parse(Cookies.get('delivery_to'))
+        if(location) {
+            return location
+        }
+        Cookies.set('delivery_to', {lat: 22.8136822, lng: 89.5635596})
         return {lat: 22.8136822, lng: 89.5635596}
     }
     const setAddressLocation = (address, lat, lng) => {
+        Cookies.set('delivery_to', {lat, lng})
         form.setFieldsValue({address: {address: address, location: {lat, lng}}})
         reload()
     }
@@ -111,7 +118,7 @@ function Banner() {
                                     <div className="input-group">
                                         <input
                                             type="text"
-                                            placeholder="Customized your placeholder"
+                                            placeholder="Search Places ...."
                                             className='form-control location-search-input'
                                             value={getAddress()}
                                             onChange={e => setAddress(e.currentTarget.value)}

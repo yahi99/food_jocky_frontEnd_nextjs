@@ -7,11 +7,12 @@ import CartTable from "../components/cart/table";
 import {useRouter} from "next/router";
 import AdditionalItems from "../components/cart/additional_items";
 import DeliveryAddresses from "../components/cart/delivery_addresses";
-import {fetchDeliveryAddresses, placeOrder} from "../app/slices/order/actions";
+import {fetchDeliveryAddresses, getDistance, placeOrder} from "../app/slices/order/actions";
 import Payment_Area from "../src/components/Cart/Payment_Area";
 import Swal from "sweetalert2";
 import {fetchUser} from "../app/slices/user/actions";
 import {clearCart} from "../app/slices/restaurant";
+import {fetchRestaurant} from "../app/slices/restaurant/actions";
 
 const Cart = () => {
     let dispatch = useDispatch()
@@ -21,12 +22,20 @@ const Cart = () => {
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
     let delivery_charge = useSelector(state => state.order.delivery_charge)
+    let restaurant_address = useSelector(state => state.restaurant.restaurant.data.address)
     useEffect(() => {
-        if(!loaded) {
+        if(!loaded && cart.restaurant_id) {
             setLoaded(true)
             dispatch(fetchDeliveryAddresses({}))
+            dispatch(fetchRestaurant({id: cart.restaurant_id}))
         }
     })
+
+    const handleSelected = value => {
+        let delivery_to = value.address.location
+        setSelected(value)
+        dispatch(getDistance({lat1: restaurant_address.location.lat, lng1: restaurant_address.location.lng, lat2: delivery_to.lat, lng2: delivery_to.lng}))
+    }
 
     const handleSubmit = async () => {
         if(!selected) {
@@ -117,7 +126,7 @@ const Cart = () => {
                         <>
                             <div className="row">
                                 <div className="col-lg-12">
-                                    <DeliveryAddresses selected={selected} setSelected={setSelected}/>
+                                    <DeliveryAddresses selected={selected} setSelected={handleSelected}/>
                                 </div>
                             </div>
 
