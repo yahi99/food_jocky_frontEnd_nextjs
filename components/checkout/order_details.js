@@ -11,7 +11,11 @@ const OrderDetails = ({order}) => {
                 <div className="order-summery-text">
                     <ul>
                         <li><span>Your order from:</span> {order.restaurant.name}</li>
-                        <li><span> Delivery Address:</span> {order.delivery_info.floor_no}, {order.delivery_info.house_no}, {order.delivery_info.address.address}  </li>
+                        <li><span>Delivery Address:</span> {order.delivery_info.address.address}</li>
+                        <li><span>Receiver Name: </span>{order.delivery_info.reciver_name}</li>
+                        <li><span>Mobile No: </span>{order.delivery_info.reciver_mobile_no}</li>
+                        <li><span>House No: </span>{order.delivery_info.house_no}</li>
+                        <li><span>Floor No: </span>{order.delivery_info.floor_no}</li>
                     </ul>
                 </div>
                 <div className="dots-area"> </div>
@@ -37,12 +41,22 @@ const OrderDetails = ({order}) => {
                             <p>BDT {order.sub_total}</p>
                         </div>
                     </div>
+
+                    <div className="order-items-list-totals">
+                        <div className="order-items-product">
+                            <p style={{color: '#c8102f'}}>Discount</p>
+                        </div>
+                        <div className="order-items-product">
+                            <p style={{color: '#c8102f'}}>BDT -{order.customer_discount_amount}</p>
+                        </div>
+                    </div>
+
                     <div className="order-items-list-totals">
                         <div className="order-items-product">
                             <p>Vat</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT 0</p>
+                            <p>BDT {order.vat}</p>
                         </div>
                     </div>
 
