@@ -16,7 +16,7 @@ function Header(props) {
 
     function handleLogout(e) {
         e.preventDefault();
-        const Cookies = require('js-cookie');
+        const Cookies = require('js-cookie'); 
         Cookies.remove('token');
         Router.push("/");
     }

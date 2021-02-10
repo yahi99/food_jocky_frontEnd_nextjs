@@ -28,7 +28,7 @@ function RestaurantHeader(props) {
         Router.push("/restaurant_login");
     }
 
-    useEffect(() => {
+    useEffect(() => { 
         showButton();
     }, []);
 

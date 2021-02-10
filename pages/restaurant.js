@@ -50,7 +50,6 @@ const Restaurant = () => {
     }
 
 
-
     return (
         <MainLayout>
             <RestaurantBanner restaurant={restaurant.data}/>

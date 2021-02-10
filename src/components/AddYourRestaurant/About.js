@@ -10,9 +10,9 @@ const About = () => {
               <div className="Add_Foodjocky_text">
                  <h2>About Foodjocky</h2>
                  <p>We're hungry for the best things in life: delicious food,
-                   exploring the city and bringing the first bite of food to our customers.</p>
-                   <p>Foodjocky is a multi-national, fast-growing business that maintains its appeal
-                     as a localised service with community ambition.</p>          
+                    exploring the city and bringing the first bite of food to our customers.</p>
+                    <p>Foodjocky is a multi-national, fast-growing business that maintains its appeal
+                    as a localised service with community ambition.</p>          
                 </div>
            </div>
        </div>

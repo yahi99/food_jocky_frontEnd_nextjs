@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner from './Banner'
+import Banner from './Banner' 
 import Our_Customers from './Our_Customers'
 import About from './About'
 import How_It_Work from './How_It_Work'

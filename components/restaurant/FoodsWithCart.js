@@ -23,7 +23,7 @@ const FoodsWithCart = ({restaurant}) => {
         <section id="Top_cata_food_area">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-8">
+                    <div className="col-lg-7">
                         <div className="setmenu-items-inner-wrapper">
                             {restaurant.food_categories.map((category, index) => (
                                 <div id={"category-" + category.name.replace(/\s/g, "-")} key={index}>
@@ -41,7 +41,7 @@ const FoodsWithCart = ({restaurant}) => {
                     </div>
 
                     {cart.foods && (
-                        <div className="col-lg-4">
+                        <div className="col-lg-5">
                             <div className="Catr-Heading">
                                 <h2>My Cart</h2>
                             </div>
