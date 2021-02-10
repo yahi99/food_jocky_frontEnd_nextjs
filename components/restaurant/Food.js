@@ -89,7 +89,7 @@ const Food = ({food, category_id}) => {
 
     return (
         <>
-            <div className="col-lg-12 col-md-12 col-12">
+            <div className="col-lg-12 col-md-6 col-sm-12 col-12">
                 <div className="setmenu_Items_wrapers">
                     <div className="set_menu_inner_area">
                         <div className="row">
@@ -173,7 +173,6 @@ const Food = ({food, category_id}) => {
                     </div>
                 </Modal.Footer>
             </Modal>
-
         </>
     )
 }

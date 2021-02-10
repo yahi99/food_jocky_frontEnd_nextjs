@@ -167,7 +167,7 @@ section {
 
 .heading-section p {
   font-size: 18px;
-  padding-top: 10px;
+  padding-top: 0px;
 }
 
 /* -----------------------------
@@ -416,6 +416,10 @@ button:focus {
 }
 .lan-area .active{
   color: darkgrey;
+}
+.scroll_topCart_area{
+  position: sticky;
+  top: 150px;
 }
 /* -----------------------------
           Home Banner
