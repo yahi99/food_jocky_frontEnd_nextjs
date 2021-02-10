@@ -1,12 +1,18 @@
 import PlacesAutocomplete, {geocodeByAddress} from "react-places-autocomplete";
 import {BiMap} from "react-icons/bi";
-import {GoogleMap, Marker} from "@react-google-maps/api";
-import Link from "next/link";
+import {Autocomplete, GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Modal} from "antd";
+import {Form, Modal} from "antd";
+import Cookies from "js-cookie";
 
 const MapModal = props => {
+    let [form] = Form.useForm()
+    const {isLoaded} = useJsApiLoader({
+        googleMapsApiKey: "AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk",
+        libraries: ['places']
+    })
+
 
     const mapStyles = {
         height: "40vh",
@@ -14,99 +20,72 @@ const MapModal = props => {
         margin: "30px 0 0 0"
     };
 
-
-    const defaultCoordinates = {
-        lat: 22.8136822, lng:89.5635596
-    }
-
-    const [coordinates, setCoordinates] = useState(defaultCoordinates);
-    const [markerCoordinates, setMarkerCoordinates] = useState(defaultCoordinates);
-
-
-    const [addressSearch, setAddressSearch] = useState('');
-    async function handleAddressSearch(location) {
-        setAddressSearch(location);
-        let geocode = await geocodeByAddress(location);
-        let currentCoordinates = {
-            lat: geocode[0].geometry.location.lat(),
-            lng: geocode[0].geometry.location.lng(),
-        }
-        setCoordinates(currentCoordinates)
-        setMarkerCoordinates(currentCoordinates);
-    }
-
-
-    const [ marker, setMarker ] = useState();
-
-    function onMarkerLoad(value) {
-        setMarker(value);
-    }
-
-    const [ getCurrentLocation, setGetCurrentLocation] = useState(true);
-
-    function currentLocation() {
-        setGetCurrentLocation(true);
-    }
-
-
-    useEffect(function (){
-
-        if(getCurrentLocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                let currentCoordinates = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                }
-                setCoordinates(currentCoordinates)
-                setMarkerCoordinates(currentCoordinates);
+    const currentLocation = () => {
+        if(isLoaded) {
+            navigator.geolocation.getCurrentPosition(async function(position) {
+                let {formatted_address, geometry} = await getGeocode(position.coords.latitude, position.coords.longitude)
+                setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
             }, () => {}, {
                 enableHighAccuracy: true,
                 timeout: 5000,
                 maximumAge: 0
             });
-            setGetCurrentLocation(false);
-            updateName();
         }
-    }, [getCurrentLocation, coordinates, markerCoordinates])
-
-
-    function handleMarkerPositionUpdate() {
-        if( marker ) {
-
-            // console.log("Updated" , marker.position.lat(), marker.position.lng());
-            setMarkerCoordinates({
-                lat: marker.position.lat(),
-                lng: marker.position.lng()
-            })
-        }
-        updateName();
-
     }
 
-    const handleMapClick = e => {
-        setMarkerCoordinates({
-            lat: e.latLng.lat(),
-            lng: e.latLng.lng()
-        });
-        updateName();
+    const [autocomplete, setAutocomplete] = useState()
+    const [marker, setMarker] = useState();
+    const [refresh, setRefresh] = useState(false)
+    const reload = () => setRefresh(!refresh)
+
+    const onPlacesChange = () => {
+        let {formatted_address, geometry} = autocomplete.getPlace()
+        setAddressLocation(formatted_address, geometry.location.lat(), geometry.location.lng())
     }
-
-
-    async function updateName() {
-        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + markerCoordinates.lat + '%2C' + markerCoordinates.lng + '&language=en&key=AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk');
-        setAddressSearch(response.data.results[0].formatted_address);
-
+    const handleMapClick = async ({latLng}) => {
+        let {formatted_address, geometry} = await getGeocode(latLng.lat(), latLng.lng())
+        setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
     }
-
-    const handleAdd = e => {
-        let address = {
-            address: addressSearch,
-            location: {
-                lat: markerCoordinates.lat,
-                lng: markerCoordinates.lng
-            }
+    const onDragEnd = async () => {
+        if (marker) {
+            let {formatted_address, geometry} = await getGeocode(marker.position.lat(), marker.position.lng())
+            setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
         }
-        props.handleSelect(address);
+    }
+    const getGeocode = async (lat, lng) => {
+        let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + '%2C' + lng + '&language=en&key=AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk');
+        return response.data.results[0]
+    }
+    const getAddress = () => {
+        let fields = form.getFieldsValue()
+        if (fields.address && fields.address.address) {
+            return fields.address.address
+        }
+        return ""
+    }
+    const setAddress = value => {
+        form.setFieldsValue({address: {address: value}})
+        reload()
+    }
+    const getLocation = () => {
+        let fields = form.getFieldsValue()
+        if (fields.address && fields.address.location) {
+            return fields.address.location
+        }
+        let location = JSON.parse(Cookies.get('delivery_to'))
+        if(location) {
+            return location
+        }
+        Cookies.set('delivery_to', {lat: 22.8136822, lng: 89.5635596})
+        return {lat: 22.8136822, lng: 89.5635596}
+    }
+    const setAddressLocation = (address, lat, lng) => {
+        form.setFieldsValue({address: {address: address, location: {lat, lng}}})
+        reload()
+    }
+
+    const addAddress = () => {
+        props.handleSelect({address: getAddress(), location: getLocation()})
     }
 
     const afterClose = () => {
@@ -134,20 +113,24 @@ const MapModal = props => {
             afterClose={afterClose}
         >
             <div>
-                <form id="banner_form">
-                    <PlacesAutocomplete
-                        value={addressSearch}
-                        onChange={setAddressSearch}
-                        onSelect={handleAddressSearch}
-                    >
-                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                            <div>
+                <Form form={form} style={{display: 'none'}}>
+                    <Form.Item name={['address', 'address']}/>
+                    <Form.Item name={['address', 'location']}/>
+                </Form>
+                <form id="banner_form" style={{position: "relative"}}>
+                    {isLoaded && (
+                        <>
+                            <Autocomplete
+                                onLoad={value => setAutocomplete(value)}
+                                onPlaceChanged={onPlacesChange}
+                            >
                                 <div className="input-group">
                                     <input
-                                        {...getInputProps({
-                                            placeholder: 'Search Places ...',
-                                            className: 'form-control location-search-input',
-                                        })}
+                                        type="text"
+                                        placeholder="Search Places ...."
+                                        className='form-control location-search-input'
+                                        value={getAddress()}
+                                        onChange={e => setAddress(e.currentTarget.value)}
                                     />
                                     <i className="icon_search">
                                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
@@ -156,58 +139,34 @@ const MapModal = props => {
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg>
                                     </i>
-                                    <i className="location-area-map-marker" onClick={currentLocation} style={{cursor: "pointer", right: "3%"}}>
+                                    <i className="location-area-map-marker" onClick={currentLocation}
+                                       style={{cursor: "pointer", right: "3%"}}>
                                         <BiMap size="27px"/>
                                     </i>
                                 </div>
-
-                                <div className="autocomplete-dropdown-container auto-complete-list" >
-                                    {loading && <div className="suggestion-item">Loading...</div>}
-                                    {suggestions.map(suggestion => {
-                                        const className = suggestion.active
-                                            ? 'suggestion-item--active'
-                                            : 'suggestion-item';
-                                        // inline style for demonstration purpose
-                                        const style = suggestion.active
-                                            ? { backgroundColor: '#cacaca', cursor: 'pointer' }
-                                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                        return (
-                                            <div
-                                                {...getSuggestionItemProps(suggestion, {
-                                                    className,
-                                                    style,
-                                                })}
-                                            >
-                                                <span>{suggestion.description}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        )}
-                    </PlacesAutocomplete>
-
-                    <useLoadScript
-                        googleMapsApiKey="AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk"
-                    >
-                        <GoogleMap
-                            mapContainerStyle={mapStyles}
-                            zoom={13}
-                            center={coordinates}
-                            onClick={handleMapClick}
-                        >
-                            <Marker
-                                onLoad={onMarkerLoad}
-                                draggable={true}
-                                position={markerCoordinates}
-                                onDragEnd = {handleMarkerPositionUpdate}
+                            </Autocomplete>
+                            <GoogleMap
+                                mapContainerStyle={mapStyles}
+                                zoom={13}
+                                center={getLocation()}
+                                onClick={handleMapClick}
                             >
-                            </Marker>
-                        </GoogleMap>
-                    </useLoadScript>
-                    <div className="modal-custom-address-search">
-                        <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn" onClick={handleAdd}> Add Address</a>
-                    </div>
+                                <Marker
+                                    onLoad={value => setMarker(value)}
+                                    draggable={true}
+                                    position={getLocation()}
+                                    onDragEnd={onDragEnd}
+                                >
+                                </Marker>
+                            </GoogleMap>
+                            <div className="modal-custom-address-search">
+                                <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn" onClick={addAddress}>
+                                    Add Address
+                                </a>
+                            </div>
+                        </>
+
+                    )}
                 </form>
             </div>
         </Modal>

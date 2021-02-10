@@ -1,19 +1,32 @@
 import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineMinusSquare, AiOutlinePlusSquare} from "react-icons/ai";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {addToCart, removeFromCart} from "../../app/slices/restaurant";
+import Cookies from 'js-cookie'
+import {getDistance} from "../../app/slices/order/actions";
 
 const CartTable = ({cart}) => {
     let dispatch = useDispatch()
     let restaurant = useSelector(state => {
         return {
             _id: state.restaurant.restaurant.data._id,
-            name: state.restaurant.restaurant.data.name
+            name: state.restaurant.restaurant.data.name,
+            discount: state.restaurant.restaurant.data.discount_given_by_restaurant + state.restaurant.restaurant.data.discount_given_by_admin,
+            location: state.restaurant.restaurant.data.address ?  state.restaurant.restaurant.data.address.location : undefined
         }
     })
-    let delivery_charge = useSelector(state => state.order.delivery_charge)
+    let delivery_charge = useSelector(state => state.order.settings.rider_cost)
+    let vat = useSelector(state => state.order.settings.customer_vat)
+    let distance = useSelector(state => state.order.distance)
+    const [loaded, setLoaded] = useState(false)
+    useEffect(() => {
+        let delivery_to = JSON.parse(Cookies.get('delivery_to'))
+        if(!loaded && restaurant.location && delivery_to) {
+            setLoaded(true)
+            dispatch(getDistance({lat1: restaurant.location.lat, lng1: restaurant.location.lng, lat2: delivery_to.lat, lng2: delivery_to.lng}))
+        }
+    })
     let total = 0
-
     cart.foods.forEach(food => {
         total += food.quantity * food.price
     })
@@ -32,7 +45,6 @@ const CartTable = ({cart}) => {
             cart
         }))
     }
-
 
     return (
         <>
@@ -63,17 +75,21 @@ const CartTable = ({cart}) => {
                     <p>Tk. {total}</p>
                 </div>
                 <div className="vat-inner-area">
+                    <h6>Discount</h6>
+                    <p>Tk. -{Math.ceil(restaurant.discount * 0.01 * total)}</p>
+                </div>
+                <div className="vat-inner-area">
                     <h6>VAT</h6>
-                    <p>Tk. 0</p>
+                    <p>Tk. {Math.ceil(vat * 0.01 * total)}</p>
                 </div>
                 <div className="vat-inner-area">
                     <h6>Delivery Fee</h6>
-                    <p>Tk. {delivery_charge}</p>
+                    <p>Tk. {delivery_charge * distance}</p>
                 </div>
             </div>
             <div className="Total_Areas">
                 <h3>Total</h3>
-                <h3>Tk. {total + delivery_charge}</h3>
+                <h3>Tk. {total + delivery_charge * distance + Math.ceil(vat * 0.01 * total) - Math.ceil(restaurant.discount * 0.01 * total)}</h3>
             </div>
         </>
     )

@@ -1,5 +1,8 @@
 const state = {
-    delivery_charge: 0,
+    settings: {
+        loaded: false
+    },
+    distance: 1,
     delivery_locations: [],
     loaded: false,
     data: {}

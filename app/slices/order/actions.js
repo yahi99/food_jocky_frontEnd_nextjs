@@ -2,14 +2,18 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import graphqlClient from "../../graphql";
 import Cookies from 'js-cookie'
 
-export const fetchDeliveryAmount = createAsyncThunk('order/fetch_delivery_amount', async ({}) => {
+export const fetchSettings = createAsyncThunk('order/fetchSettings', async ({}) => {
     let query = `
         query {
             getSettings {
                 error
                 msg
                 data {
-                    delivery_charge
+                    google_map_api_key
+                    rider_extra_time
+                    restaurant_extra_time
+                    customer_vat
+                    rider_cost
                 }
             }
         }
@@ -197,5 +201,30 @@ export const fetchOrder = createAsyncThunk('order/fetch', async ({id}) => {
         error: getOneOrder.error,
         msg: getOneOrder.msg,
         data: getOneOrder.data
+    }
+})
+
+export const getDistance = createAsyncThunk('order/fetchDistance', async ({lat1, lng1, lat2, lng2}) => {
+    let query = `
+       query($lat1: Float, $lng1: Float, $lat2: Float, $lng2: Float) {
+            getDistanceFromLatLng(customer_lat: $lat1, customer_lng: $lng1, restaurant_lat: $lat2, restaurant_lng: $lng2){
+                error
+                msg
+                data {
+                    distance
+                }
+            }
+        }
+    `
+    let client = graphqlClient()
+    let {error, data} = await client.query(query, {lat1, lng1, lat2, lng2}).toPromise()
+    if (error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {getDistanceFromLatLng} = data
+    return {
+        error: getDistanceFromLatLng.error,
+        msg: getDistanceFromLatLng.msg,
+        data: getDistanceFromLatLng.data
     }
 })
