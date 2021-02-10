@@ -84,8 +84,11 @@ function Banner() {
         if (fields.address && fields.address.location) {
             return fields.address.location
         }
-        let location = JSON.parse(Cookies.get('delivery_to'))
-        if(location) {
+        let location = JSON.parse(Cookies.get('delivery_to') || "{}")
+        if(location.lat) {
+            getGeocode(location.lat, location.lng).then(({formatted_address, geometry}) => {
+                setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
+            })
             return location
         }
         Cookies.set('delivery_to', {lat: 22.8136822, lng: 89.5635596})
