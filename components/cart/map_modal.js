@@ -119,7 +119,7 @@ const MapModal = props => {
                     <Form.Item name={['address', 'location']}/>
                 </Form>
                 <form id="banner_form" style={{position: "relative"}}>
-                    {isLoaded && (
+                    {(isLoaded && props.show )&& (
                         <>
                             <Autocomplete
                                 onLoad={value => setAutocomplete(value)}
