@@ -101,42 +101,7 @@ export const deleteDeliveryAddress = createAsyncThunk('order/delete_delivery_add
     return deleteCustomerLocation
 })
 
-export const placeOrder = createAsyncThunk('order/placeOrder', async ({cart, delivery_address, delivery_charge}) => {
-    let total = 0
-    let items = cart.foods.map(order => {
-        total += order.quantity * order.price
-        return {
-            _id: order._id,
-            category_id: order.category_id,
-            name: order.name,
-            price: order.price,
-            quantity: order.quantity,
-            size: order.size
-        }
-    })
-    let order = {
-        delivery_charge: delivery_charge,
-        sub_total: total,
-        total: total + delivery_charge,
-        restaurant: cart.restaurant_id,
-        items: items,
-        delivery_info: {
-            _id: delivery_address._id,
-            title: delivery_address.title,
-            address: {
-                address: delivery_address.address.address,
-                location: {
-                    lat: delivery_address.address.location.lat,
-                    lng: delivery_address.address.location.lng
-                }
-            },
-            reciver_mobile_no: delivery_address.reciver_mobile_no,
-            reciver_name: delivery_address.reciver_name,
-            house_no: delivery_address.house_no,
-            floor_no: delivery_address.floor_no,
-            note_to_rider: delivery_address.note_to_rider
-        }
-    }
+export const placeOrder = createAsyncThunk('order/placeOrder', async ({order}) => {
     let mutation = `
         mutation( $order: OrderInput ) {
             addOrder( orderInput: $order ) {
@@ -145,6 +110,7 @@ export const placeOrder = createAsyncThunk('order/placeOrder', async ({cart, del
             }
         }
     `
+    console.log(order)
     let token = Cookies.get('fj_token')
     let client = graphqlClient(token)
     let {error, data} = await client.mutation(mutation, {order}).toPromise()
@@ -171,12 +137,16 @@ export const fetchOrder = createAsyncThunk('order/fetch', async ({id}) => {
                     delivery_info {
                         floor_no
                         house_no
+                        reciver_name
+                        reciver_mobile_no
                         address {
                             address
                         }
                     }
                     total
                     sub_total
+                    vat
+                    customer_discount_amount
                     delivery_charge
                     items {
                         name

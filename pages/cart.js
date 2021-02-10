@@ -5,12 +5,11 @@ import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import CartTable from "../components/cart/table";
 import {useRouter} from "next/router";
-import AdditionalItems from "../components/cart/additional_items";
 import DeliveryAddresses from "../components/cart/delivery_addresses";
 import {fetchDeliveryAddresses, getDistance, placeOrder} from "../app/slices/order/actions";
 import Payment_Area from "../src/components/Cart/Payment_Area";
 import Swal from "sweetalert2";
-import {fetchUser} from "../app/slices/user/actions";
+import {fetchUser, fetchWallet} from "../app/slices/user/actions";
 import {clearCart} from "../app/slices/restaurant";
 import {fetchRestaurant} from "../app/slices/restaurant/actions";
 import Cookies from "js-cookie";
@@ -19,15 +18,23 @@ const Cart = () => {
     let dispatch = useDispatch()
     const [loaded, setLoaded] = useState(false)
     const [selected, setSelected] = useState();
+    const [payment, setPayment] = useState('cod');
     let router = useRouter()
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
-    let delivery_charge = useSelector(state => state.order.delivery_charge)
-    let restaurant_address = useSelector(state => state.restaurant.restaurant.data.address)
+    let settings = useSelector(state => state.order.settings)
+    let distance = useSelector(state => state.order.distance)
+    let restaurant = useSelector(state => {
+        return {
+            address: state.restaurant.restaurant.data.address,
+            discount: state.restaurant.restaurant.data.discount_given_by_restaurant + state.restaurant.restaurant.data.discount_given_by_admin,
+        }
+    })
     useEffect(() => {
         if (!loaded && cart.restaurant_id) {
             setLoaded(true)
             dispatch(fetchDeliveryAddresses({}))
+            dispatch(fetchWallet(({})))
             dispatch(fetchRestaurant({id: cart.restaurant_id}))
         }
     })
@@ -37,8 +44,8 @@ const Cart = () => {
         let delivery_to = value.address.location
         setSelected(value)
         dispatch(getDistance({
-            lat1: restaurant_address.location.lat,
-            lng1: restaurant_address.location.lng,
+            lat1: restaurant.address.location.lat,
+            lng1: restaurant.address.location.lng,
             lat2: delivery_to.lat,
             lng2: delivery_to.lng
         }))
@@ -48,15 +55,67 @@ const Cart = () => {
         if (!selected) {
             await Swal.fire('Warning', 'Please select delivery address', 'warning')
         } else {
-            let {payload} = await dispatch(placeOrder({cart, delivery_address: selected, delivery_charge}))
-            if (payload.error) {
-                await Swal.fire('Error', payload.msg, 'error')
-            } else {
-                await Swal.fire('Success', 'Order placed Successfully')
-                await dispatch(fetchUser({}))
-                dispatch(clearCart({}))
-                await router.push('/checkout')
+            let total = 0
+            let items = cart.foods.map(order => {
+                total += order.quantity * order.price
+                return {
+                    _id: order._id,
+                    category_id: order.category_id,
+                    name: order.name,
+                    price: order.price,
+                    quantity: order.quantity,
+                    size: order.size
+                }
+            })
+            let delivery_charge = settings.rider_cost * distance
+            let customer_discount_amount = Math.ceil(total * 0.01 * restaurant.discount)
+            let vat = Math.ceil(total * 0.01 * settings.customer_vat)
+            let order = {
+                delivery_charge,
+                customer_discount_amount,
+                vat,
+                sub_total: total,
+                total: total + delivery_charge + vat - customer_discount_amount,
+                restaurant: cart.restaurant_id,
+                payment_type: payment,
+                items: items,
+                delivery_info: {
+                    _id: selected._id,
+                    title: selected.title,
+                    address: {
+                        address: selected.address.address,
+                        location: {
+                            lat: selected.address.location.lat,
+                            lng: selected.address.location.lng
+                        }
+                    },
+                    reciver_mobile_no: selected.reciver_mobile_no,
+                    reciver_name: selected.reciver_name,
+                    house_no: selected.house_no,
+                    floor_no: selected.floor_no,
+                    note_to_rider: selected.note_to_rider
+                }
             }
+
+            if (payment === 'wallet' && user.wallet.balance < order.total) {
+                await Swal.fire({
+                    title:'Warning',
+                    text: 'You don\'t have much balance in your wallet',
+                    icon: 'warning',
+                    footer: '<a href="/user/wallet" class="text-primary font-weight-bolder">Go to Wallet</a>'
+                })
+            } else {
+                let {payload} = await dispatch(placeOrder({order}))
+                if (payload.error) {
+                    await Swal.fire('Error', payload.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Order placed Successfully')
+                    await dispatch(fetchUser({}))
+                    dispatch(clearCart({}))
+                    await router.push('/checkout')
+                }
+            }
+
         }
 
 
@@ -114,17 +173,6 @@ const Cart = () => {
                                 {cart.foods && (
                                     <CartTable cart={cart}/>
                                 )}
-
-                                <div className="pro_code_area">
-                                    <h3>Promo Code</h3>
-                                    <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Enter Your Promo Code"
-                                               aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                                        <div className="input-group-append">
-                                            <button className="btn button-site" type="button">Apply</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,7 +185,7 @@ const Cart = () => {
                                 </div>
                             </div>
 
-                            <Payment_Area/>
+                            <Payment_Area payment={payment} setPayment={setPayment}/>
                             <div className="Orders-Button" style={{float: 'right', marginTop: 20}}>
                                 <a className="btn button-site" onClick={handleSubmit}>
                                     Place Order
