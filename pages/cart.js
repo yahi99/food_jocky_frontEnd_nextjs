@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import {fetchUser} from "../app/slices/user/actions";
 import {clearCart} from "../app/slices/restaurant";
 import {fetchRestaurant} from "../app/slices/restaurant/actions";
+import Cookies from "js-cookie";
 
 const Cart = () => {
     let dispatch = useDispatch()
@@ -32,6 +33,7 @@ const Cart = () => {
     })
 
     const handleSelected = value => {
+        Cookies.set('delivery_to', value.address.location)
         let delivery_to = value.address.location
         setSelected(value)
         dispatch(getDistance({lat1: restaurant_address.location.lat, lng1: restaurant_address.location.lng, lat2: delivery_to.lat, lng2: delivery_to.lng}))

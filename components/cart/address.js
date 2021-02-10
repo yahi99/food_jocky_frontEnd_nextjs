@@ -1,11 +1,24 @@
 import {RiDeleteBinLine} from "react-icons/ri";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { deleteDeliveryAddress, fetchDeliveryAddresses} from "../../app/slices/order/actions";
 import Swal from "sweetalert2";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Cookies from 'js-cookie'
 
 const Address = ({address, selected, setSelected}) => {
     let dispatch = useDispatch()
+    const [loaded, setLoaded] = useState(false)
+    let restaurant_address = useSelector(state => state.restaurant.restaurant.data.address)
+    useEffect(() => {
+        if(!loaded && restaurant_address) {
+            setLoaded(true)
+            let location = JSON.parse(Cookies.get('delivery_to') || "{}")
+            if(location.lat === address.address.location.lat && location.lng === address.address.location.lng) {
+                setSelected(address)
+            }
+        }
+    })
+
     const handleDelete = async () => {
         let result = await Swal.fire({
             title: 'Are you sure?',
