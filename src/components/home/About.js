@@ -20,7 +20,6 @@ const About = () => {
                     <div className="row">
                         <div className="col-lg-7 offset-lg-5 col-md-8 offset-md-2 col-12">
                             <div className="about-area-right-text">
-                                <h3>{AboutData.heading}</h3>
                                 <p>{AboutData.para1}</p>
                                 <p>{AboutData.para2}</p>
                                 <p>{AboutData.para3}</p>
