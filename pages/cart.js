@@ -49,7 +49,7 @@ const Cart = () => {
     if(user.last_order) {
         return (
             <MainLayout>
-                <div className="flex text-center" style={{height: '50vh', padding: '20vh'}}>
+                <div className="flex text-center cart_area_main">
                     <h2>You have a previous order</h2>
                     <Link href="/checkout">
                         <a className="btn button-site" type="button">Show Order</a>
@@ -63,7 +63,7 @@ const Cart = () => {
     if(!cart.foods) {
         return (
             <MainLayout>
-                <div className="flex text-center" style={{height: '50vh', padding: '20vh'}}>
+                <div className="flex text-center  cart_area_main">
                     <h2>Your Cart is Empty</h2>
                     <Link href="/">
                         <a className="btn button-site" type="button">Add Foods</a>

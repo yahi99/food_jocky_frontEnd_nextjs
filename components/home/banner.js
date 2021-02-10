@@ -163,7 +163,7 @@ function Banner() {
                             <div className="home_banner-text zindex mb-5">
                                 <h1>{BannerData.heading}</h1>
                                 <div className="banner_search_form">
-                                    <Form form={form}>
+                                    <Form form={form} style={{display: 'none'}}>
                                         <Form.Item name={['address', 'address']}/>
                                         <Form.Item name={['address', 'location']}/>
                                     </Form>

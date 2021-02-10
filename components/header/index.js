@@ -9,6 +9,9 @@ import { DownOutlined } from '@ant-design/icons';
 import {useRouter} from "next/router";
 
 const Header = () => {
+
+  
+
     let router = useRouter()
     let user = useSelector(state => state.user)
     let dispatch = useDispatch()
@@ -40,11 +43,11 @@ const Header = () => {
                 <a onClick={handleLogout}>Logout</a>
             </Menu.Item>
         </Menu>
-    );
+     );
 
     return (
         <>
-            <Head>
+            <Head> 
                 <title>Food Jocky</title>
             </Head>
             <nav className='navbar'>
@@ -115,15 +118,17 @@ const Header = () => {
                                 </Link>
                             )}
                         </li>
-                        <li className='nav-item lan-area'>
+                        <li className='nav-item lan-area responsive-none'>
                             <a href='#' className="border-area active">
                                 EN
                             </a>
                             <a href='#'>
                                 BN
                             </a>
-                        </li>
+                        </li> 
                     </ul>
+
+                  
                 </div>
             </nav>
         </>

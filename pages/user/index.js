@@ -106,7 +106,7 @@ const User = () => {
                                     <ModalData order={current}/>
                                 </Modal>
 
-                                <div style={{maxWidth: '100vw', overflowX: 'auto', overflowY: 'hidden', paddingBottom: 24}}>
+                                <div className="data_tables" style={{maxWidth: '100vw', overflowX: 'auto', overflowY: 'hidden', paddingBottom: 24}}>
                                     <Table columns={columns} pagination={{pageSize: 5}} dataSource={data} >
                                     </Table>
                                 </div>

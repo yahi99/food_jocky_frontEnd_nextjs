@@ -14,6 +14,15 @@
 }
 
 @media (max-width: 1199px) {
+  #home_banner{
+    padding: 80px 0;
+  }
+  #restaurant-details-banner{
+    height: auto;
+  }
+  .top_res_details_wrapper{
+    margin-bottom: 50px;
+  }
   .home_banner-text h1 {
     font-size: 50px;
   }
@@ -35,6 +44,12 @@
 }
 
 @media (max-width: 992px) {
+  .Catr-Heading{
+    padding-top: 30px;
+  }
+  #Top_cata_food_area{
+    padding: 50px 0;
+  }
   .order-summery{
     margin-top: 30px;
   }
@@ -131,9 +146,30 @@
 .row .col-lg-6:last-child .dashboard_top_box{
   margin-bottom: 0;
 }
+.responsive-none{
+  display: none;
+}
 }
 
 @media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 400px;
+    margin: 0 auto;
+}
+  .areas-opning-list {
+    padding-top: 20px;
+}
+  .areas-opning-list ul li:last-child {
+    border-bottom: 1px solid #d6d6d6;
+    padding-bottom: 10px;
+}
+.row .col-lg-6:last-child .areas-opning-list{
+  padding-top:15px;
+}
+.row .col-lg-6:last-child .areas-opning-list ul li:last-child{
+border: none;
+padding-bottom: 0;
+}
   .boxshadow_Wallet {
     margin-bottom: 30px;
 }
@@ -152,6 +188,47 @@
 }
 #common_banner {
   background-position: top left;
+  padding: 70px 0;
+}
+.common-banner-text h2 {
+  font-size: 36px;
+}
+#Add_Your_Restaurant_Banner {
+  padding: 70px 0;
+}
+.add_res_foot_Wrap h2 {
+  color: #fff;
+  padding-bottom:0px;
+}
+#Our_Customers_wrap {
+  padding: 80px 0;
+}
+#Add_About_Foodjocky {
+  padding: 80px 0;
+}
+#How_It_Works_Res, #careers-text, #oppportunities-area, #joinus-area {
+  padding: 80px 0;
+}
+#accountbalance, #cash_back_policy {
+  padding: 80px 0;
+}
+#security-area {
+  padding: 80px 0;
+}
+#rider_intro, #rider-area-left, #additional-area, #something-area{
+  padding: 80px 0;
+}
+.rider-area-text p{
+  padding: 0;
+}
+#rider-cta {
+  padding: 80px 0;
+}
+.cat-text {
+  z-index: 9;
+}
+#CareersSliderArea{
+  padding-bottom: 80px;
 }
   #banner-rider {
     padding: 105px 0;
@@ -195,9 +272,6 @@
 }
 #top-select-area li a {
   font-size: 18px;}
-  /* .modal {
-    width: 90%;
-  } */
 
   .navbar-area {
     position: inherit;
@@ -222,7 +296,6 @@
 
   #banner_form .input-group-append {
     width: 100%;
- 
   }
 
   #banner_form button {
@@ -237,14 +310,20 @@
   #top_slider .owl-carousel .owl-nav button.owl-next {
     right: 20px;
   }
+
 #restaurant-info-modal .area-modal-resta-name {
   margin: -60px 25px 0 25px;
 }
 }
 
 @media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 300px;
+    margin: 0 auto;
+}
   .home_banner-text {
-    padding-top: 44px;
+    padding-top:0px;
+    margin-bottom: 0 !important;
 }
   .login-form-area {
     width: 100%;
@@ -254,7 +333,6 @@
   margin-right: 13px;
 }
 .copy-right-right-side ul {
-  display: inherit;
   display: inherit;
 }
 .copy-right-right-side ul li {
@@ -266,13 +344,64 @@
 h2 {
   font-size: 30px;
 }
-.wallet_balance_flex{
-  display: inherit;
+#dashboard_wrappers{
+  padding: 50px 0;
+}
+#wallet_area{
+  padding: 50px 0;
 }
 }
 
+@media (max-width:480px) {
+  .navbar-container a img{
+    width: 80%;
+  }
+  .app-downloads-button a {
+    margin-right:20px;
+  }
+  .app-downloads-button a:last-child{
+    margin-right: 0;
+  }
+.app-downloads-button a  svg {
+    width: 100%;
+    max-width: 100px;
+    height: 100%;
+    max-height: 33px;
+}
+.dashboard_top_box {
+  margin-bottom: 30px;
+  display: inherit;
+  text-align: center;
+}
+.dashboard_top_text {
+  text-align: center;
+}
+.dashboard_top_text h3 {
+  padding-top: 15px;
+}
+}
+
+@media (max-width:320px) {
+  .app-downloads-button a {
+    margin-right:5px;
+  }
+  .app-downloads-button a:last-child{
+    margin-right: 0;
+  }
+.app-downloads-button a  svg {
+    width: 100%;
+    max-width: 90px;
+    height: 100%;
+    max-height: 33px;
+}
+}
 @media (min-width:1200px) {
   .container{
     max-width: 1240px;
+  }
+}
+@media (max-width:959px) {
+  .mobile-menu {
+    display: block;
   }
 }

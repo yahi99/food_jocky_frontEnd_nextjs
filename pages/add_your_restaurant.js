@@ -6,9 +6,9 @@ const add_your_restaurant = () => {
   <>
      <Layout>
      <AddRestaurant/>
-    </Layout> 
+     </Layout> 
   </>
  )
-}
+} 
 
 export default add_your_restaurant

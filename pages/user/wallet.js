@@ -217,7 +217,7 @@ const wallet = () => {
                                 </div>
                                 <div className="wallets_table">
                                     <h3>Wallet Transactions</h3>
-                                    <div className="">
+                                    <div className="" style={{maxWidth: '100vw', overflowX: 'auto', overflowY: 'hidden', paddingBottom: 24}}>
                                         <Table columns={columns} pagination={{pageSize: 5}} dataSource={data} >
                                         </Table>
                                     </div>
