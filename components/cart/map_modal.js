@@ -1,7 +1,6 @@
-import PlacesAutocomplete, {geocodeByAddress} from "react-places-autocomplete";
 import {BiMap} from "react-icons/bi";
 import {Autocomplete, GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {Form, Modal} from "antd";
 import Cookies from "js-cookie";
@@ -12,7 +11,6 @@ const MapModal = props => {
         googleMapsApiKey: "AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk",
         libraries: ['places']
     })
-
 
     const mapStyles = {
         height: "40vh",
@@ -72,8 +70,11 @@ const MapModal = props => {
         if (fields.address && fields.address.location) {
             return fields.address.location
         }
-        let location = JSON.parse(Cookies.get('delivery_to'))
-        if(location) {
+        let location = JSON.parse(Cookies.get('delivery_to') || "{}")
+        if(location.lat) {
+            getGeocode(location.lat, location.lng).then(({formatted_address, geometry}) => {
+                setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
+            })
             return location
         }
         Cookies.set('delivery_to', {lat: 22.8136822, lng: 89.5635596})

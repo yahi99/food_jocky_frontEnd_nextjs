@@ -20,8 +20,8 @@ const CartTable = ({cart}) => {
     let distance = useSelector(state => state.order.distance)
     const [loaded, setLoaded] = useState(false)
     useEffect(() => {
-        let delivery_to = JSON.parse(Cookies.get('delivery_to'))
-        if(!loaded && restaurant.location && delivery_to) {
+        let delivery_to = JSON.parse(Cookies.get('delivery_to') || '{}')
+        if(!loaded && restaurant.location && delivery_to.lat) {
             setLoaded(true)
             dispatch(getDistance({lat1: restaurant.location.lat, lng1: restaurant.location.lng, lat2: delivery_to.lat, lng2: delivery_to.lng}))
         }
@@ -75,8 +75,8 @@ const CartTable = ({cart}) => {
                     <p>Tk. {total}</p>
                 </div>
                 <div className="vat-inner-area">
-                    <h6>Discount</h6>
-                    <p>Tk. -{Math.ceil(restaurant.discount * 0.01 * total)}</p>
+                    <h6 style={{color: '#c8102f'}}>Discount</h6>
+                    <p style={{color: '#c8102f'}}>Tk. -{Math.ceil(restaurant.discount * 0.01 * total)}</p>
                 </div>
                 <div className="vat-inner-area">
                     <h6>VAT</h6>
