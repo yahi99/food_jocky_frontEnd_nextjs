@@ -18,14 +18,14 @@ import Cookies from "js-cookie";
 const Cart = () => {
     let dispatch = useDispatch()
     const [loaded, setLoaded] = useState(false)
-    const [selected , setSelected ] = useState();
+    const [selected, setSelected] = useState();
     let router = useRouter()
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
     let delivery_charge = useSelector(state => state.order.delivery_charge)
     let restaurant_address = useSelector(state => state.restaurant.restaurant.data.address)
     useEffect(() => {
-        if(!loaded && cart.restaurant_id) {
+        if (!loaded && cart.restaurant_id) {
             setLoaded(true)
             dispatch(fetchDeliveryAddresses({}))
             dispatch(fetchRestaurant({id: cart.restaurant_id}))
@@ -36,15 +36,20 @@ const Cart = () => {
         Cookies.set('delivery_to', value.address.location)
         let delivery_to = value.address.location
         setSelected(value)
-        dispatch(getDistance({lat1: restaurant_address.location.lat, lng1: restaurant_address.location.lng, lat2: delivery_to.lat, lng2: delivery_to.lng}))
+        dispatch(getDistance({
+            lat1: restaurant_address.location.lat,
+            lng1: restaurant_address.location.lng,
+            lat2: delivery_to.lat,
+            lng2: delivery_to.lng
+        }))
     }
 
     const handleSubmit = async () => {
-        if(!selected) {
+        if (!selected) {
             await Swal.fire('Warning', 'Please select delivery address', 'warning')
         } else {
             let {payload} = await dispatch(placeOrder({cart, delivery_address: selected, delivery_charge}))
-            if(payload.error) {
+            if (payload.error) {
                 await Swal.fire('Error', payload.msg, 'error')
             } else {
                 await Swal.fire('Success', 'Order placed Successfully')
@@ -57,7 +62,7 @@ const Cart = () => {
 
     }
 
-    if(user.last_order) {
+    if (user.last_order) {
         return (
             <MainLayout>
                 <div className="flex text-center cart_area_main">
@@ -71,7 +76,7 @@ const Cart = () => {
     }
 
 
-    if(!cart.foods) {
+    if (!cart.foods) {
         return (
             <MainLayout>
                 <div className="flex text-center  cart_area_main">
@@ -133,13 +138,13 @@ const Cart = () => {
                             </div>
 
                             <Payment_Area/>
-                            <div className="Orders-Button" style={{ float: 'right',marginTop: 20}}>
+                            <div className="Orders-Button" style={{float: 'right', marginTop: 20}}>
                                 <a className="btn button-site" onClick={handleSubmit}>
                                     Place Order
                                 </a>
                             </div>
                         </>
-                    ): (
+                    ) : (
                         <div className="flex text-center" style={{height: '40vh', padding: '20vh'}}>
                             <h2>You are not logged in!</h2>
                             <Link href="/login">
@@ -154,3 +159,44 @@ const Cart = () => {
 }
 
 export default Cart;
+
+
+let a = {
+    order: {
+        delivery_info: {
+            address: "Unnamed Road, Khulna, Bangladesh",
+            location: {
+                lat: 22.812162913170663,
+                lng: 89.5616713248535
+            },
+            floor_no: "",
+            house_no: "",
+            note_to_rider: "",
+            reciver_mobile_no: "+8801521416941",
+            reciver_name: "Ar Tuhin",
+            title: "Office",
+            _id: "600d1577d94acea4b7cd2aa6"
+        },
+        items: [
+            {
+                category_id: "5fa122713cf61557a65d0a12",
+                name: "Chicken reshmi kabab",
+                price: 439,
+                quantity: 1,
+                size: "",
+                _id: "5fcc709678070b0098203a0f",
+            },
+            {
+
+                category_id: "5fa122713cf61557a65d0a12",
+                name: "Kacchi biriyani",
+                price: 319,
+                quantity: 1,
+                size: "",
+                _id: "5fcc719178070b0098203a10",
+            }],
+        restaurant: "5fc7606778070b009820396e",
+        sub_total: 758,
+        total: null,
+    }
+}
