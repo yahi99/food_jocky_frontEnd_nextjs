@@ -81,6 +81,9 @@ const Sidebar = () => {
                             <NavLink href="/user">
                                 <span><AiFillDashboard/>Dashboard</span>
                             </NavLink>
+                            <NavLink href="/user/orders">
+                                <span><CgProfile /> Orders</span>
+                            </NavLink>
                             <NavLink href="/user/profile">
                                 <span><CgProfile /> Profile</span>
                             </NavLink>

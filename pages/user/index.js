@@ -100,17 +100,6 @@ const User = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <Modal title="Order Details" visible={show} onOk={() => setShow(false)}
-                                       onCancel={() => setShow(false)} footer={null}>
-                                    <ModalData order={current}/>
-                                </Modal>
-
-                                <div className="data_tables" style={{maxWidth: '100vw', overflowX: 'auto', overflowY: 'hidden', paddingBottom: 24}}>
-                                    <Table columns={columns} pagination={{pageSize: 5}} dataSource={data} >
-                                    </Table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,68 +123,5 @@ const DashboardCard = ({title, value, icon}) => {
                 <p>{value}</p>
             </div>
         </div>
-    )
-}
-
-const ModalData = ({order}) => {
-    if (!order)
-        return <></>
-
-    let dateFormat = require('dateformat');
-    let date = new Date(+order.createdAt)
-    return (
-        <>
-            <h5 className="ml-3 font-weight-bold"><span className="font-weight-normal">Restaurant Name : </span> {order.restaurant.name}</h5>
-            <h6 className="ml-3 mb-3 font-weight-bold"><span className="font-weight-normal">Order Time : </span> {dateFormat( date, "dd mmm, yyyy, h:MM TT")}</h6>
-            <div className="food_cart_wrapper">
-                <div className="food_cart_items">
-                    <div className="food_names">
-                        <h3>Item Name </h3>
-                    </div>
-                    <div className="food_count_price">
-                        <p className="font-weight-bold">Quantity</p>
-                    </div>
-
-                    <div className="food_count_total_price">
-                        <p className="font-weight-bold">Price</p>
-                    </div>
-                </div>
-                {order.items.map((order, index) => (
-                    <div className="food_cart_items" key={index}>
-                        <div className="food_names" style={{width: '50%'}}>
-                            <h3>{order.name} </h3>
-                            <p>{order.size}</p>
-                        </div>
-                        <div className="food_count_price font-weight-normal block text-right" style={{width: '20%'}}>
-                            {order.quantity}
-                        </div>
-
-                        <div className="food_count_total_price" style={{width: '30%'}}>
-                            <p>Tk. {order.price * order.quantity}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
-            <div className="Food_vat_area">
-                <div className="vat-inner-area">
-                    <h6>Food Price</h6>
-                    <p>Tk. {order.total}</p>
-                </div>
-                <div className="vat-inner-area">
-                    <h6>VAT</h6>
-                    <p>Tk. 0</p>
-                </div>
-                <div className="vat-inner-area">
-                    <h6>Delivery Fee</h6>
-                    <p>Tk. {order.delivery_charge}</p>
-                </div>
-            </div>
-            <div className="Total_Areas">
-                <h3>Total</h3>
-                <h3>Tk. {order.total}</h3>
-            </div>
-        </>
     )
 }
