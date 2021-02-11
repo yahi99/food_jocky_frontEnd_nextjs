@@ -17,7 +17,7 @@ const Login = () => {
     }
 
     const handleSubmit = async value => {
-        value.phone = "+880" + value.phone
+        value.phone = "+88" + value.phone
         let { payload } = await dispatch(userLogin({...value}))
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')
@@ -47,11 +47,11 @@ const Login = () => {
                                         rules={
                                             [
                                                 { required: true, message: 'Please input your phone number!' },
-                                                { pattern: /\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
+                                                { pattern: /\d\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
                                             ]
                                         }
                                     >
-                                        <Input addonBefore="+880" maxLength={10}/>
+                                        <Input addonBefore="+88" maxLength={11}/>
                                     </Form.Item>
 
                                     <Form.Item
