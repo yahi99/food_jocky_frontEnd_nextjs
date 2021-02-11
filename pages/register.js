@@ -22,7 +22,7 @@ function register(props) {
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')
         } else {
-            dispatch(reloadUser({}))
+            await dispatch(reloadUser({}))
             await router.push('/')
         }
 
