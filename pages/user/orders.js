@@ -90,7 +90,7 @@ const Orders = () => {
                     <div className="row">
                         <Sidebar/>
                         <div className="col-lg-8 col-md-8 col-sm-12 col-12">
-                            <h3>Orders</h3>
+                            <h3>My Orders</h3>
                             <div>
                                 <Modal title="Order Details" visible={show} onOk={() => setShow(false)}
                                        onCancel={() => setShow(false)} footer={null}>

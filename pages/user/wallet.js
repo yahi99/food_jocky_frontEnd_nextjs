@@ -83,7 +83,7 @@ const wallet = () => {
             )
         },
         {
-            title: 'Wallet',
+            title: 'Balance',
             dataIndex: 'wallet',
             key: 'wallet',
         },
