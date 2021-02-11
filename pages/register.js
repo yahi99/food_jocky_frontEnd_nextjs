@@ -17,7 +17,7 @@ function register(props) {
     }
 
     const handleSubmit = async user => {
-        user.mobile = "+880" + user.mobile
+        user.mobile = "+88" + user.mobile
         let { payload } = await dispatch(userRegister({user}))
         if(payload.error) {
             await Swal.fire('Error', payload.msg, 'error')
@@ -65,16 +65,17 @@ function register(props) {
                                         rules={
                                             [
                                                 { required: true, message: 'Please input your phone number!' },
-                                                { pattern: /\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
+                                                { pattern: /\d\d\d\d\d\d\d\d\d\d\d/, message: 'Please input a valid phone number!' }
                                             ]
                                         }
                                     >
-                                        <Input addonBefore="+880" maxLength={10}/>
+                                        <Input addonBefore="+88" maxLength={11}/>
                                     </Form.Item>
 
                                     <Form.Item
                                         label="Email (Optional)"
                                         name="email"
+                                        initialValue=""
                                         rules={[
                                             { pattern:  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/, message: 'Please input a valid Email!' }
                                         ]}>
