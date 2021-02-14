@@ -46,7 +46,7 @@ const wallet = () => {
             }
         `
         let client = graphqlClient(Cookies.get('fj_token'))
-        let {error, data} = await client.mutation(mutation, {amount: +value.amount, url: 'http://localhost:3050/user/payment_verify'}).toPromise()
+        let {error, data} = await client.mutation(mutation, {amount: +value.amount, url: `${process.env.base_url}/user/payment_verify`}).toPromise()
         if(error) {
             await Swal.fire('Error', 'Network failed', 'error')
         } else {
