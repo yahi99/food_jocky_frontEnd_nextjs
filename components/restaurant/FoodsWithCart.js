@@ -42,6 +42,7 @@ const FoodsWithCart = ({restaurant}) => {
 
                     {cart.foods && (
                         <div className="col-lg-5">
+                            <div className="scroll_topCart_area">
                             <div className="Catr-Heading">
                                 <h2>My Cart</h2>
                             </div>
@@ -58,6 +59,7 @@ const FoodsWithCart = ({restaurant}) => {
                                         Place Order
                                     </a>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     )}
