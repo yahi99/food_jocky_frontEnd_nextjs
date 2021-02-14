@@ -104,7 +104,8 @@ const Food = ({food, category_id}) => {
                                     <p>
                                         {food.description}
                                     </p>
-                                    <h4> BDT {food.d_price}</h4>
+                                    <h4 className="d-inline-block"> BDT {food.d_price}  </h4>
+                                    <del className="d-inline-block position-absolute font-weight-normal mx-2" style={{fontSize: 16, marginTop: -3}}>BDT {food.price}</del>
                                 </div>
                             </div>
                             <div className="col-lg-1">
