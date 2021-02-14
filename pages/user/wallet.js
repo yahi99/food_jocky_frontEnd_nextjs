@@ -111,7 +111,7 @@ const wallet = () => {
                 if(status === 'pending')
                     return <span className="btn btn-warning btn-sm shadow-none rounded"> Pending </span>
                 if(status === 'success')
-                    return <span className="btn btn-primary btn-sm shadow-none"> Success </span>
+                    return <span className="btn btn-success btn-sm shadow-none"> Success </span>
                 if(status === 'cancelled')
                     return <span className="btn btn-danger btn-sm shadow-none"> Cancelled </span>
 
@@ -122,7 +122,7 @@ const wallet = () => {
 
     const getPercentages = () => {
         try {
-            return 100 - (+wallet.totalCredit / +wallet.totalDebit) * 100
+            return (100 - (+wallet.totalCredit / +wallet.totalDebit) * 100).toFixed(2)
         } catch (e) {
             return 0
         }
@@ -159,16 +159,16 @@ const wallet = () => {
                                             </div>
                                             <div className="wallet_balance_area">
                                                 <p>Wallet Balance</p>
-                                                <h4>BDT {wallet.balance}</h4>
+                                                <h4>BDT {wallet.balance && wallet.balance.toFixed(2)}</h4>
                                             </div>
                                             <div className="wallet_balance_flex">
                                                 <div className="wallet_balance_area">
                                                     <p>Total Credit</p>
-                                                    <h4>BDT {wallet.totalCredit}</h4>
+                                                    <h4>BDT {wallet.totalCredit && wallet.totalCredit.toFixed(2)}</h4>
                                                 </div>
                                                 <div className="wallet_balance_area">
                                                     <p>Total Debit</p>
-                                                    <h4>BDT {wallet.totalDebit}</h4>
+                                                    <h4>BDT {wallet.totalDebit && wallet.totalDebit.toFixed(2)}</h4>
                                                 </div>
                                             </div>
                                             <div className="wallet_range_bar">

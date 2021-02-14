@@ -1,16 +1,17 @@
 import React from 'react'
-import Layout from "../src/components/layouts/main";
 import Banner from '../src/components/About/Banner'
 import Deals from '../src/components/Deals/Deals'
+import MainLayout from "../components/layout";
+
 const deals = () => {
- return (
-  <>
-    <Layout>
-     <Banner heading="Foodjocky Deals"/>
-     <Deals/>
-    </Layout>
-  </>
- )
+    return (
+        <>
+            <MainLayout>
+                <Banner heading="Foodjocky Deals"/>
+                <Deals/>
+            </MainLayout>
+        </>
+    )
 }
 
 export default deals

@@ -1,16 +1,17 @@
 import React from 'react'
-import Layout from "../src/components/layouts/main";
 import Banner from '../src/components/About/Banner'
 import Terms from '../src/components/Terms/Terms'
+import MainLayout from "../components/layout";
+
 const terms = () => {
- return (
-  <>
-    <Layout>
-     <Banner heading="Terms And Conditions"/>
-     <Terms/>
-    </Layout>
-  </>
- )
+    return (
+        <>
+            <MainLayout>
+                <Banner heading="Terms And Conditions"/>
+                <Terms/>
+            </MainLayout>
+        </>
+    )
 }
 
 export default terms
