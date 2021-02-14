@@ -27,7 +27,7 @@ const About = () => {
                                             onClose={() => setOpen(false)}/>
                                 <div className="about-food-btn text-right">
                                     <a href="#!" className="watch_area" onClick={() => setOpen(true)}>Watch Video</a>
-                                    <Link href="https://app.foodjocky.com/register">
+                                    <Link href={process.env.admin_url + '/register'}>
                                         <a className="btn button-site">{AboutData.button}</a>
                                     </Link>
 
