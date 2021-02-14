@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { AiFillDashboard } from 'react-icons/ai';
-import { CgProfile } from 'react-icons/cg';
+import {CgProfile, CgShoppingCart} from 'react-icons/cg';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { BsWallet } from 'react-icons/bs';
 import Link from 'next/link';
@@ -82,7 +82,7 @@ const Sidebar = () => {
                                 <span><AiFillDashboard/>Dashboard</span>
                             </NavLink>
                             <NavLink href="/user/orders">
-                                <span><CgProfile /> Orders</span>
+                                <span><CgShoppingCart /> Orders</span>
                             </NavLink>
                             <NavLink href="/user/profile">
                                 <span><CgProfile /> Profile</span>
