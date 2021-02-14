@@ -43,7 +43,7 @@ const Footer = () => {
                                         <li><Link href="/careers"><a>Career</a></Link></li>
                                         <li><Link href="/cashback_policy"><a>Cashback policy</a></Link></li>
                                         <li><Link href="/become_rider"><a>Become a rider</a></Link></li>
-                                        <li><Link href="https://app.foodjocky.com/agent/register"><a>Become a
+                                        <li><Link href={process.env.admin_url + '/agent/register'}><a>Become a
                                             Agent</a></Link></li>
                                     </ul>
                                 </div>
