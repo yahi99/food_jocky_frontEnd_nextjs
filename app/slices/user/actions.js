@@ -155,6 +155,7 @@ export const fetchDashboardData = createAsyncThunk('user/fetchDashboardData', as
                         createdAt
                         total
                         status
+                        vat
                         restaurant {
                             name
                         }

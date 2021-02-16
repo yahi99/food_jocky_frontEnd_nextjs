@@ -124,54 +124,39 @@ const ModalData = ({order}) => {
         <>
             <h5 className="ml-3 font-weight-bold"><span className="font-weight-normal">Restaurant Name : </span> {order.restaurant.name}</h5>
             <h6 className="ml-3 mb-3 font-weight-bold"><span className="font-weight-normal">Order Time : </span> {dateFormat( date, "dd mmm, yyyy, h:MM TT")}</h6>
-            <div className="food_cart_wrapper">
-                <div className="food_cart_items">
-                    <div className="food_names">
-                        <h3>Item Name </h3>
-                    </div>
-                    <div className="food_count_price">
-                        <p className="font-weight-bold">Quantity</p>
-                    </div>
-
-                    <div className="food_count_total_price">
-                        <p className="font-weight-bold">Price</p>
-                    </div>
-                </div>
-                {order.items.map((order, index) => (
-                    <div className="food_cart_items" key={index}>
-                        <div className="food_names" style={{width: '50%'}}>
-                            <h3>{order.name} </h3>
-                            <p>{order.size}</p>
-                        </div>
-                        <div className="food_count_price font-weight-normal block text-left" style={{width: '20%'}}>
-                            {order.quantity}
-                        </div>
-
-                        <div className="food_count_total_price text-right" style={{width: '30%'}}>
-                            <p>Tk. {order.price * order.quantity}</p>
-                        </div>
-                    </div>
-                ))}
+            <div className="px-3">
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Item Name</th>
+                        <th className="text-center">Quantity</th>
+                        <th className="text-right">Total Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {order.items.map((item, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{item.name}</td>
+                            <td className="text-center">{item.quantity}</td>
+                            <td className="text-right">{(item.price * item.quantity).toFixed(2)}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
 
-
-            <div className="Food_vat_area">
-                <div className="vat-inner-area">
-                    <h6>Food Price</h6>
-                    <p>Tk. {order.total}</p>
+            <hr className="mt-0 mb-2 p-0"/>
+            <div className="row mr-3">
+                <div className="ml-auto col-md-8">
+                    <p className="mb-1">Subtotal: <b className="float-right"> {order.sub_total.toFixed(2)} </b></p>
+                    <p className="mb-1 text-danger">Discount: <b className="float-right"> { (order.total - (order.sub_total + order.delivery_charge + order.vat)).toFixed(2)} </b></p>
+                    <p className="mb-1">Delivery Charge: <b className="float-right"> { order.delivery_charge.toFixed(2) } </b></p>
+                    <p className="mb-1">Vat: <b className="float-right"> {order.vat && order.vat.toFixed(2)} </b></p>
+                    <hr className="mt-0 mb-2 p-0"/>
+                    <p className="mb-1">Total: <b className="float-right"> {order.total.toFixed(2)} </b></p>
                 </div>
-                <div className="vat-inner-area">
-                    <h6>VAT</h6>
-                    <p>Tk. 0</p>
-                </div>
-                <div className="vat-inner-area">
-                    <h6>Delivery Fee</h6>
-                    <p>Tk. {order.delivery_charge}</p>
-                </div>
-            </div>
-            <div className="Total_Areas">
-                <h3>Total</h3>
-                <h3>Tk. {order.total}</h3>
             </div>
         </>
     )
