@@ -11,6 +11,8 @@ import {Upload} from "antd";
 import ImgCrop from "antd-img-crop";
 import Swal from "sweetalert2";
 import {fetchUser, uploadProfilePicture} from "../../app/slices/user/actions";
+import Cookies from "js-cookie";
+import {logoutUser} from "../../app/slices/user";
 
 const Sidebar = () => {
     let dispatch = useDispatch()
@@ -25,6 +27,12 @@ const Sidebar = () => {
         }
     })
 
+    const handleLogout = () => {
+        Cookies.remove('fj_token')
+        dispatch(logoutUser({}))
+        router.push('/').then(() => {
+        })
+    }
 
     let image = null
     const onChange = async ({file: newFile}) => {
@@ -94,9 +102,7 @@ const Sidebar = () => {
                                 <span><BsWallet /> Wallet</span>
                             </NavLink>
                             <li>
-                                <Link href="/">
-                                    <a><RiLogoutBoxRLine /> Logout</a>
-                                </Link>
+                                <a onClick={handleLogout}><span><RiLogoutBoxRLine /> Logout</span></a>
                             </li>
                         </ul>
                     </div>

@@ -97,7 +97,7 @@ const profile = () => {
                                                 </Form.Item>
                                             </div>
                                         </div>
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                                             <div className="form-group">
                                                 <Form.Item
                                                     label="Email (Optional)"
@@ -106,6 +106,17 @@ const profile = () => {
                                                         { pattern:  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/, message: 'Please input a valid Email!' }
                                                     ]}>
                                                     <Input/>
+                                                </Form.Item>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div className="form-group">
+                                                <Form.Item
+                                                    label="Mobile"
+                                                    rules={[
+                                                        {required: true, message: 'Please provide your last name'}
+                                                    ]}>
+                                                    <Input value={user.mobile} disabled/>
                                                 </Form.Item>
                                             </div>
                                         </div>

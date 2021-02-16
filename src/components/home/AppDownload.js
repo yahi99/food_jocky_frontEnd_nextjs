@@ -16,7 +16,7 @@ const AppImg = '/assets/img/app.png'
             <h3>Have you got the app?</h3>
             <p>It’s all at your pocket - Order from your favorite restaurants and gets real-time order updates, live chat supports and exclusive offers.</p>
             <div className="app-downloads-button">
-              <a href="#!">
+              <a target="_blank" href="https://www.google.com/url?q=https://apps.apple.com/us/app/foodjocky/id1547579384&sa=D&source=editors&ust=1613466268089000&usg=AOvVaw2In8lT_WUc9jyUNnGNEDMc">
                 <svg xmlns="http://www.w3.org/2000/svg" width="129" height="34" viewBox="0 0 129 34">
                   <g className="svg-stroke-container" fill="#FFF" fillRule="evenodd">
                     <path fillRule="nonzero"

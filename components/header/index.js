@@ -10,9 +10,6 @@ import {useRouter} from "next/router";
 
 const Header = () => {
 
-  
-
-    let router = useRouter()
     let user = useSelector(state => state.user)
     let dispatch = useDispatch()
 
