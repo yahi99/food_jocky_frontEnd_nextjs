@@ -4,8 +4,6 @@ import Sidebar from "../../components/user/sidebar";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchDashboardData} from "../../app/slices/user/actions";
-import {BsBagFill} from "react-icons/bs";
-import {FiRefreshCw} from "react-icons/fi";
 import {GrView} from "react-icons/gr";
 import {Modal, Table} from "antd";
 
@@ -35,8 +33,15 @@ const Orders = () => {
             key: 'method',
         },
         {
+            title: 'Amount',
+            dataIndex: 'total',
+            className: 'text-center',
+            render: amount => amount && amount.toFixed(2)
+        },
+        {
             title: 'Status',
             dataIndex: 'status',
+            className: 'text-center',
             key: 'status',
             render: (status, record) => {
                 if(status === 'pending')
@@ -50,12 +55,6 @@ const Orders = () => {
 
                 return <></>
             }
-        },
-        {
-            title: 'Amount',
-            dataIndex: 'total',
-            className: 'text-center',
-            key: 'total',
         },
         {
             title: 'Action',

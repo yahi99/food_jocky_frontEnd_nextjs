@@ -155,7 +155,7 @@ const wallet = () => {
                                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                                         <div className="boxshadow_Wallet">
                                             <div className="common_wallet_heading">
-                                                <h3>Wallet</h3>
+                                                <h3>My Wallet</h3>
                                             </div>
                                             <div className="wallet_balance_area">
                                                 <p>Wallet Balance</p>
@@ -181,7 +181,7 @@ const wallet = () => {
                                     <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                                         <div className="boxshadow_Wallet">
                                             <div className="common_wallet_heading">
-                                                <h3>Add Wallet</h3>
+                                                <h3>Add to Wallet</h3>
                                             </div>
                                             <Form layout="vertical"
                                                   form={form}
