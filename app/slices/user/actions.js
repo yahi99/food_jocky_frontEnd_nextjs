@@ -3,6 +3,36 @@ import Cookies from 'js-cookie'
 import graphqlClient from "../../graphql";
 import axios from "axios";
 
+export const fetchHomepageData =  createAsyncThunk('user/fetchDashboard', async ({}) => {
+    let query = `
+        query {
+            getHomePageData {
+                error
+                msg
+                data {
+                    populat_category {
+                        _id
+                        image_url
+                        name
+                        restaurant_count
+                    }
+                }
+            }
+        }
+    `
+    let client = graphqlClient()
+    let { error, data } = await client.query(query).toPromise()
+    if(error) {
+        return {error: true, msg: 'Network failed'}
+    }
+    let {getHomePageData} = data
+    return {
+        error: getHomePageData.error,
+        msg: getHomePageData.msg,
+        data: getHomePageData.data
+    }
+})
+
 export const fetchUser = createAsyncThunk('user/fetch', async ({}) => {
     let query = `
             query($token: String!){
