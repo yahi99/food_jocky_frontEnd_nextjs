@@ -1,4 +1,4 @@
-import {fetchDashboardData, fetchUser, fetchWallet} from "./actions";
+import {fetchDashboardData, fetchHomepageData, fetchUser, fetchWallet} from "./actions";
 
 const reducers = {
     reducers: {
@@ -44,6 +44,12 @@ const reducers = {
             let {error, data} = action.payload
             if(!error) {
                 state.wallet = data
+            }
+        },
+        [fetchHomepageData.fulfilled]: (state, action) => {
+            let {error, data} = action.payload
+            if(!error) {
+                state.categories = data.populat_category
             }
         }
     }

@@ -5,7 +5,8 @@ const state = {
         loaded: false
     },
     last_order: false,
-    wallet: {}
+    wallet: {},
+    categories: []
 }
 
 export default state
