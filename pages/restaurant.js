@@ -6,6 +6,7 @@ import {fetchRestaurant} from "../app/slices/restaurant/actions";
 import RestaurantBanner from "../components/restaurant/RestaurantBanner";
 import FoodCategories from "../components/restaurant/FoodCategories";
 import FoodsWithCart from "../components/restaurant/FoodsWithCart";
+import {Spin} from "antd";
 
 const Restaurant = () => {
     const [loaded, setLoaded] = useState(false)
@@ -30,10 +31,7 @@ const Restaurant = () => {
         return (
             <MainLayout>
                 <div className="modal-body text-center" style={{height: '50vh', marginTop: '20vh'}}>
-                    <div className="loader"></div>
-                    <div clas="loader-txt">
-                        <p>Loading</p>
-                    </div>
+                    <Spin size="large" wrapperClassName="loader-spin"/>
                 </div>
             </MainLayout>
         )

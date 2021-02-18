@@ -68,8 +68,8 @@ const Cart = () => {
                 }
             })
             let delivery_charge = settings.rider_cost * distance
-            let customer_discount_amount = Math.ceil(total * 0.01 * restaurant.discount)
-            let vat = Math.ceil(total * 0.01 * settings.customer_vat)
+            let customer_discount_amount = (total * 0.01 * restaurant.discount)
+            let vat = (total * 0.01 * settings.customer_vat)
             let order = {
                 delivery_charge,
                 customer_discount_amount,
@@ -109,7 +109,7 @@ const Cart = () => {
                 if (payload.error) {
                     await Swal.fire('Error', payload.msg, 'error')
                 } else {
-                    await Swal.fire('Success', 'Order placed Successfully')
+                    await Swal.fire('Success', 'Order placed Successfully', 'success')
                     await dispatch(fetchUser({}))
                     dispatch(clearCart({}))
                     await router.push('/checkout')

@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchRestaurants} from "../app/slices/restaurant/actions";
 import RestaurantCard from "../components/restaurant/RestaurantCard";
 import {reloadRestaurants} from "../app/slices/restaurant";
+import MainLayout from "../components/layout";
+import {Spin} from "antd";
 
 const SearchResult = props => {
     let router = useRouter()
@@ -39,7 +41,7 @@ const SearchResult = props => {
     })
 
     return (
-        <Layout>
+        <MainLayout>
             <section id="search-area-wrapper">
                 <div className="container">
                     <div className="row">
@@ -78,10 +80,7 @@ const SearchResult = props => {
                         </div>
                         {restaurants.loading && (
                             <div className="modal-body text-center">
-                                <div className="loader"></div>
-                                <div className="loader-txt">
-                                    <p>Loading</p>
-                                </div>
+                                <Spin size="large" wrapperClassName="loader-spin"/>
                             </div>
                         )}
                         {(!restaurants.loading && !restaurants.error) && (
@@ -94,7 +93,7 @@ const SearchResult = props => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </MainLayout>
     )
 }
 

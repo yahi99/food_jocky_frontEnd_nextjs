@@ -14,6 +14,8 @@ export const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', 
                     thumb_img
                     tags
                     price_type
+                    discount_given_by_restaurant
+                    discount_given_by_admin
                 }
             }
         }
@@ -74,10 +76,37 @@ export const fetchRestaurant = createAsyncThunk('restaurant/fetchRestaurant', as
         }
     `
     let client = graphqlClient()
-    let { error, data } = await client.query(query, {id}).toPromise()
+    let {error, data} = await client.query(query, {id}).toPromise()
     if (error) {
         return {error: true, msg: 'Network Failed'}
     }
     const {getOneRestaurant} = data
     return getOneRestaurant
+})
+
+export const categoryRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async ({id}) => {
+    let query = `
+        query ($id: ID) {
+            getAllRestaurantsByCategory(category_id: $id) {
+                error
+                msg
+                data {
+                     _id
+                    name
+                    thumb_img
+                    tags
+                    price_type
+                    discount_given_by_restaurant
+                    discount_given_by_admin
+                }
+            }
+        }
+    `
+    let client = graphqlClient()
+    let {error, data} = await client.query(query, {id}).toPromise()
+    if (error) {
+        return {error: true, msg: 'Network Failed'}
+    }
+    const {getAllRestaurantsByCategory} = data
+    return getAllRestaurantsByCategory
 })
