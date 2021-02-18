@@ -197,3 +197,12 @@ del::after {
   background:black;
   transform:rotate(-5deg);
 }
+
+.ant-spin-dot.ant-spin-dot-spin {
+  font-size: 80px;
+}
+.ant-spin-lg .ant-spin-dot i {
+  width: 26px;
+  height: 26px;
+  background-color: #c8102f;
+}

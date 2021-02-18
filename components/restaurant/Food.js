@@ -19,13 +19,13 @@ const Food = ({food, category_id}) => {
     if(restaurant.discount > 0) {
         food = {
             ...food,
-            price: Math.ceil(food.price),
-            d_price: Math.ceil(food.price * (1 - (restaurant.discount * 0.01))),
+            price: food.price.toFixed(2),
+            d_price: (food.price * (1 - (restaurant.discount * 0.01))).toFixed(2),
             price_and_size: food.price_and_size.map(variation => {
                 return {
                     size: variation.size,
-                    price: Math.ceil(variation.price),
-                    d_price: Math.ceil(variation.price * (1 - (restaurant.discount * 0.01)))
+                    price: variation.price.toFixed(2),
+                    d_price: (variation.price * (1 - (restaurant.discount * 0.01))).toFixed(2)
                 }
             })
         }
@@ -45,7 +45,7 @@ const Food = ({food, category_id}) => {
             _id: food._id,
             name: food.name,
             size: food.price_and_size[variation].size,
-            price: food.price_and_size[variation].price,
+            price: parseFloat(food.price_and_size[variation].price),
             quantity: 1,
             category_id,
             restaurant,
@@ -59,7 +59,7 @@ const Food = ({food, category_id}) => {
             _id: food._id,
             name: food.name,
             size: '',
-            price: food.price,
+            price: parseFloat(food.price),
             quantity: 1,
             category_id,
             restaurant,

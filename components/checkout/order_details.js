@@ -27,7 +27,7 @@ const OrderDetails = ({order}) => {
                             </div>
 
                             <div className="order-items-product">
-                                <p>BDT {item.price * item.quantity}</p>
+                                <p>BDT {(item.price * item.quantity).toFixed(2)}</p>
                             </div>
                         </div>
                     ))}
@@ -38,7 +38,7 @@ const OrderDetails = ({order}) => {
                             <p>Subtotal</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT {order.sub_total}</p>
+                            <p>BDT {order.sub_total.toFixed(2)}</p>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@ const OrderDetails = ({order}) => {
                             <p style={{color: '#c8102f'}}>Discount</p>
                         </div>
                         <div className="order-items-product">
-                            <p style={{color: '#c8102f'}}>BDT -{order.customer_discount_amount}</p>
+                            <p style={{color: '#c8102f'}}>BDT -{order.customer_discount_amount.toFixed(2)}</p>
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@ const OrderDetails = ({order}) => {
                             <p>Vat</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT {order.vat}</p>
+                            <p>BDT {order.vat.toFixed(2)}</p>
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@ const OrderDetails = ({order}) => {
                             <p>Delivery Charge</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT {order.delivery_charge}</p>
+                            <p>BDT {order.delivery_charge.toFixed(2)}</p>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const OrderDetails = ({order}) => {
                             <p><strong>Total</strong>(Incl. VAT)</p>
                         </div>
                         <div className="order-items-product">
-                            <p>BDT {order.total}</p>
+                            <p>BDT {order.total.toFixed(2)}</p>
                         </div>
                     </div>
                 </div>

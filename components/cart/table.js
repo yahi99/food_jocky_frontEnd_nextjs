@@ -59,12 +59,12 @@ const CartTable = ({cart}) => {
                             <p style={{  alignItems:" center", display: "flex"}}>
                                 Tk. {food.price}
                                 <AiOutlineMinusSquare style={{cursor: 'pointer', marginLeft:'8px',  marginRight:'8px',fontSize: "20px"}} onClick={() => handleMinus(food)}/>
-                                <span>{food.quantity}</span>
+                                <span>{food.quantity.toFixed(2)}</span>
                                 <AiOutlinePlusSquare style={{cursor: 'pointer', marginLeft:'8px',  fontSize: "20px"}} onClick={() => handlePlus(food)}/>
                             </p>
                         </div>
                         <div className="food_count_total_price">
-                            <p>Tk. {food.price * food.quantity}</p>
+                            <p>Tk. {(food.price * food.quantity).toFixed(2)}</p>
                         </div>
                     </div>
                 ))}
@@ -72,24 +72,24 @@ const CartTable = ({cart}) => {
             <div className="Food_vat_area">
                 <div className="vat-inner-area">
                     <h6>Food Price</h6>
-                    <p>Tk. {total}</p>
+                    <p>Tk. {total.toFixed(2)}</p>
                 </div>
                 <div className="vat-inner-area">
                     <h6 style={{color: '#c8102f'}}>Discount</h6>
-                    <p style={{color: '#c8102f'}}>Tk. -{Math.ceil(restaurant.discount * 0.01 * total)}</p>
+                    <p style={{color: '#c8102f'}}>Tk. -{(restaurant.discount * 0.01 * total).toFixed(2)}</p>
                 </div>
                 <div className="vat-inner-area">
                     <h6>VAT</h6>
-                    <p>Tk. {Math.ceil(vat * 0.01 * total)}</p>
+                    <p>Tk. {(vat * 0.01 * total).toFixed(2)}</p>
                 </div>
                 <div className="vat-inner-area">
                     <h6>Delivery Fee</h6>
-                    <p>Tk. {delivery_charge * distance}</p>
+                    <p>Tk. {(delivery_charge * distance).toFixed(2)}</p>
                 </div>
             </div>
             <div className="Total_Areas">
                 <h3>Total</h3>
-                <h3>Tk. {total + delivery_charge * distance + Math.ceil(vat * 0.01 * total) - Math.ceil(restaurant.discount * 0.01 * total)}</h3>
+                <h3>Tk. {(total + delivery_charge * distance + (vat * 0.01 * total) - (restaurant.discount * 0.01 * total)).toFixed(2)}</h3>
             </div>
         </>
     )

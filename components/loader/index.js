@@ -1,6 +1,6 @@
-import Modal from "react-bootstrap/Modal";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
+import {Spin} from "antd";
 
 const Loader = () => {
     const router = useRouter()
@@ -22,14 +22,11 @@ const Loader = () => {
     })
 
     return (
-        <Modal show={show} centered={true} id="modal-loader">
+        <div className="position-fixed justify-content-center align-items-center vw-100 vh-100" style={{zIndex: 99999, background: '#11111144', display: show ? 'flex': 'none'}} id="modal-loader">
             <div className="modal-body text-center">
-                <div className="loader"></div>
-                <div clas="loader-txt">
-                    <p>Loading</p>
-                </div>
+                <Spin size="large" wrapperClassName="loader-spin"/>
             </div>
-        </Modal>
+        </div>
     )
 }
 export default Loader
