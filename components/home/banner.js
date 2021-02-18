@@ -11,7 +11,8 @@ function Banner() {
     let [form] = Form.useForm()
     const {isLoaded} = useJsApiLoader({
         googleMapsApiKey: "AIzaSyAVKjCxMvk5Nymx6VYSlhc4iOasFoTxuCk",
-        libraries: ['places']
+        libraries: ['places'],
+        region: 'BD'
     })
 
     const BannerData = {
