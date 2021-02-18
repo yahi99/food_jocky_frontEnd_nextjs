@@ -1,6 +1,6 @@
 module.exports = {
     env: {
-        admin_url: 'https://app.development.foodjocky.com',
-        base_url: 'https://development.foodjocky.com'
+        admin_url: 'https://app.foodjocky.com',
+        base_url: 'https://foodjocky.com'
     },
 }
