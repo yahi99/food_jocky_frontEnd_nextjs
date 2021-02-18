@@ -153,7 +153,7 @@ const Food = ({food, category_id}) => {
                             {food.price_and_size.map((variation, index) => (
                                 <div className="form-check" style={{paddingLeft: 0}} key={index}>
                                     <Radio value={index} style={{fontSize: 18, textTransform: 'capitalize'}}>{variation.size}</Radio>
-                                    <p>Tk. {variation.price}</p>
+                                    <p style={{color: 'var(--heading-color)'}}><del className="mr-1 opacity-60">Tk. {variation.price} </del> Tk. {variation.d_price}</p>
                                 </div>
                             ))}
                         </Radio.Group>
@@ -164,7 +164,7 @@ const Food = ({food, category_id}) => {
                         <h3>
                             Total Price <span>(Including Toppings)</span>
                         </h3>
-                        <h4>Tk. {food.price_and_size.length > 0 ? food.price_and_size[variation].price : '0'}</h4>
+                        <h4>Tk. {food.price_and_size.length > 0 ? food.price_and_size[variation].d_price : '0'}</h4>
 
                     </div>
                     <div className="footer_Add_btn">
