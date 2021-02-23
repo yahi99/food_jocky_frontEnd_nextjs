@@ -82,7 +82,7 @@ const AdditionalItems = () => {
                             </li>
                             <li className="area_Modal_flexed">
                                 <div className="Additional_Inner_items">
-                                    <p>7up 1 litre</p>
+                                    <p>7up 1 litre</p> 
                                 </div>
                                 <div className="Additional_Inner_items">
                                     <p>Tk. 15 <AiOutlineMinusSquare/> <span>2</span><AiOutlinePlusSquare/></p>

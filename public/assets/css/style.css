@@ -320,15 +320,50 @@ button:focus {
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   -o-border-radius: 0;
+}
+.ant-dropdown {
+  position: fixed !important;
+}
+.ant-dropdown.ant-dropdown-show-arrow.ant-dropdown-placement-bottomRight {
+  background-color: #fff;
 
 }
-
+#area_ant_dropdown {
+  width: 330px;
+  box-shadow: 0px 0px 9px -5px #c8102e;
+  padding-top: 20px;
+}
+.area_menus .nav-links {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.lan-area{
+  margin-right: 15px !important;
+}
+.user_names{
+font-size: 14px;
+}
+.area_saying{
+  font-weight: 800;
+  font-size: 15px;
+}
 .user-area-menu {
   left: -346px;
 }
-
+.menu_cart_area h6{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.menu_cart_area p{
+padding-top:5px;
+padding-left: 20px;
+}
 .area-language {
   left: -100px;
+}
+.menu_titles{
+  padding-left: 20px;
 }
 
 .navbar-area .dropdown-box .area-language li {
@@ -411,8 +446,8 @@ button:focus {
   right: 4px;
 }
 .lan-area a{
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
 }
 .lan-area .active{
   color: darkgrey;
@@ -420,6 +455,24 @@ button:focus {
 .scroll_topCart_area{
   position: sticky;
   top: 150px;
+}
+/* ----------------------------
+    notofications_wrappers
+--------------------------------*/
+#notofications_wrappers{
+  padding: 120px 0;
+}
+
+.notifications_area h2{
+  font-size: 24px;
+}
+.notification_items{
+display: flex;
+justify-content: space-between;
+box-shadow: 0px 0px 25px -4px #00000014;
+padding: 30px 40px;
+align-items: center;
+margin-bottom: 30px;
 }
 /* -----------------------------
           Home Banner
@@ -2876,10 +2929,28 @@ line-height: 30px;
   justify-content: space-between;
   padding: 14px 15px;
   border-bottom: 1px solid #d2d2d2;
+  align-items: center;
+}
+.empty_cart_area h3{
+  padding: 16px 0;
+    font-size: 24px;
+    color: #8f8fa1;
+    text-align: center;
+}
+.empty_cart_area{
+  text-align: center;
+  padding-bottom: 40px;
 }
 .food_names h3{
   font-size: 16px;
   margin: 0;
+  width: 99px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.food_count_price p{
+  padding-left: 0 !important;
 }
 .food_names p{
   font-size: 12px;

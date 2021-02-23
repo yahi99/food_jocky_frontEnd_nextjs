@@ -10,7 +10,7 @@ const FoodsWithCart = ({restaurant}) => {
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
     const handleOrder = () => {
-        if(!user.auth) {
+        if(!user.auth) { 
             Swal.fire('Warning', "Please log in to place order", 'warning').then (() => {
                 router.push('/login').then(() => {})
             })

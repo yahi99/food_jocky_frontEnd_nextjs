@@ -89,7 +89,7 @@ const Food = ({food, category_id}) => {
 
     return (
         <>
-            <div className="col-lg-12 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                 <div className="setmenu_Items_wrapers">
                     <div className="set_menu_inner_area">
                         <div className="row">
@@ -165,7 +165,6 @@ const Food = ({food, category_id}) => {
                             Total Price <span>(Including Toppings)</span>
                         </h3>
                         <h4>Tk. {food.price_and_size.length > 0 ? food.price_and_size[variation].d_price : '0'}</h4>
-
                     </div>
                     <div className="footer_Add_btn">
                         <button className="btn button-site" onClick={addVariation}>

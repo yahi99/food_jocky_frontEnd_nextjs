@@ -3,7 +3,7 @@ import React from "react";
 
 const RestaurantBanner = ({restaurant}) => {
     let bannerStyle = {
-        backgroundImage: `url(${restaurant.cover_img})` ,
+        backgroundImage: `url(${restaurant.cover_img})`,
         backgroundSize:"cover",
         backgroundRepeat:"no-repeat",
         backgroundPosition:"center"
