@@ -5,17 +5,46 @@ import graphqlClient from "../../graphql";
 export const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async ({lat, lng, name, type}) => {
     let query = `
         query($lat: Float!, $lng: Float!, $name: String!, $type: String){
-            SearchRestaurants(  latitude: $lat, longitude: $lng, name: $name, restaurant_or_homemade: $type ) {
+            SearchRestaurants(  latitude: $lat, longitude: $lng, name: $name, restaurant_or_homemade: $type , filter: false, category: [], price_type: "") {
                 error
                 msg
-                data{
-                    _id
-                    name
-                    thumb_img
-                    tags
-                    price_type
-                    discount_given_by_restaurant
-                    discount_given_by_admin
+                data {
+                    allRestaurants {
+                        _id
+                        name
+                        thumb_img
+                        tags
+                        price_type
+                        discount_given_by_restaurant
+                        discount_given_by_admin
+                    }
+                    topRestaurants {
+                        _id
+                        name
+                        thumb_img
+                        tags
+                        price_type
+                        discount_given_by_restaurant
+                        discount_given_by_admin
+                    }
+                    nearestRestaurants {
+                        _id
+                        name
+                        thumb_img
+                        tags
+                        price_type
+                        discount_given_by_restaurant
+                        discount_given_by_admin
+                    }
+                    newRestaurants {
+                        _id
+                        name
+                        thumb_img
+                        tags
+                        price_type
+                        discount_given_by_restaurant
+                        discount_given_by_admin
+                    }
                 }
             }
         }

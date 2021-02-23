@@ -3,7 +3,10 @@ const state = {
         loading: true,
         error: false,
         msg: '',
-        data: []
+        all: [],
+        top: [],
+        nearest: [],
+        new: []
     },
     restaurant: {
         loading: true,

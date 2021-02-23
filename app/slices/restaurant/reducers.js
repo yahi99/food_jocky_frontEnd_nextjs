@@ -91,12 +91,22 @@ const reducers = {
     },
     extraReducers: {
         [fetchRestaurants.fulfilled]: (state, action) => {
-            state.restaurants.loading = false
             state.restaurants.error = action.payload.error
             state.restaurants.msg = action.payload.msg
+            let {allRestaurants, topRestaurants, nearestRestaurants, newRestaurants} = action.payload.data
             if(!action.payload.error) {
-                state.restaurants.data = action.payload.data
+                state.restaurants.all = allRestaurants
+                if( topRestaurants && topRestaurants.length > 2) {
+                    state.restaurants.top = topRestaurants
+                }
+                if( nearestRestaurants && nearestRestaurants.length > 2) {
+                    state.restaurants.nearest = nearestRestaurants
+                }
+                if( newRestaurants && newRestaurants.length > 2) {
+                    state.restaurants.new = newRestaurants
+                }
             }
+            state.restaurants.loading = false
         },
         [fetchRestaurant.fulfilled]: (state, action) => {
             state.restaurant.loading = false
