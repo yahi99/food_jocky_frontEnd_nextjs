@@ -206,3 +206,38 @@ del::after {
   height: 26px;
   background-color: #c8102f;
 }
+
+.slick-disabled .disabled-none {
+  display: none;
+}
+
+.slick-arrow::before {
+  display: none;
+}
+
+.slick-slide.slick-active {
+  padding-right: 15px;
+}
+.slick-slide.slick-active.slick-current {
+  padding-left: 0;
+}
+.slick-slide.slick-active.slick-current + div {
+  padding-left: 15px;
+}
+.slick-slide.slick-active.slick-current + div + div {
+  padding-left: 15px;
+  padding-right: 0;
+}
+.slick-slide.slick-active + .slick-slide.slick-active.slick-current {
+  padding-left: 15px;
+}
+.slick-slide.slick-active + .slick-slide.slick-active.slick-current + div{
+  padding-right: 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .slick-slide {
+    padding: 0 !important;
+  }
+}

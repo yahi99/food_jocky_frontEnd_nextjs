@@ -6,21 +6,32 @@ import {fetchRestaurants} from "../app/slices/restaurant/actions";
 import RestaurantCard from "../components/restaurant/RestaurantCard";
 import {reloadRestaurants} from "../app/slices/restaurant";
 import MainLayout from "../components/layout";
+import Slider from "react-slick";
 import {Spin} from "antd";
 
-const SearchResult = props => {
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md";
+
+
+const SearchResult = () => {
     let router = useRouter()
-    let query = router.query
     let dispatch = useDispatch()
     let [loaded, setLoaded] = useState(false)
     let [type, setType] = useState('restaurant')
     let restaurants = useSelector(state => state.restaurant.restaurants)
 
-    const [search, setSearch] = useState(query.name || '')
+    const [search, setSearch] = useState('')
     const handleSearchChange = e => setSearch(e.currentTarget.value)
 
-    const showRestaurants = () => {setType('restaurant');reload()}
-    const showHomemade = () => {setType('homemade'); reload()}
+    const showRestaurants = () => {
+        setType('restaurant');
+        reload()
+    }
+    const showHomemade = () => {
+        setType('homemade');
+        reload()
+    }
 
     const reload = () => {
         dispatch(reloadRestaurants(null))
@@ -34,9 +45,12 @@ const SearchResult = props => {
     }
 
     useEffect(() => {
-        if (query.lat && !loaded) {
-            dispatch(fetchRestaurants({lat: +query.lat, lng: +query.lng, name: search, type}))
+        if (!loaded) {
             setLoaded(true)
+            const urlParams = new URLSearchParams(window.location.search);
+            const lat = urlParams.get('lat');
+            const lng = urlParams.get('lng');
+            dispatch(fetchRestaurants({lat: +lat, lng: +lng, name: search, type}))
         }
     })
 
@@ -49,10 +63,12 @@ const SearchResult = props => {
                             <div className="search-top-area-wrapper">
                                 <ul id="top-select-area">
                                     <li className="restaurant-img">
-                                        <a className={ type === 'restaurant' ?  'active-list' : ''} onClick={showRestaurants}>Restaurant</a>
+                                        <a className={type === 'restaurant' ? 'active-list' : ''}
+                                           onClick={showRestaurants}>Restaurant</a>
                                     </li>
                                     <li className="home-made-img">
-                                        <a className={ type === 'homemade' ?  'active-list' : ''} onClick={showHomemade}>Homemade</a>
+                                        <a className={type === 'homemade' ? 'active-list' : ''}
+                                           onClick={showHomemade}>Homemade</a>
                                     </li>
                                 </ul>
                             </div>
@@ -73,7 +89,9 @@ const SearchResult = props => {
                         </div>
                     </div>
                     <div className="restaurant-list-wrapper">
-                        <div className="restaurant-wrapper-heading">
+                        <Sliders title="Top Restaurants" restaurants={restaurants.top}/>
+
+                        <div className="restaurant-wrapper-heading mb-2">
                             <h2>
                                 {type === 'restaurant' ? "All Restaurant" : "All Homemade"}
                             </h2>
@@ -85,8 +103,11 @@ const SearchResult = props => {
                         )}
                         {(!restaurants.loading && !restaurants.error) && (
                             <div className="row">
-                                {restaurants.data.map((restaurant, index) => (
-                                    <RestaurantCard restaurant={restaurant} key={index}/>
+                                {restaurants.all.map((restaurant, index) => (
+                                    <div className="col-lg-4 col-md-6 col-sm-12 col-12 padding-bottom-30">
+                                        <RestaurantCard restaurant={restaurant} key={index}/>
+                                    </div>
+
                                 ))}
                             </div>
                         )}
@@ -98,3 +119,86 @@ const SearchResult = props => {
 }
 
 export default SearchResult
+
+
+const Sliders = ({title, restaurants}) => {
+
+    if(restaurants.length < 3) {
+        return ""
+    }
+
+    const arrowStyle = {
+        backgroundColor: '#c8102f',
+        height: 30,
+        width: 24,
+        marginTop: -30
+    }
+
+    let prev = (
+        <div>
+            <div
+                style={{...arrowStyle, marginLeft: -10}}
+                className="disabled-none">
+                <MdKeyboardArrowLeft color={'#fff'} size={24} style={{height: 30}}/>
+            </div>
+        </div>
+    )
+    let next = (
+        <div>
+            <div
+                style={{...arrowStyle, marginLeft: 8}}
+                className="disabled-none">
+                <MdKeyboardArrowRight color={'#fff'} size={24} style={{height: 30}}/>
+            </div>
+        </div>
+    )
+
+
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        prevArrow: prev,
+        nextArrow: next,
+        responsive: [
+            {
+                breakpoint: 996,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    initialSlide: 2,
+                    autoplay: true,
+                    infinite: true,
+                }
+            }
+        ]
+    };
+
+    return (
+        <div className="restaurant-wrapper-heading mb-5">
+            <h2 className="mb-0">
+                {title}
+            </h2>
+            <div>
+                <Slider {...settings}>
+                    {restaurants.map((restaurant, index) => (
+                        <div className="my-3">
+                            <RestaurantCard restaurant={restaurant} key={index}
+                                            style={{boxShadow: '0px 0px 12px -3px #c8102e2b'}}/>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        </div>
+    )
+}
