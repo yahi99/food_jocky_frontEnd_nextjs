@@ -2,10 +2,10 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import graphqlClient from "../../graphql";
 
 
-export const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async ({lat, lng, name, type}) => {
+export const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async ({lat, lng, name, type, filter}) => {
     let query = `
-        query($lat: Float!, $lng: Float!, $name: String!, $type: String){
-            SearchRestaurants(  latitude: $lat, longitude: $lng, name: $name, restaurant_or_homemade: $type , filter: false, category: [], price_type: "") {
+        query($lat: Float!, $lng: Float!, $name: String!, $type: String, $isFilter: Boolean, $category: [ID], $price_type: String){
+            SearchRestaurants(  latitude: $lat, longitude: $lng, name: $name, restaurant_or_homemade: $type , filter: $isFilter, category: $category, price_type: $price_type) {
                 error
                 msg
                 data {
@@ -50,7 +50,16 @@ export const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', 
         }
     `
     let client = new graphqlClient()
-    const {error, data} = await client.query(query, {lat, lng, name, type}).toPromise()
+    let isFilter = false, category = [], price_type = ''
+    if(filter && (filter.categories || filter.price_type)) {
+        name = ''
+        isFilter = true
+        category = filter.categories || []
+        price_type = filter.price_type || ''
+    }
+
+
+    const {error, data} = await client.query(query, {lat, lng, name, type, isFilter, category, price_type}).toPromise()
     if (error) {
         return {error: true, msg: 'Network Failed'}
     }
