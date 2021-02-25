@@ -1,4 +1,4 @@
-import {fetchRestaurant, fetchRestaurants} from "./actions";
+import {categoryRestaurants, fetchRestaurant, fetchRestaurants} from "./actions";
 import Cookies from 'js-cookie'
 
 const reducers = {
@@ -121,7 +121,15 @@ const reducers = {
             if(!action.payload.error) {
                 state.restaurant.data = action.payload.data
             }
+        },
+        [categoryRestaurants.fulfilled]: (state, action) => {
+            let {error, data } = action.payload
+            if(!error) {
+                state.restaurants.all = data
+            }
+            state.restaurants.loading = false
         }
+
     }
 }
 

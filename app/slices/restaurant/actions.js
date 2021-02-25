@@ -122,7 +122,7 @@ export const fetchRestaurant = createAsyncThunk('restaurant/fetchRestaurant', as
     return getOneRestaurant
 })
 
-export const categoryRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async ({id}) => {
+export const categoryRestaurants = createAsyncThunk('restaurant/fetchCategoryRestaurants', async ({id}) => {
     let query = `
         query ($id: ID) {
             getAllRestaurantsByCategory(category_id: $id) {

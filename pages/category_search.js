@@ -35,8 +35,10 @@ const CategorySearch = () => {
                         )}
                         {(!restaurants.loading && !restaurants.error) && (
                             <div className="row">
-                                {restaurants.data.map((restaurant, index) => (
-                                    <RestaurantCard restaurant={restaurant} key={index}/>
+                                {restaurants.all.map((restaurant, index) => (
+                                    <div className="col-lg-4 col-md-6 col-sm-12 col-12 padding-bottom-30">
+                                        <RestaurantCard restaurant={restaurant} key={index}/>
+                                    </div>
                                 ))}
                             </div>
                         )}
