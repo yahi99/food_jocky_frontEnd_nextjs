@@ -55,7 +55,7 @@ function DetailsLayout({ restaurant, user, settings }) {
             <section id="Top_cata_food_area">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-8">
+                        <div className="col-lg-12">
                             <div className="setmenu-items-inner-wrapper">
                                 {restaurant.food_categories.map((food_category, index) => (
                                     <div id={"category-" + food_category.name.replace(/\s/g, "-")} key={index}>
@@ -69,9 +69,9 @@ function DetailsLayout({ restaurant, user, settings }) {
                                 ))}
                             </div>
                         </div>
-                        <div className="col-lg-4">
+                        {/* <div className="col-lg-4">
                             <Cart order={order} setOrder={setOrder} restaurant={restaurant} user={user} settings={settings}/>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

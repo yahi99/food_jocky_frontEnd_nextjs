@@ -20,7 +20,6 @@ const FoodDealsArea = () => {
                  {data.body.map(body => (
                   <BottomTableBodyRow body={body}/>
                  ))}
-                   {}
                 </tbody>
             </table>
             </div>

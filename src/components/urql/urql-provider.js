@@ -2,8 +2,8 @@ import {SubscriptionClient} from "subscriptions-transport-ws";
 import {Client, createClient, defaultExchanges, Provider, subscriptionExchange} from "urql";
 import React from "react";
 
-const ServerUrl = 'https://backend.foodjocky.com/graphql';
-const SubscriptionUrl = 'wss://backend.foodjocky.com/graphql';
+const ServerUrl = 'https://dev.foodjocky.com/graphql';
+const SubscriptionUrl = 'wss://dev.foodjocky.com/graphql';
 
 const subscriptionClient = process.browser ? new SubscriptionClient(SubscriptionUrl, { reconnect: true }) : null;
 

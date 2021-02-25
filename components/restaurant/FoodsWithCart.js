@@ -10,7 +10,7 @@ const FoodsWithCart = ({restaurant}) => {
     let cart = useSelector(state => state.restaurant.cart)
     let user = useSelector(state => state.user)
     const handleOrder = () => {
-        if(!user.auth) {
+        if(!user.auth) { 
             Swal.fire('Warning', "Please log in to place order", 'warning').then (() => {
                 router.push('/login').then(() => {})
             })
@@ -23,7 +23,7 @@ const FoodsWithCart = ({restaurant}) => {
         <section id="Top_cata_food_area">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-7">
+                    <div className="col-lg-12">
                         <div className="setmenu-items-inner-wrapper">
                             {restaurant.food_categories.map((category, index) => (
                                 <div id={"category-" + category.name.replace(/\s/g, "-")} key={index}>
@@ -40,29 +40,7 @@ const FoodsWithCart = ({restaurant}) => {
                         </div>
                     </div>
 
-                    {cart.foods && (
-                        <div className="col-lg-5">
-                            <div className="scroll_topCart_area">
-                            <div className="Catr-Heading">
-                                <h2>My Cart</h2>
-                            </div>
-                            <div className="Cart_area_wrappers">
-                                <div className="Cart_top_area">
-                                    <h4>{cart.restaurant_name}</h4>
-                                    <h5>{cart.foods.length} Items Added</h5>
-                                </div>
 
-                                <CartTable cart={cart}/>
-
-                                <div className="Orders-Button">
-                                    <a className="btn button-site" onClick={handleOrder}>
-                                        Place Order
-                                    </a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
         </section>

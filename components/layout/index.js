@@ -12,7 +12,7 @@ const MainLayout = props => {
     let user = useSelector(state => state.user)
     let settings = useSelector(state => state.order.settings)
     useEffect(() => {
-        if(!loaded) {
+        if(!loaded) { 
             setLoaded(true)
             dispatch(loadCart({}))
             dispatch(fetchSettings({}))

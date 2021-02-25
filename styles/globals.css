@@ -330,3 +330,7 @@ del::after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.search-input {
+
+}

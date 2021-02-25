@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineMinusSquare, AiOutlinePlusSquare} from "react-icons/ai";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"; 
 import {addToCart, removeFromCart} from "../../app/slices/restaurant";
 import Cookies from 'js-cookie'
 import {getDistance} from "../../app/slices/order/actions";
@@ -57,10 +57,11 @@ const CartTable = ({cart}) => {
                         </div>
                         <div className="food_count_price">
                             <p style={{  alignItems:" center", display: "flex"}}>
-                                Tk. {food.price}
-                                <AiOutlineMinusSquare style={{cursor: 'pointer', marginLeft:'8px',  marginRight:'8px',fontSize: "20px"}} onClick={() => handleMinus(food)}/>
-                                <span>{food.quantity.toFixed(2)}</span>
-                                <AiOutlinePlusSquare style={{cursor: 'pointer', marginLeft:'8px',  fontSize: "20px"}} onClick={() => handlePlus(food)}/>
+                           
+                           
+                                <AiOutlineMinusSquare style={{cursor: 'pointer', marginLeft:'2px',  marginRight:'2px',fontSize: "18px"}} onClick={() => handleMinus(food)}/>
+                                <span>{food.quantity}</span>
+                                <AiOutlinePlusSquare style={{cursor: 'pointer', marginLeft:'2px',  fontSize: "18px"}} onClick={() => handlePlus(food)}/>
                             </p>
                         </div>
                         <div className="food_count_total_price">

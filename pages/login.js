@@ -23,7 +23,7 @@ const Login = () => {
             await Swal.fire('Error', payload.msg, 'error')
         } else {
             dispatch(reloadUser({}))
-            await router.back()
+            await router.back() 
         }
     }
     return (

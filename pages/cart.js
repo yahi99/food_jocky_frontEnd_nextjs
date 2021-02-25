@@ -16,7 +16,7 @@ import Cookies from "js-cookie";
 
 const Cart = () => {
     let dispatch = useDispatch()
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false);
     const [selected, setSelected] = useState();
     const [payment, setPayment] = useState('cod');
     let router = useRouter()
@@ -117,8 +117,6 @@ const Cart = () => {
             }
 
         }
-
-
     }
 
     if (user.last_order) {
@@ -185,7 +183,7 @@ const Cart = () => {
                                 </div>
                             </div>
 
-                            <Payment_Area payment={payment} setPayment={setPayment}/>
+                            <Payment_Area payment={payment} setPayment={setPayment}/> 
                             <div className="Orders-Button" style={{float: 'right', marginTop: 20}}>
                                 <a className="btn button-site" onClick={handleSubmit}>
                                     Place Order
