@@ -3,8 +3,7 @@ import {GoogleMap, Marker, Autocomplete, useJsApiLoader} from '@react-google-map
 import Link from 'next/link'
 import {BiMap} from "react-icons/bi";
 import axios from "axios";
-import {Modal} from "react-bootstrap";
-import {Form} from "antd";
+import {Form, Modal} from "antd";
 import Cookies from 'js-cookie'
 
 function Banner() {
@@ -28,11 +27,15 @@ function Banner() {
     };
 
     const currentLocation = () => {
-        if(isLoaded) {
-            navigator.geolocation.getCurrentPosition(async function(position) {
-                let {formatted_address, geometry} = await getGeocode(position.coords.latitude, position.coords.longitude)
+        if (isLoaded) {
+            navigator.geolocation.getCurrentPosition(async function (position) {
+                let {
+                    formatted_address,
+                    geometry
+                } = await getGeocode(position.coords.latitude, position.coords.longitude)
                 setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
-            }, () => {}, {
+            }, () => {
+            }, {
                 enableHighAccuracy: true,
                 timeout: 5000,
                 maximumAge: 0
@@ -86,7 +89,7 @@ function Banner() {
             return fields.address.location
         }
         let location = JSON.parse(Cookies.get('delivery_to') || "{}")
-        if(location.lat) {
+        if (location.lat) {
             getGeocode(location.lat, location.lng).then(({formatted_address, geometry}) => {
                 setAddressLocation(formatted_address, geometry.location.lat, geometry.location.lng)
             })
@@ -104,69 +107,130 @@ function Banner() {
     return (
         <>
             <Modal
-                dialogClassName="modal-custom-address"
-                show={mapModal}
-                onHide={() => setMapModal(false)}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Is this your exact location?</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form id="banner_form" style={{position: "relative"}}>
-                        {isLoaded && (
-                            <>
-                                <Autocomplete
-                                    onLoad={value => setAutocomplete1(value)}
-                                    onPlaceChanged={onPlacesChange1}
+                title="Is this your exact location?"
+                footer={null}
+                visible={mapModal}
+                width={600}
+                onCancel={() => setMapModal(false)}>
+                <form id="banner_form">
+                    {isLoaded && (
+                        <>
+                            <Autocomplete
+                                onLoad={value => setAutocomplete1(value)}
+                                onPlaceChanged={onPlacesChange1}
+                            >
+                                <div className="input-group">
+                                    <input
+                                        type="text"
+                                        placeholder="Search Places ...."
+                                        className='form-control location-search-input'
+                                        value={getAddress()}
+                                        onChange={e => setAddress(e.currentTarget.value)}
+                                    />
+                                    <i className="icon_search">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                             strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        </svg>
+                                    </i>
+                                    <i className="location-area-map-marker" onClick={currentLocation}
+                                       style={{cursor: "pointer", right: "3%"}}>
+                                        <BiMap size="27px"/>
+                                    </i>
+                                </div>
+                            </Autocomplete>
+                            <GoogleMap
+                                mapContainerStyle={mapStyles}
+                                zoom={13}
+                                center={getLocation()}
+                                onClick={handleMapClick}
+                            >
+                                <Marker
+                                    onLoad={value => setMarker(value)}
+                                    draggable={true}
+                                    position={getLocation()}
+                                    onDragEnd={onDragEnd}
                                 >
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            placeholder="Search Places ...."
-                                            className='form-control location-search-input'
-                                            value={getAddress()}
-                                            onChange={e => setAddress(e.currentTarget.value)}
-                                        />
-                                        <i className="icon_search">
-                                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
-                                                 strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                <circle cx="11" cy="11" r="8"></circle>
-                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                            </svg>
-                                        </i>
-                                        <i className="location-area-map-marker" onClick={currentLocation}
-                                           style={{cursor: "pointer", right: "3%"}}>
-                                            <BiMap size="27px"/>
-                                        </i>
-                                    </div>
-                                </Autocomplete>
-                                <GoogleMap
-                                    mapContainerStyle={mapStyles}
-                                    zoom={13}
-                                    center={getLocation()}
-                                    onClick={handleMapClick}
-                                >
-                                    <Marker
-                                        onLoad={value => setMarker(value)}
-                                        draggable={true}
-                                        position={getLocation()}
-                                        onDragEnd={onDragEnd}
-                                    >
-                                    </Marker>
-                                </GoogleMap>
-                            </>
+                                </Marker>
+                            </GoogleMap>
+                        </>
 
-                        )}
-                        <div className="modal-custom-address-search">
-                            <Link href={"/search?lat=" + getLocation().lat + "&lng=" + getLocation().lng}>
-                                <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn">
-                                    {BannerData.button}
-                                </a>
-                            </Link>
-                        </div>
-                    </form>
-                </Modal.Body>
+                    )}
+                    <div className="d-flex justify-content-center mt-2">
+                        <Link href={"/search?lat=" + getLocation().lat + "&lng=" + getLocation().lng}>
+                            <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn">
+                                {BannerData.button}
+                            </a>
+                        </Link>
+                    </div>
+                </form>
             </Modal>
+
+            {/*<Modal*/}
+            {/*    dialogClassName="modal-custom-address"*/}
+            {/*    show={mapModal}*/}
+            {/*    onHide={() => setMapModal(false)}*/}
+            {/*>*/}
+            {/*    <Modal.Header closeButton>*/}
+            {/*        <Modal.Title>Is this your exact location?</Modal.Title>*/}
+            {/*    </Modal.Header>*/}
+            {/*    <Modal.Body>*/}
+            {/*        <form id="banner_form" style={{position: "relative"}}>*/}
+            {/*            {isLoaded && (*/}
+            {/*                <>*/}
+            {/*                    <Autocomplete*/}
+            {/*                        onLoad={value => setAutocomplete1(value)}*/}
+            {/*                        onPlaceChanged={onPlacesChange1}*/}
+            {/*                    >*/}
+            {/*                        <div className="input-group">*/}
+            {/*                            <input*/}
+            {/*                                type="text"*/}
+            {/*                                placeholder="Search Places ...."*/}
+            {/*                                className='form-control location-search-input'*/}
+            {/*                                value={getAddress()}*/}
+            {/*                                onChange={e => setAddress(e.currentTarget.value)}*/}
+            {/*                            />*/}
+            {/*                            <i className="icon_search">*/}
+            {/*                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"*/}
+            {/*                                     strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">*/}
+            {/*                                    <circle cx="11" cy="11" r="8"></circle>*/}
+            {/*                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>*/}
+            {/*                                </svg>*/}
+            {/*                            </i>*/}
+            {/*                            <i className="location-area-map-marker" onClick={currentLocation}*/}
+            {/*                               style={{cursor: "pointer", right: "3%"}}>*/}
+            {/*                                <BiMap size="27px"/>*/}
+            {/*                            </i>*/}
+            {/*                        </div>*/}
+            {/*                    </Autocomplete>*/}
+            {/*                    <GoogleMap*/}
+            {/*                        mapContainerStyle={mapStyles}*/}
+            {/*                        zoom={13}*/}
+            {/*                        center={getLocation()}*/}
+            {/*                        onClick={handleMapClick}*/}
+            {/*                    >*/}
+            {/*                        <Marker*/}
+            {/*                            onLoad={value => setMarker(value)}*/}
+            {/*                            draggable={true}*/}
+            {/*                            position={getLocation()}*/}
+            {/*                            onDragEnd={onDragEnd}*/}
+            {/*                        >*/}
+            {/*                        </Marker>*/}
+            {/*                    </GoogleMap>*/}
+            {/*                </>*/}
+
+            {/*            )}*/}
+            {/*            <div className="modal-custom-address-search">*/}
+            {/*                <Link href={"/search?lat=" + getLocation().lat + "&lng=" + getLocation().lng}>*/}
+            {/*                    <a className="btn-banner-search border-radius button-site modal-custom-address-search-btn">*/}
+            {/*                        {BannerData.button}*/}
+            {/*                    </a>*/}
+            {/*                </Link>*/}
+            {/*            </div>*/}
+            {/*        </form>*/}
+            {/*    </Modal.Body>*/}
+            {/*</Modal>*/}
             <section id="home_banner">
                 <div className="container-fluid">
                     <div className="row">
