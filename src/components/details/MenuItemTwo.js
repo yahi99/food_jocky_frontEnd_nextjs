@@ -6,7 +6,7 @@ const MenuItemTwo = props => {
        <div className="col-lg-12 col-md-12 col-12">
                     <div className="setmenu_Items_wrapers">
                     <div className="set_menu_inner_area">
-                    <div className="row">
+                    <div className="row"> 
                     <div className="col-lg-8">
                     <div className="set_menu_details">
                     <h3>Margherita Pizza + Choice of Desserts</h3>

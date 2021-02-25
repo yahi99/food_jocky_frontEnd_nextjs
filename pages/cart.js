@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 
 const Cart = () => {
     let dispatch = useDispatch()
+    const [loaded, setLoaded] = useState(false);
     const [selected, setSelected] = useState();
     const [payment, setPayment] = useState('cod');
     let router = useRouter()

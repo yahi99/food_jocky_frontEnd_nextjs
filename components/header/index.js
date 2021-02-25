@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState, useRef} from 'react'
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../app/slices/user";
@@ -11,7 +11,23 @@ import { useRouter } from "next/router";
 import CartTable from "../cart/table";
 
 const Header = ({ restaurant }) => {
-  restaurant;
+  const router = useRouter()
+  const [show, setShow] = useState(false)
+  const toggle = () => {
+    router.pathname === '/cart' || setShow(!show)
+  }
+  const ref = useRef()
+  const handleClickOutside = (e) => {
+      if (ref && !ref.current.contains(e.target)) {
+          setShow(false)
+      } 
+  }
+  useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+      }
+  })
 
   let user = useSelector((state) => state.user);
   let dispatch = useDispatch();
@@ -31,22 +47,20 @@ const Header = ({ restaurant }) => {
     minWidth: 150,
   };
 
-  console.log(cart);
-
   const menu = (
     <Menu>
       <Menu.Item key="0">
         <Link href="/user">Profile</Link>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="3">
+      <Menu.Item key="3"> 
         <a onClick={handleLogout}>Logout</a>
       </Menu.Item>
     </Menu>
   );
 
   const CartMenu = (
-    <div id="area_ant_dropdown">
+    <div id="area_ant_dropdown" ref={ref} style={{display: show ? 'block': 'none'}}>
       {count > 0 ? (
         <div className="menu_cart_area">
           <h6 className="menu_titles">Your order</h6>
@@ -111,21 +125,6 @@ const Header = ({ restaurant }) => {
               ) : (
                 <Link href="/login">
                   <a className="nav-links" style={{ marginLeft: 2, fontSize:15, fontWeight:500 }}>
-                    {/* <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-user"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg> */}
                     Sign In
                   </a>
                 </Link>
@@ -164,16 +163,10 @@ const Header = ({ restaurant }) => {
               </li>
             ) : (
               <li className="nav-item lan-area mr-1">
-                <Dropdown
-                  overlay={CartMenu}
-                  trigger={["click"]}
-                  placement="bottomRight"
-                  overlayStyle={overlayStyle}
-                  arrow
-                >
+                <div className="position-relative">
                   <a
                     className="nav-links  position-relative"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={toggle}
                   >
                     <span className="cart-count">{count}</span>
                     <svg
@@ -193,7 +186,8 @@ const Header = ({ restaurant }) => {
                       <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                     </svg>
                   </a>
-                </Dropdown>
+                  {CartMenu}
+                  </div>
               </li>
             )}
             <li className="nav-item lan-area responsive-none">

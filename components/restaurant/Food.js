@@ -89,27 +89,93 @@ const Food = ({food, category_id}) => {
 
     return (
         <>
-            <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="setmenu_Items_wrapers">
                     <div className="set_menu_inner_area">
                         <div className="row">
-                            <div className="col-lg-3">
-                                <div className="items_img">
-                                    <img src={food.dish_img} alt="" />
+                            <div className="col-lg-12">
+                                <div className="food_cart_media_wrappers">
+                                { food.price_and_size.length > 0 ?  (
+                                       <a href="#!" onClick={handleShow}>
+                                       <div className="food_cart_media">
+                                       <div className="items_img">
+                                           <img src={food.dish_img} alt="Img" />
+                                       </div>
+                                       <div className="set_menu_details">
+                                           <h3>{food.name}</h3>
+                                           <p>
+                                               {food.description}
+                                           </p>
+                                            <del className="d-inline-block font-weight-normal mr-2" style={{fontSize: 16, marginTop: -3}}>BDT {food.price}</del>
+                                            <h4 className="d-inline-block"> BDT {food.d_price}  </h4>
+                                       </div>
+                                       <div className="Add_menu_area">
+                                           { food.price_and_size.length > 0 ?  (
+                                               <a href="#!">
+                                                   <img
+                                                       onClick={handleShow}
+                                                       src="/assets/img/plus.svg"
+                                                       alt="svg"
+                                                   />
+                                               </a>
+                                           ) : (
+                                               <a href="#!">
+                                                   <img
+                                                       onClick={() => addFoodToCart(food)}
+                                                       src="/assets/img/plus.svg"
+                                                       alt="svg"
+                                                   />
+                                               </a>
+                                           ) }
+                                       </div>
+                                       </div>
+                                       </a>
+                                    ) : (
+                                       
+                                         <a href="#!"   onClick={() => addFoodToCart(food)}>
+                                         <div className="food_cart_media">
+                                         <div className="items_img">
+                                             <img src={food.dish_img} alt="Img" />
+                                         </div>
+                                         <div className="set_menu_details">
+                                             <h3>{food.name}</h3>
+                                             <p>
+                                                 {food.description}
+                                             </p>
+                                              <del className="d-inline-block font-weight-normal mr-2" style={{fontSize: 16, marginTop: -3}}>BDT {food.price}</del>
+                                              <h4 className="d-inline-block"> BDT {food.d_price}  </h4>
+                                         </div>
+                                         <div className="Add_menu_area">
+                                             { food.price_and_size.length > 0 ?  (
+                                                 <a href="#!">
+                                                     <img
+                                                         onClick={handleShow}
+                                                         src="/assets/img/plus.svg"
+                                                         alt="svg"
+                                                     />
+                                                 </a>
+                                             ) : (
+                                                 <a href="#!">
+                                                     <img
+                                                         onClick={() => addFoodToCart(food)}
+                                                         src="/assets/img/plus.svg"
+                                                         alt="svg"
+                                                     />
+                                                 </a>
+                                             ) }
+                                         </div>
+                                         </div>
+                                         </a>       
+                                        
+                                    ) }
+                                
                                 </div>
                             </div>
                             <div className="col-lg-8">
-                                <div className="set_menu_details">
-                                    <h3>{food.name}</h3>
-                                    <p>
-                                        {food.description}
-                                    </p>
-                                    <h4 className="d-inline-block"> BDT {food.d_price}  </h4>
-                                    <del className="d-inline-block position-absolute font-weight-normal mx-2" style={{fontSize: 16, marginTop: -3}}>BDT {food.price}</del>
-                                </div>
+                                
                             </div>
                             <div className="col-lg-1">
-                                <div className="Add_menu_area">
+                                {/* <div className="Add_menu_area">
                                     { food.price_and_size.length > 0 ?  (
                                         <a href="#!">
                                             <img
@@ -127,7 +193,7 @@ const Food = ({food, category_id}) => {
                                             />
                                         </a>
                                     ) }
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
